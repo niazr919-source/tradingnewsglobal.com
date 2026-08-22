@@ -12,6 +12,10 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Reads the class the blocking script in layout.tsx already applied. This
+    // has to happen after mount because the server has no way to know the
+    // reader's stored preference.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     setIsDark(document.documentElement.classList.contains("dark"));
   }, []);

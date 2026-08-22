@@ -1,56 +1,72 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Enable class-based dark mode toggling (Tailwind v4) */
+/* Class-based dark mode (Tailwind v4) */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ---------------------------------------------------------------------------
+   Palette — "broadsheet"
+   Warm paper ground, ink-navy type, one signal blue for interaction, amber for
+   editorial emphasis. Market up/down stay green/red because they encode meaning.
+   --------------------------------------------------------------------------- */
 :root {
-  --background: #f6f7f9;
+  --background: #f7f6f3;
+  --surface: #fffefb;
   --card: #ffffff;
-  --foreground: #0b1220;
-  --muted: #eef1f5;
-  --muted-foreground: #5b6472;
-  --border: #e3e7ee;
-  --primary: #4f46e5;
+  --foreground: #14181f;
+  --muted: #edeae4;
+  --muted-foreground: #5d6470;
+  --border: #e0dcd4;
+  --border-strong: #cfc9be;
+  --primary: #1f5fd0;
   --primary-foreground: #ffffff;
-  --accent: #0ea5a4;
-  --up: #16a34a;
-  --down: #dc2626;
-  --ring: #6366f1;
+  --accent: #b4761a;
+  --up: #0f7d4f;
+  --down: #c3352f;
+  --ring: #1f5fd0;
+  --shadow-color: 24 20 12;
 }
 
 .dark {
-  --background: #0a0f1c;
-  --card: #111827;
-  --foreground: #e6eaf2;
-  --muted: #1a2233;
-  --muted-foreground: #93a0b4;
-  --border: #223049;
-  --primary: #6366f1;
-  --primary-foreground: #ffffff;
-  --accent: #2dd4bf;
-  --up: #22c55e;
-  --down: #ef4444;
-  --ring: #818cf8;
+  --background: #0c0f16;
+  --surface: #11151e;
+  --card: #141924;
+  --foreground: #e8e6e1;
+  --muted: #1c2230;
+  --muted-foreground: #98a1b0;
+  --border: #262d3d;
+  --border-strong: #38415640;
+  --primary: #6b9dff;
+  --primary-foreground: #0b0e14;
+  --accent: #e0a94a;
+  --up: #35c07e;
+  --down: #f0625c;
+  --ring: #6b9dff;
+  --shadow-color: 0 0 0;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-up: var(--up);
   --color-down: var(--down);
   --color-ring: var(--ring);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 
-  --animate-ticker: ticker 40s linear infinite;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-newsreader);
+  --font-mono: var(--font-mono-nums);
+
+  --animate-ticker: ticker 60s linear infinite;
+  --animate-fade-up: fade-up 0.4s ease-out both;
 }
 
 @keyframes ticker {
@@ -58,35 +74,189 @@
   100% { transform: translateX(-50%); }
 }
 
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, Arial, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis-weight: none;
+}
+
+/* Editorial display type */
+.font-display {
+  font-family: var(--font-newsreader), ui-serif, Georgia, "Times New Roman", serif;
+  font-optical-sizing: auto;
+  letter-spacing: -0.011em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono-nums), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--primary) 25%, transparent);
+  background: color-mix(in srgb, var(--primary) 22%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip link for keyboard users — required for a clean accessibility pass */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.6rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--border-strong);
+  border-radius: 0.5rem;
+  font-weight: 600;
 }
 
 /* Thin / hidden scrollbar helpers */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-.ticker-track:hover {
-  animation-play-state: paused;
+.ticker-track:hover { animation-play-state: paused; }
+
+/* Hairline rule used between river items */
+.rule {
+  border-color: var(--border);
 }
 
-/* Article prose link tuning */
+/* ---------------------------------------------------------------------------
+   Article prose
+   --------------------------------------------------------------------------- */
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-counters: var(--muted-foreground);
+  --tw-prose-bullets: var(--border-strong);
+  --tw-prose-hr: var(--border);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+}
+
+.prose :where(h2):not(:where([class~="not-prose"] *)) {
+  font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-top: 2.4em;
+  padding-top: 0.9em;
+  border-top: 1px solid var(--border);
+}
+
+.prose :where(h3):not(:where([class~="not-prose"] *)) {
+  font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Opening paragraph gets a touch more presence */
+.prose > :where(p:first-of-type):not(:where([class~="not-prose"] *)) {
+  font-size: 1.115em;
+  line-height: 1.7;
+  color: var(--foreground);
+}
+
 .prose :where(a):not(:where([class~="not-prose"] *)) {
   color: var(--primary);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--primary) 35%, transparent);
+  text-underline-offset: 2.5px;
   font-weight: 500;
 }
-.prose :where(a):hover {
-  text-decoration: underline;
+.prose :where(a):hover:not(:where([class~="not-prose"] *)) {
+  text-decoration-color: var(--primary);
+}
+
+.prose :where(blockquote):not(:where([class~="not-prose"] *)) {
+  border-left-width: 3px;
+  border-left-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  padding: 0.9rem 1.15rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-style: normal;
+  font-weight: 500;
+}
+.prose :where(blockquote p:first-of-type)::before,
+.prose :where(blockquote p:last-of-type)::after {
+  content: "";
+}
+
+.prose :where(table):not(:where([class~="not-prose"] *)) {
+  font-size: 0.9rem;
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .prose :where(table):not(:where([class~="not-prose"] *)) {
+    display: table;
+    white-space: normal;
+    width: 100%;
+  }
+}
+
+.prose :where(thead th):not(:where([class~="not-prose"] *)) {
+  background: var(--muted);
+  font-weight: 600;
+}
+
+.prose :where(code):not(:where([class~="not-prose"] *)) {
+  background: var(--muted);
+  padding: 0.15em 0.4em;
+  border-radius: 0.3rem;
+  font-weight: 500;
+  font-size: 0.875em;
+}
+.prose :where(code)::before,
+.prose :where(code)::after { content: ""; }
+
+/* Key-takeaways / risk callouts authored as raw HTML inside MDX */
+.callout {
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: 0 0.65rem 0.65rem 0;
+  padding: 1rem 1.15rem;
+  margin: 1.75rem 0;
+  background: var(--surface);
+}
+.callout-risk {
+  border-left-color: var(--down);
+  background: color-mix(in srgb, var(--down) 6%, transparent);
+}
+.callout-key {
+  border-left-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 6%, transparent);
 }

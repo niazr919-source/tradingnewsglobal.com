@@ -57,8 +57,7 @@ export function SearchDialog({
       <div className="absolute left-1/2 top-24 w-[92%] max-w-xl -translate-x-1/2 overflow-hidden rounded-2xl border border-border bg-card shadow-2xl">
         <div className="flex items-center gap-3 border-b border-border px-4">
           <Search className="h-5 w-5 shrink-0 text-muted-foreground" />
-          {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
-          <input
+            <input
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}

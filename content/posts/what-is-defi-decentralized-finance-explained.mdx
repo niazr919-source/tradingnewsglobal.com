@@ -1,70 +1,135 @@
 ---
-title: "What Is DeFi? Decentralized Finance Explained for Beginners"
-description: "DeFi replaces banks and brokers with open-source code. Learn how lending, DEXs, liquidity pools and yield farming work — and the real risks behind the returns."
+title: "What Is DeFi? Decentralized Finance Explained Without the Hype"
+description: "DeFi rebuilds lending, trading and derivatives as open smart contracts. The mechanisms are genuinely novel; so are the failure modes. Here is how each piece works and where the losses come from."
 category: "crypto"
 author: "Maya Chen"
-authorRole: "Senior Crypto Correspondent"
-authorBio: "Maya covers digital assets, DeFi and on-chain markets for Trading News Global, with a decade reporting on emerging financial technology."
 date: "2026-07-17"
-tags: ["DeFi", "crypto basics", "Ethereum", "smart contracts", "yield farming"]
-keywords: ["what is DeFi", "decentralized finance explained", "DeFi for beginners", "liquidity pools", "DeFi risks"]
+updated: "2026-08-09"
+tags: ["DeFi", "smart contracts", "liquidity pools", "lending", "crypto basics"]
+keywords: ["what is defi", "decentralized finance explained", "how do liquidity pools work", "impermanent loss", "defi risks"]
 image: "/og-default.svg"
-cover: "/covers/crypto-4.jpg"
+cover: "/covers/crypto-6.jpg"
 featured: false
 trending: false
+sources:
+  - label: "Bank for International Settlements — DeFi risks and the decentralisation illusion"
+    href: "https://www.bis.org/publ/qtrpdf/r_qt2112b.htm"
+  - label: "Ethereum Foundation — Introduction to decentralized finance"
+    href: "https://ethereum.org/en/defi/"
+  - label: "IOSCO — Decentralized Finance Report"
+    href: "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD754.pdf"
+faq:
+  - q: "What is impermanent loss?"
+    a: "The gap between what a liquidity provider ends up holding and what they would have held by simply keeping the two assets. When one asset in a pool rises relative to the other, the automated market maker sells the rising one and buys the falling one, so the provider ends up with less of the winner. It is called impermanent because it reverses if prices return, but it becomes permanent the moment you withdraw."
+  - q: "Is DeFi actually decentralized?"
+    a: "Less often than the name suggests. Many protocols have admin keys, upgradeable contracts, governance concentrated among a few large token holders, and dependence on centralised price oracles or stablecoins. Regulators have described this gap explicitly. Decentralisation is a spectrum, and the marketing usually claims a point further along it than the code supports."
+  - q: "Where does DeFi yield come from?"
+    a: "Three legitimate sources: interest paid by borrowers, trading fees paid by swappers, and token incentives paid by the protocol. The first two are real economic activity. The third is dilution funded by issuing new tokens, and it stops when the emissions schedule ends. Yields dominated by the third source are advertising, not income."
+  - q: "What is the single largest source of DeFi losses?"
+    a: "Smart contract exploits, followed closely by oracle manipulation and protocol design failures. Billions have been lost to code vulnerabilities. Unlike a bank, there is generally no recourse, no insurance and no reversal once funds leave the contract."
 ---
 
-**Decentralized finance** — DeFi — is an attempt to rebuild traditional financial services using blockchain code instead of banks, brokers and clearing houses. Instead of applying to a lender, you interact with a smart contract that executes automatically.
+Decentralized finance is an attempt to rebuild financial services — lending, exchange, derivatives, asset management — as open programs running on a blockchain, with no institution in the middle.
 
-## The core idea
+The core claim is that if the rules are enforced by code that anyone can inspect and nobody can override, you do not need to trust a counterparty. The core problem is that code can be wrong, and when it is, there is nobody to call.
 
-In traditional finance, an institution sits in the middle of every transaction. It holds your money, verifies your identity, and takes a fee. DeFi replaces that middleman with **open-source software running on a blockchain**.
+## The substitution being made
 
-The result is a financial system that is:
+Traditional finance runs on institutions holding assets and enforcing agreements. DeFi replaces the institution with a **smart contract**: a program deployed on a blockchain that executes automatically and cannot be selectively enforced.
 
-- **Permissionless** — anyone with a wallet can use it
-- **Transparent** — the code and transactions are public
-- **Automated** — rules execute without human approval
+The properties that follow are genuinely different:
 
-## What you can actually do in DeFi
+- **Permissionless.** No application, no approval, no account.
+- **Transparent.** The code and every transaction are public.
+- **Composable.** Protocols plug into each other, so a position in one can be collateral in another.
+- **Continuous.** No opening hours, no settlement delay.
 
-### Lending and borrowing
+Each of these is also the source of a corresponding risk, which is the theme of everything below.
 
-You deposit crypto into a pool and earn interest from borrowers. Borrowers post collateral — usually *more* than they borrow — and if the collateral's value drops too far, it is automatically sold to repay the loan. This is called **liquidation**.
+## The main building blocks
 
-### Decentralized exchanges (DEXs)
+### Decentralised exchanges
 
-Rather than matching buyers with sellers through an order book, most DEXs use **liquidity pools**. Users deposit pairs of tokens into a pool, and traders swap against that pool. Depositors earn a share of the trading fees.
+Traditional exchanges match buyers with sellers through an order book. Most decentralised exchanges instead use an **automated market maker**: a pool holding two assets, with a formula setting the price according to their ratio.
 
-### Yield farming
+Trading against the pool changes the ratio and therefore the price. Anyone can supply assets to the pool and earn a share of trading fees. There is no counterparty to find and no listing process — which is why new tokens appear on decentralised exchanges first, and also why so many of them are worthless.
 
-Moving capital between protocols to chase the highest returns. High advertised yields almost always signal high risk — often because a protocol is paying out its own newly issued token.
+**The catch is impermanent loss.** Because the formula automatically sells whichever asset is rising and buys whichever is falling, a liquidity provider systematically ends up with more of the loser. If one asset doubles while the other is flat, the provider holds materially less value than if they had simply kept both assets in a wallet. Fees may or may not cover the gap.
 
-## Where the risk actually lives
-
-| Risk | What it means |
+| Price change of one asset | Approximate shortfall versus holding |
 | --- | --- |
-| Smart contract bugs | Code flaws can be exploited and funds drained |
-| Liquidation | A price drop can wipe out your collateral automatically |
-| Impermanent loss | Providing liquidity can leave you worse off than just holding |
-| Rug pulls | Anonymous teams abandoning a project and taking funds |
-| Regulatory uncertainty | Rules are still being written in most countries |
+| 1.25x | ~0.6% |
+| 1.5x | ~2.0% |
+| 2x | ~5.7% |
+| 4x | ~20.0% |
+| 5x | ~25.5% |
 
-> In DeFi there is no customer support line and no chargeback. If funds are lost to a bug or a mistaken transaction, they are usually gone permanently.
+Liquidity provision is often marketed as passive income. It is closer to selling volatility.
 
-## Understanding impermanent loss
+### Lending protocols
 
-This one catches out most newcomers. When you deposit two tokens into a liquidity pool and their prices move apart, the pool automatically rebalances your holdings. You can end up with less value than if you had simply held the two tokens in your wallet. Trading fees may or may not make up the difference.
+Deposit an asset and earn interest; post collateral and borrow against it. Rates adjust algorithmically with utilisation — when most of a pool is borrowed, rates rise to attract deposits and discourage borrowing.
 
-## A sensible way to start
+Because there is no credit assessment, all borrowing is **overcollateralised**: you might post 150 units of value to borrow 100. If your collateral falls toward the liquidation threshold, anyone can trigger liquidation, repay part of your debt and take a portion of your collateral as a fee.
 
-1. Learn on a **testnet** or with a very small amount first
-2. Prefer protocols that have been **audited** and running for years
-3. Understand exactly how liquidation works before borrowing
-4. Never invest based on an advertised APY alone
+Liquidations are the mechanism that keeps the system solvent, and they are also the mechanism through which market falls become cascades: liquidation means selling collateral, selling pushes the price down, which triggers more liquidations.
+
+### Stablecoins and oracles
+
+Nearly every DeFi protocol needs to know a price, and blockchains cannot see outside themselves. **Oracles** supply that data.
+
+This is a structural weak point. If a protocol can be tricked about the price of an asset, it can be tricked into permitting borrowing against collateral that is not worth what it appears to be worth. Oracle manipulation — often combined with flash loans, which allow enormous uncollateralised borrowing within a single transaction — has drained many protocols. The exploit is not a bug in the contract; it is the contract behaving correctly on false input.
+
+### Yield and where it comes from
+
+This is the question that separates understanding from participation.
+
+1. **Borrower interest.** Real. Someone is paying to borrow.
+2. **Trading fees.** Real. Someone is paying to swap.
+3. **Token emissions.** The protocol prints its own token and distributes it. This is dilution, not revenue.
+
+Headline yields are frequently dominated by the third. They are advertising spend measured in tokens, they end when the emissions schedule ends, and the token price usually falls as recipients sell. A yield that requires a token that only exists to pay the yield is a closed loop.
+
+> Ask who is paying, and why they would keep paying. If the answer is the protocol, using money it created, the yield has a fixed expiry date.
+
+## The risks, ranked by realised losses
+
+**1. Smart contract exploits.** Code with an error that permits withdrawal of funds. Billions have been lost this way. An audit reduces the probability but does not eliminate it; audited protocols have been drained.
+
+**2. Oracle manipulation.** As above. Frequently combined with flash loans.
+
+**3. Economic design failure.** The code works exactly as written and the incentive design does not survive contact with adversarial conditions.
+
+**4. Governance capture.** Concentrated token ownership allows a small group to pass proposals that benefit them at the expense of others.
+
+**5. Key and admin risk.** Many protocols retain upgrade keys. Whoever holds them can, in principle, change the rules.
+
+**6. Regulatory risk.** Interfaces get blocked, developers face action, jurisdictions restrict access.
+
+**7. User error.** Wrong address, wrong network, malicious approval signed. Irreversible in every case.
+
+## The decentralisation gap
+
+International standard-setters have made this point repeatedly, and it is worth taking seriously: many protocols marketed as decentralised have identifiable controlling parties, upgradeable code, concentrated governance and dependence on centralised inputs such as stablecoins and oracles.
+
+That does not make the technology worthless. It means the trust assumption has moved rather than disappeared — from a regulated institution you can sue to an anonymous team you cannot.
+
+## Assessing a protocol
+
+- **How long has it been live, holding significant value, without incident?** Time is the best available evidence.
+- **Has it been audited, by whom, and were findings resolved?**
+- **Who can upgrade the contracts, and is there a timelock?**
+- **Where do prices come from, and can that source be manipulated?**
+- **What share of the yield is emissions?**
+- **What happens in a sharp fall?** Model your position at a 50% collateral decline.
+- **How concentrated is governance?**
 
 ## The bottom line
 
-DeFi is a genuine innovation — programmable, transparent, always-on financial infrastructure. But it moves the risk from institutions onto **you**. The returns are real, and so are the losses. Learn the mechanics before committing meaningful capital.
+DeFi has produced genuinely new financial primitives — automated market making, flash loans, permissionless overcollateralised lending — that did not previously exist and that work as designed.
 
-*This article is educational and is not financial advice. Always do your own research.*
+It has also produced a large and well-documented record of losses, because removing the intermediary removes the intermediary's error correction as well as its fees. There is no chargeback, no deposit insurance and no regulator to appeal to.
+
+Treat capital deployed here as capital at genuine risk of total loss, size accordingly, and be suspicious of any yield you cannot trace to somebody paying for something.
+
+*This article is educational and is not financial advice. DeFi protocols carry a risk of total loss of funds.*

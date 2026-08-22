@@ -1,14 +1,20 @@
-export type CategorySlug = "crypto" | "forex" | "binary-trading";
+export type CategorySlug = "crypto" | "forex" | "markets" | "trading-education";
 
 export interface Category {
   slug: CategorySlug;
   name: string;
   shortName: string;
+  /** Short label used in the nav bar. */
+  navLabel: string;
+  /** One-line summary used on cards and in nav dropdowns. */
+  tagline: string;
   description: string;
   /** Tailwind classes for the category accent badge. */
   badgeClass: string;
   accent: string;
   keywords: string[];
+  /** Shown as a standing notice at the top of the category archive. */
+  notice?: string;
 }
 
 export const categories: Record<CategorySlug, Category> = {
@@ -16,31 +22,51 @@ export const categories: Record<CategorySlug, Category> = {
     slug: "crypto",
     name: "Cryptocurrency",
     shortName: "Crypto",
+    navLabel: "Crypto",
+    tagline: "Bitcoin, Ethereum, stablecoins and tokenized assets.",
     description:
-      "Bitcoin, Ethereum, altcoins, DeFi and tokenized real-world assets — the latest crypto market news, on-chain data and analysis.",
-    badgeClass: "bg-amber-500/15 text-amber-600 dark:text-amber-400 ring-amber-500/30",
-    accent: "#f59e0b",
-    keywords: ["Bitcoin", "Ethereum", "Tokenized RWAs", "AI crypto tokens", "DeFi", "altcoins"],
+      "Bitcoin, Ethereum, stablecoins, DeFi and tokenized real-world assets — explainers, market context and on-chain analysis written for people who want to understand how digital assets actually work.",
+    badgeClass: "bg-amber-500/12 text-amber-700 dark:text-amber-400 ring-amber-500/25",
+    accent: "#e08b1f",
+    keywords: ["Bitcoin", "Ethereum", "stablecoins", "tokenized RWAs", "DeFi", "crypto ETFs"],
   },
   forex: {
     slug: "forex",
-    name: "Forex Trading",
+    name: "Forex & Currencies",
     shortName: "Forex",
+    navLabel: "Forex",
+    tagline: "Major pairs, central banks and the macro that moves them.",
     description:
-      "Currency markets, central bank policy and macro analysis — EUR/USD, GBP/USD and major pair forecasts for active FX traders.",
-    badgeClass: "bg-sky-500/15 text-sky-600 dark:text-sky-400 ring-sky-500/30",
-    accent: "#0ea5e9",
-    keywords: ["EUR/USD", "GBP/USD", "Federal Reserve Interest Rates", "central banks", "macro"],
+      "Currency markets explained: how central bank policy, interest rate differentials and economic data drive EUR/USD, GBP/USD and the other major pairs.",
+    badgeClass: "bg-teal-500/12 text-teal-700 dark:text-teal-400 ring-teal-500/25",
+    accent: "#2f7d6b",
+    keywords: ["EUR/USD", "GBP/USD", "Federal Reserve", "central banks", "interest rates", "currency markets"],
   },
-  "binary-trading": {
-    slug: "binary-trading",
-    name: "Binary Trading",
-    shortName: "Binary Trading",
+  markets: {
+    slug: "markets",
+    name: "Markets & Economy",
+    shortName: "Markets",
+    navLabel: "Markets",
+    tagline: "Commodities, rates, inflation and the wider economy.",
     description:
-      "High-risk, short-duration binary options education — risk management, volatility tactics and 5-minute strategies. For educational purposes only.",
-    badgeClass: "bg-fuchsia-500/15 text-fuchsia-600 dark:text-fuchsia-400 ring-fuchsia-500/30",
-    accent: "#d946ef",
-    keywords: ["5-Minute Binary Strategies", "risk management", "volatility", "options expiry"],
+      "Gold, oil, bonds, inflation and the economic releases that set the tone across every asset class — background and context for readers following global markets.",
+    badgeClass: "bg-violet-500/12 text-violet-700 dark:text-violet-400 ring-violet-500/25",
+    accent: "#5b52c9",
+    keywords: ["gold price", "inflation", "bond yields", "commodities", "economic calendar", "recession"],
+  },
+  "trading-education": {
+    slug: "trading-education",
+    name: "Trading Education",
+    shortName: "Education",
+    navLabel: "Education",
+    tagline: "Risk, psychology and how markets really work.",
+    description:
+      "Plain-language education on risk management, position sizing, trading psychology and the mechanics of leveraged and short-duration products — including a frank look at why most retail traders lose money.",
+    badgeClass: "bg-rose-500/12 text-rose-700 dark:text-rose-400 ring-rose-500/25",
+    accent: "#c2455a",
+    keywords: ["risk management", "position sizing", "trading psychology", "leverage", "retail trading losses"],
+    notice:
+      "Educational content only. Nothing in this section is a recommendation to trade any product, and several instruments discussed here — including leveraged CFDs and binary options — lose money for the large majority of retail investors.",
   },
 };
 

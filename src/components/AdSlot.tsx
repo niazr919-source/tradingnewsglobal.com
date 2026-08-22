@@ -3,14 +3,19 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
-const AD_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT; // e.g. "ca-pub-1234567890123456"
+const AD_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 
 /**
- * Reusable ad unit.
- * - When NEXT_PUBLIC_ADSENSE_CLIENT is set, renders a real Google AdSense unit.
- * - Otherwise renders a labeled placeholder so you can see where ads will appear.
+ * Ad unit.
  *
- * Get `slot` from your AdSense dashboard after creating an ad unit.
+ * - With NEXT_PUBLIC_ADSENSE_CLIENT set, renders a real AdSense unit.
+ * - Without it, renders a quiet placeholder so layout is stable while the site
+ *   is under review. Google explicitly does not require live ad code to approve
+ *   a site, and shipping empty <ins> tags with no publisher ID is worse than
+ *   shipping none at all.
+ *
+ * Every unit is labelled "Advertisement" — required by AdSense policy so ads are
+ * never mistaken for editorial content.
  */
 export function AdSlot({
   slot,
@@ -31,26 +36,27 @@ export function AdSlot({
       (window.adsbygoogle = window.adsbygoogle || []).push({});
       pushed.current = true;
     } catch {
-      /* AdSense script not ready yet */
+      /* script not ready */
     }
   }, []);
 
   if (!AD_CLIENT) {
     return (
       <div
+        aria-hidden
         className={cn(
-          "flex min-h-24 items-center justify-center rounded-xl border border-dashed border-border bg-muted/40 text-xs font-medium uppercase tracking-wide text-muted-foreground",
+          "flex min-h-24 items-center justify-center rounded-lg border border-dashed border-border bg-muted/30 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground/70",
           className
         )}
       >
-        {label} — ad space
+        {label}
       </div>
     );
   }
 
   return (
-    <div className={className}>
-      <span className="mb-1 block text-center text-[10px] uppercase tracking-wide text-muted-foreground">
+    <aside className={className} aria-label={label}>
+      <span className="mb-1 block text-center text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
         {label}
       </span>
       <ins
@@ -61,6 +67,6 @@ export function AdSlot({
         data-ad-format={format}
         data-full-width-responsive="true"
       />
-    </div>
+    </aside>
   );
 }

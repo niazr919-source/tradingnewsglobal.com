@@ -1,82 +1,138 @@
 ---
-title: "A Practical Risk Management Framework for Short-Term Traders"
-description: "Risk management is what keeps traders in the game. Learn the 1% rule, expectancy, drawdown maths and the daily limits that protect an account from a single bad session."
-category: "binary-trading"
+title: "A Risk Management Framework That Survives a Bad Run"
+description: "Risk management is not a stop-loss. It is a set of limits decided before you have a position, covering per-trade risk, correlation, drawdown and the point at which you stop trading entirely."
+category: "trading-education"
 author: "Priya Nair"
-authorRole: "Trading Educator"
-authorBio: "Priya writes educational trading content for Trading News Global, focused on risk discipline and process over prediction."
 date: "2026-07-19"
-tags: ["risk management", "position sizing", "trading discipline", "expectancy", "drawdown"]
-keywords: ["trading risk management", "1% rule trading", "expectancy formula", "drawdown recovery", "position sizing rules"]
+updated: "2026-08-19"
+tags: ["risk management", "position sizing", "drawdown", "expectancy", "correlation"]
+keywords: ["trading risk management framework", "position sizing rules", "maximum drawdown limit", "risk per trade percentage", "correlated positions risk"]
 image: "/og-default.svg"
-cover: "/covers/trading-4.jpg"
-featured: false
+cover: "/covers/trading-5.jpg"
+featured: true
 trending: true
+sources:
+  - label: "ESMA — Product intervention measures and retail client outcomes"
+    href: "https://www.esma.europa.eu/press-news/esma-news/esma-agrees-prohibit-binary-options-and-restrict-cfds-protect-retail-investors"
+  - label: "FCA — Retail client protections for leveraged products"
+    href: "https://www.fca.org.uk/publications/policy-statements/ps19-18-restricting-contract-for-difference-products-sold-retail-clients"
+  - label: "Kahneman & Tversky — Prospect Theory: An Analysis of Decision under Risk"
+    href: "https://www.jstor.org/stable/1914185"
+faq:
+  - q: "How much should I risk per trade?"
+    a: "Most durable frameworks use 1% of account equity or less. The reasoning is survivability rather than optimality: at 1%, twenty consecutive losses leave roughly 82% of the account intact, which is recoverable. At 5%, the same run leaves about 36%, which requires a 178% gain to restore."
+  - q: "Is a stop-loss the same as risk management?"
+    a: "No. A stop-loss caps one position. Risk management is a system of limits covering per-trade risk, total exposure, correlation between positions, daily and monthly loss limits, and the conditions under which you stop trading. A trader with stops on every position can still lose an account by holding six correlated positions at once."
+  - q: "What is correlation risk?"
+    a: "Holding several positions that are effectively the same bet. Long EUR/USD, long GBP/USD and short USD/JPY are three expressions of a short-dollar view. Sized individually at 1% each, the real risk on a dollar-strengthening day is closer to 3%, because they will lose together."
+  - q: "What is a maximum drawdown limit?"
+    a: "A predetermined loss level at which you stop trading and review, rather than continuing to trade while impaired. Common structures use a daily limit of around 3%, a monthly limit around 6% to 10%, and a hard stop that ends the programme. Its purpose is to interrupt the loss-chasing spiral before it destroys the account."
 ---
 
-> **Risk disclaimer:** Short-term and binary trading are high-risk activities. Most retail traders lose money. This article is educational only and is not financial advice.
+Most retail traders equate risk management with placing a stop-loss. That is one component of one position. It is not a framework, and it does not prevent the failure mode that actually destroys accounts.
 
-Most beginners obsess over entries. Experienced traders obsess over **risk**. The reason is simple arithmetic: you cannot trade an account you've already lost.
+A framework is a set of limits decided in advance, when you have no position and no emotional stake, and applied mechanically afterwards. The advance part is what makes it work, because the moment you need these rules is exactly the moment you will not want to follow them.
 
-## Rule 1: Fixed fractional risk
+## Layer one: risk per trade
 
-Risk the same small percentage of your account on every trade — commonly **1–2%**.
+The foundational decision, and the one with the largest effect.
 
-With a $2,000 account and 1% risk, your maximum loss per trade is **$20**. That's true whether you feel confident or uncertain, because confidence is a feeling, not an edge.
+**Fix the percentage of equity you will lose if a single position goes against you.** For most people that is 1% or less. This is not a target for optimal growth; it is a survivability threshold.
 
-This approach has a useful property: as your account grows, position sizes grow with it. As it shrinks, they shrink automatically, slowing the bleeding during a bad run.
+The arithmetic explains the choice:
 
-## Rule 2: Understand drawdown maths
+| Risk per trade | Account remaining after 20 straight losses | Gain needed to recover |
+| --- | --- | --- |
+| 0.5% | 90.5% | 10% |
+| 1% | 81.8% | 22% |
+| 2% | 66.8% | 50% |
+| 5% | 35.8% | 179% |
+| 10% | 12.2% | 720% |
 
-Losses are not symmetrical with gains. This table is worth memorising:
+Twenty consecutive losses sounds extreme. With a strategy that wins 40% of the time, a run of ten is unremarkable across a few hundred trades, and runs cluster rather than distributing evenly. The question is not whether a bad run will happen but whether the account survives it in a state where the strategy can still work.
 
-| Account loss | Gain needed to recover |
-| --- | --- |
-| 10% | 11% |
-| 25% | 33% |
-| 50% | 100% |
-| 75% | 300% |
-| 90% | 900% |
+At 1%, a bad run is an inconvenience. At 5%, it is close to terminal.
 
-> Losing half your account means you must **double** what's left just to get back to even. This is why capital preservation comes before profit.
+## Layer two: position sizing derived from risk
 
-## Rule 3: Know your expectancy
+Once risk per trade is fixed, size stops being a choice.
 
-Expectancy tells you whether a strategy makes money over many trades:
+```
+Position size = (Account x Risk %) / (Stop distance x Value per unit)
+```
 
-**Expectancy = (Win rate × Average win) − (Loss rate × Average loss)**
+Worked example: a 10,000 account, 1% risk, a 40-pip stop on a pair worth 10 per pip per standard lot.
 
-If the result is positive, the strategy is profitable over a large sample. If it's negative, no amount of discipline or position sizing will save it — you're simply losing more slowly.
+- Risk allowance: 100
+- Loss per standard lot at 40 pips: 400
+- Position size: 100 / 400 = 0.25 lots
 
-### For fixed-payout instruments
+Widen the stop and the position shrinks. Tighten it and the position grows. **The risk stays constant**, which is the entire point. Every loss is the same size, which is what makes a sequence of them survivable.
 
-With binary options the maths is stricter, because a loss costs 100% of the stake while a win pays less:
+## Layer three: correlation
 
-**Break-even win rate = 1 ÷ (1 + payout)**
+This is the layer most frameworks omit, and it is where carefully sized traders still blow up.
 
-At an 80% payout, you need roughly a **56%** win rate just to break even. Anything less and the structure grinds your account down regardless of how good individual trades feel.
+Holding long EUR/USD, long GBP/USD and short USD/JPY is not three positions. It is one short-dollar position expressed three ways. Sized at 1% each, the actual exposure on a dollar rally is close to 3%.
 
-## Rule 4: Set session limits
+The same applies across asset classes. Long several technology stocks is one bet on the same factor. Long several small-cap crypto tokens is one bet on risk appetite.
 
-Decide **before** you start:
+**The rule:** set a limit on total risk within a correlated group, not just per position. If three positions share a driver, the group carries the risk budget of one.
 
-1. **Daily loss limit** — e.g. 3% of the account. Hit it, stop for the day.
-2. **Daily profit target** — protects gains from being given back.
-3. **Maximum trades per session** — prevents revenge trading and overtrading.
+Practically: before opening a position, ask what single event would cause every open position to lose simultaneously. If a plausible event does that, you hold one position, not several.
 
-The purpose of these limits is to remove decisions from the moment when your judgement is worst: immediately after a loss.
+## Layer four: drawdown limits
 
-## Rule 5: Keep a trading journal
+Predetermined loss levels at which you stop.
 
-Record every trade: setup, size, outcome, and your emotional state. After 50–100 trades, patterns emerge that are invisible day to day — often revealing that a small number of impulsive trades caused most of the damage.
+- **Daily limit**, commonly around 3%. Reached, you stop for the day.
+- **Weekly or monthly limit**, commonly 6% to 10%. Reached, you stop and review before resuming.
+- **Programme limit**, perhaps 20%. Reached, you stop entirely and reassess whether the strategy has an edge at all.
+
+The purpose is not to preserve capital arithmetically — the per-trade limit does that. It is to **interrupt the behavioural spiral**. Loss chasing is the documented pattern by which a slowly bleeding account is destroyed in an afternoon, and it operates by increasing size after losses. A hard stop removes the option before the impulse arrives.
+
+The rule only works if it is written down beforehand and treated as non-negotiable. A limit you can talk yourself past is not a limit.
+
+## Layer five: knowing whether you have an edge
+
+Risk management protects capital. It does not create returns. If the underlying strategy has negative expectancy, disciplined risk management only determines how slowly you lose.
+
+```
+Expectancy = (Win rate x Average win) - (Loss rate x Average loss) - Costs
+```
+
+This must be computed from **your own records**, over at least a hundred trades, including every cost. Memory is not a data source; it systematically overweights wins.
+
+If expectancy is negative, no amount of sizing discipline fixes it. Reduce frequency, change the approach, or stop.
+
+## Layer six: the operational rules
+
+The unglamorous items that prevent avoidable losses.
+
+- **No trading into major scheduled releases** unless that is explicitly the strategy. Spreads widen, slippage increases, stops fill far from their level.
+- **Account for gap risk.** Stops do not guarantee a price; they trigger an order. Weekend and event gaps can execute far beyond the level.
+- **Keep total exposure bounded**, regardless of how good the setups look.
+- **Log every trade** with entry, exit, size, reasoning and outcome. Without records there is no expectancy calculation and no way to improve.
+- **Review weekly**, against the rules rather than against the profit and loss. A profitable week in which rules were broken is a bad week.
 
 ## Putting it together
 
-- Risk 1% per trade, always
-- Know the break-even threshold for your instrument
-- Stop at your daily limit, no exceptions
-- Journal everything and review weekly
+A complete framework, on one page:
+
+1. Risk 1% of equity per position.
+2. Derive size from the stop distance; never the reverse.
+3. Cap total risk within any correlated group at 2%.
+4. Stop for the day at −3%; stop for the month at −8%; stop entirely at −20%.
+5. Compute expectancy monthly from your own log.
+6. No positions into major scheduled events.
+7. Review weekly against rule compliance, not against profit.
+
+Write it down. The value comes entirely from having decided before the pressure arrives.
 
 ## The bottom line
 
-Risk management is not the boring part of trading — it *is* trading. Your strategy determines your edge; your risk rules determine whether you survive long enough to realise it.
+Risk management is not a technique applied to a trade. It is a set of constraints applied to yourself, decided when you are calm and enforced when you are not.
+
+It cannot make a losing strategy profitable. What it can do is keep you solvent long enough to find out whether you have one — which most traders never do, because the account is gone before the sample is large enough to tell.
+
+*This article is educational and is not financial advice. Trading carries a high risk of loss.*

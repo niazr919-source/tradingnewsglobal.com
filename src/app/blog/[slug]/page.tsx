@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { format } from "date-fns";
-import { Calendar, Clock, Tag } from "lucide-react";
+import { Clock, ExternalLink } from "lucide-react";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/posts";
 import { categories } from "@/lib/categories";
 import { absoluteUrl } from "@/lib/site";
@@ -10,6 +9,7 @@ import {
   buildArticleMetadata,
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
+  buildFaqJsonLd,
 } from "@/lib/seo";
 import { CategoryBadge } from "@/components/CategoryBadge";
 import { Markdown } from "@/components/Markdown";
@@ -19,6 +19,9 @@ import { AuthorBox } from "@/components/AuthorBox";
 import { RelatedNews } from "@/components/RelatedNews";
 import { AdSlot } from "@/components/AdSlot";
 import { PostCover } from "@/components/PostCover";
+import { PostDate } from "@/components/PostDate";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { RiskWarning } from "@/components/TrendingSidebar";
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -35,11 +38,7 @@ export async function generateMetadata({
   return buildArticleMetadata(post);
 }
 
-export default async function ArticlePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
@@ -47,112 +46,179 @@ export default async function ArticlePage({
   const cat = categories[post.category];
   const related = getRelatedPosts(post, 3);
   const url = absoluteUrl(`/blog/${post.slug}`);
-  const articleJsonLd = buildArticleJsonLd(post);
-  const breadcrumbJsonLd = buildBreadcrumbJsonLd(post);
+  const faqJsonLd = buildFaqJsonLd(post);
+  const wasUpdated = post.updated && post.updated !== post.date;
 
   return (
     <article className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* JSON-LD structured data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildArticleJsonLd(post)) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildBreadcrumbJsonLd(post)) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
+
+      <Breadcrumb
+        items={[
+          { label: "Home", href: "/" },
+          { label: cat.name, href: `/category/${cat.slug}` },
+          { label: post.title },
+        ]}
       />
 
-      {/* Breadcrumb */}
-      <nav className="mb-4 text-xs text-muted-foreground">
-        <Link href="/" className="hover:text-primary">
-          Home
-        </Link>{" "}
-        /{" "}
-        <Link href={`/category/${cat.slug}`} className="hover:text-primary">
-          {cat.name}
-        </Link>{" "}
-        / <span className="text-foreground">{post.title}</span>
-      </nav>
-
-      <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
+      <div className="mt-5 grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-14">
         {/* Main column */}
         <div className="min-w-0">
-          <header>
+          <header className="mx-auto max-w-[46rem]">
             <CategoryBadge category={post.category} className="mb-3" />
-            <h1 className="text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+            <h1 className="font-display text-[32px] font-semibold leading-[1.13] tracking-[-0.025em] sm:text-[44px]">
               {post.title}
             </h1>
-            <p className="mt-3 text-lg text-muted-foreground">{post.description}</p>
+            <p className="mt-4 text-[17px] leading-relaxed text-muted-foreground">{post.description}</p>
 
-            <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">{post.author}</span>
+            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-border py-3 text-[13px] text-muted-foreground">
+              {post.authorSlug ? (
+                <Link
+                  href={`/authors/${post.authorSlug}`}
+                  className="font-semibold text-foreground hover:text-primary"
+                >
+                  {post.author}
+                </Link>
+              ) : (
+                <span className="font-semibold text-foreground">{post.author}</span>
+              )}
+              <span aria-hidden>·</span>
+              <PostDate date={post.date} long />
+              {wasUpdated && (
+                <>
+                  <span aria-hidden>·</span>
+                  <span>
+                    Updated <PostDate date={post.updated as string} long />
+                  </span>
+                </>
+              )}
+              <span aria-hidden>·</span>
               <span className="inline-flex items-center gap-1.5">
-                <Calendar className="h-4 w-4" />
-                <time dateTime={post.date}>{format(new Date(post.date), "MMMM d, yyyy")}</time>
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Clock className="h-4 w-4" />
+                <Clock className="h-3.5 w-3.5" />
                 {post.readingTime} min read
               </span>
             </div>
-
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-y border-border py-3">
-              <ShareButtons url={url} title={post.title} />
-            </div>
           </header>
 
-          {/* Hero cover */}
           <PostCover
             post={post}
             priority
-            className="mt-6 aspect-[16/9] w-full rounded-xl sm:aspect-[2/1]"
-            sizes="(min-width: 1024px) 800px, 100vw"
+            className="mt-7 aspect-[16/9] w-full rounded-xl"
+            sizes="(min-width: 1024px) 780px, 100vw"
           />
 
-          {/* Mobile TOC */}
-          <div className="mt-6 lg:hidden">
+          {/* Mobile table of contents */}
+          <div className="mx-auto mt-7 max-w-[46rem] lg:hidden">
             <TableOfContents content={post.content} />
           </div>
 
-          {/* Article body */}
-          <div className="mt-8">
+          {/* Body */}
+          <div className="mx-auto mt-8 max-w-[46rem]">
             <Markdown>{post.content}</Markdown>
-          </div>
 
-          {/* In-article ad */}
-          <AdSlot label="Advertisement" className="my-8" />
+            {/* FAQ */}
+            {post.faq.length > 0 && (
+              <section className="mt-12">
+                <h2 className="border-t border-border pt-8 font-display text-2xl font-semibold tracking-[-0.02em]">
+                  Frequently asked questions
+                </h2>
+                <div className="mt-5 divide-y divide-border border-y border-border">
+                  {post.faq.map((item) => (
+                    <details key={item.q} className="group py-4">
+                      <summary className="cursor-pointer list-none font-display text-[17px] font-semibold">
+                        <span className="flex items-start justify-between gap-4">
+                          {item.q}
+                          <span className="mt-0.5 shrink-0 text-xl leading-none text-muted-foreground transition-transform group-open:rotate-45">
+                            +
+                          </span>
+                        </span>
+                      </summary>
+                      <p className="mt-2.5 text-[14.5px] leading-relaxed text-muted-foreground">
+                        {item.a}
+                      </p>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
 
-          {/* Tags */}
-          {post.tags.length > 0 && (
-            <div className="mt-8 flex flex-wrap items-center gap-2">
-              <Tag className="h-4 w-4 text-muted-foreground" />
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
-                >
-                  {tag}
-                </span>
-              ))}
+            {/* Sources — the strongest trust signal available on a finance article */}
+            {post.sources.length > 0 && (
+              <section className="mt-10">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  Sources and further reading
+                </h2>
+                <ul className="mt-3 space-y-2">
+                  {post.sources.map((s) => (
+                    <li key={s.href}>
+                      <a
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        className="inline-flex items-start gap-1.5 text-[14px] text-primary hover:underline"
+                      >
+                        <ExternalLink className="mt-[0.2em] h-3.5 w-3.5 shrink-0" />
+                        {s.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            <div className="mt-10">
+              <RiskWarning />
             </div>
-          )}
 
-          {/* Author */}
-          <div className="mt-8">
-            <AuthorBox post={post} />
+            <AdSlot label="Advertisement" className="my-10" />
+
+            {post.tags.length > 0 && (
+              <div className="mt-8 flex flex-wrap items-center gap-2">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                  Topics
+                </span>
+                {post.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-border px-2.5 py-0.5 text-[12px] font-medium text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-8">
+              <AuthorBox post={post} />
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-border py-4">
+              <p className="text-[13px] font-semibold">Share this article</p>
+              <ShareButtons url={url} title={post.title} />
+            </div>
           </div>
 
           <RelatedNews posts={related} />
         </div>
 
-        {/* Sticky sidebar (desktop) */}
+        {/* Sticky rail */}
         <aside className="hidden lg:block">
-          <div className="sticky top-32 space-y-6">
+          <div className="sticky top-20 space-y-6">
             <TableOfContents content={post.content} />
-            <div className="rounded-xl border border-border bg-card p-5">
-              <h2 className="mb-3 text-sm font-bold uppercase tracking-wide">Share this article</h2>
-              <ShareButtons url={url} title={post.title} />
-            </div>
+            <AdSlot label="Advertisement" className="min-h-60" />
           </div>
         </aside>
       </div>

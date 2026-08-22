@@ -23,9 +23,10 @@ function rng(seed: number): () => number {
 }
 
 const glyphs: Record<CategorySlug, string> = {
-  crypto: "₿", // ₿
+  crypto: "₿",
   forex: "$",
-  "binary-trading": "%",
+  markets: "⚖",
+  "trading-education": "%",
 };
 
 /** A themed, seeded candlestick-chart illustration used when a post has no real cover photo. */
@@ -39,16 +40,17 @@ function Illustration({ category, seed }: { category: CategorySlug; seed: string
   const n = 11;
   const step = (W - pad * 2) / (n - 1);
 
-  let prev = H * 0.5;
-  const candles = Array.from({ length: n }, (_, i) => {
+  // Built with an explicit loop rather than Array.from so the running price is
+  // read from the accumulated array instead of a reassigned closure variable.
+  const candles: { x: number; open: number; close: number; high: number; low: number; up: boolean }[] = [];
+  for (let i = 0; i < n; i++) {
+    const open = i === 0 ? H * 0.5 : candles[i - 1].close;
     const x = pad + i * step;
-    const open = prev;
-    const close = Math.min(H - 46, Math.max(52, prev + (rand() - 0.45) * (H * 0.16)));
+    const close = Math.min(H - 46, Math.max(52, open + (rand() - 0.45) * (H * 0.16)));
     const high = Math.min(open, close) - rand() * 14 - 4;
     const low = Math.max(open, close) + rand() * 14 + 4;
-    prev = close;
-    return { x, open, close, high, low, up: close <= open };
-  });
+    candles.push({ x, open, close, high, low, up: close <= open });
+  }
   const linePoints = candles
     .map((c) => `${c.x.toFixed(1)},${((c.open + c.close) / 2).toFixed(1)}`)
     .join(" ");

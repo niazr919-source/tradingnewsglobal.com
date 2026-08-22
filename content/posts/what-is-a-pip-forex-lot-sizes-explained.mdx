@@ -1,76 +1,124 @@
 ---
-title: "What Is a Pip? Forex Lot Sizes and Position Value Explained"
-description: "Pips and lot sizes are the language of forex. Learn what a pip is, how lot sizes change your risk per trade, and how to calculate exactly what each move is worth."
+title: "Pips and Lot Sizes Explained: How to Calculate What a Trade Actually Risks"
+description: "A pip is the unit currencies move in. A lot is how much you hold. Combining them gives the number that matters most — what one pip of movement costs you in real money."
 category: "forex"
 author: "Daniel Okoro"
-authorRole: "FX & Macro Strategist"
-authorBio: "Daniel analyzes currency markets and central-bank policy for Trading News Global, drawing on years on institutional trading desks."
 date: "2026-07-16"
-tags: ["forex basics", "pips", "lot sizes", "position sizing", "risk management"]
-keywords: ["what is a pip", "forex lot sizes explained", "pip value calculation", "forex for beginners", "standard lot mini lot"]
+updated: "2026-08-05"
+tags: ["pips", "lot sizes", "position sizing", "forex basics", "risk management"]
+keywords: ["what is a pip in forex", "forex lot sizes explained", "pip value calculation", "position size calculator forex", "micro lot vs standard lot"]
 image: "/og-default.svg"
-cover: "/covers/forex-2.jpg"
+cover: "/covers/forex-6.jpg"
 featured: false
 trending: false
+sources:
+  - label: "Bank for International Settlements — FX market structure and conventions"
+    href: "https://www.bis.org/statistics/rpfx22.htm"
+  - label: "FCA — Contracts for difference: retail client protections"
+    href: "https://www.fca.org.uk/publications/policy-statements/ps19-18-restricting-contract-for-difference-products-sold-retail-clients"
+  - label: "CME Group — FX futures contract specifications"
+    href: "https://www.cmegroup.com/markets/fx.html"
+faq:
+  - q: "What is a pip?"
+    a: "The standard smallest increment a currency pair is quoted in. For most pairs that is the fourth decimal place, so 0.0001. For pairs quoted against the Japanese yen it is the second decimal place, 0.01, because of the different scale of the exchange rate. Many brokers additionally quote a fifth or third decimal, called a pipette or fractional pip."
+  - q: "How much is one pip worth?"
+    a: "It depends on position size and on which currency is the quote currency. On a standard lot of 100,000 units where the quote currency is the US dollar, one pip is 10 dollars. A mini lot is 1 dollar per pip and a micro lot is 10 cents. Where the quote currency is not your account currency, the value must be converted at the current rate."
+  - q: "What is the difference between standard, mini and micro lots?"
+    a: "They are units of position size. A standard lot is 100,000 units of the base currency, a mini lot is 10,000, and a micro lot is 1,000. Some brokers offer nano lots of 100. Smaller units exist so that traders with modest accounts can size positions to their risk rather than being forced into an oversized position."
+  - q: "How do I calculate position size from my risk?"
+    a: "Divide the amount you are willing to lose by the stop distance in pips to get the value per pip you can afford, then divide that by the pip value of one lot for your pair. If you will risk 200 with a 40-pip stop, you can afford 5 per pip, which on a dollar-quoted pair means half a mini lot."
 ---
 
-Before you can manage risk in forex, you need to speak its language. Two terms do most of the work: **pips** and **lots**. Together they tell you exactly how much money a price move is worth.
+Two units govern every foreign exchange trade. A **pip** measures how far the price moved. A **lot** measures how much you were holding while it moved. Multiply them and you have the number that actually matters: the money at stake.
 
-## What is a pip?
+Getting this arithmetic right is not advanced technique. It is the difference between knowing what you risk and guessing.
 
-A **pip** ("percentage in point") is the standard smallest price move for most currency pairs — the **fourth decimal place**.
+## What a pip is
 
-If EUR/USD moves from 1.0850 to 1.0851, that's **one pip**.
+A pip is the standard smallest increment in which a currency pair is quoted.
 
-The exception is pairs involving the Japanese yen, which are quoted to two decimals. For USD/JPY, a move from 151.20 to 151.21 is one pip.
+For most pairs it is the **fourth decimal place**: 0.0001. If EUR/USD moves from 1.0850 to 1.0851, that is one pip.
 
-You may also see a **pipette** — one tenth of a pip, shown as a fifth decimal (1.08505). Brokers use these for finer pricing.
+For pairs quoted against the **Japanese yen** it is the **second decimal place**: 0.01. USD/JPY moving from 148.20 to 148.21 is one pip. The difference exists because the yen exchange rate sits on a different scale — using four decimals would produce impractically small increments.
 
-## Lot sizes: how much you're actually trading
+Most brokers now quote an extra digit — the fifth decimal on standard pairs, the third on yen pairs. This is a **pipette** or fractional pip, worth one tenth of a pip. A price of 1.08505 is 1.0850 and a half pip. It exists because tighter pricing lets brokers compete on spread.
 
-A **lot** is the number of units of the base currency you're trading. Your lot size determines what each pip is worth.
+## Lot sizes
 
-| Lot type | Units | Approx. pip value* |
+A lot is a standardised quantity of the base currency.
+
+| Lot type | Units of base currency | Pip value (dollar-quoted pairs) |
 | --- | --- | --- |
-| Standard | 100,000 | $10 per pip |
-| Mini | 10,000 | $1 per pip |
-| Micro | 1,000 | $0.10 per pip |
-| Nano | 100 | $0.01 per pip |
+| Standard | 100,000 | 10.00 |
+| Mini | 10,000 | 1.00 |
+| Micro | 1,000 | 0.10 |
+| Nano | 100 | 0.01 |
 
-\* For pairs quoted with USD as the second currency, such as EUR/USD.
+Smaller denominations exist precisely so that a trader with a modest account can size a position to their intended risk rather than being pushed into an oversized one. If your account cannot support a micro lot at a sensible stop distance, the account is too small for the trade — not a reason to widen the risk.
 
-## Putting it together
+## Calculating pip value
 
-Say you buy **one mini lot** of EUR/USD at 1.0850 and it rises to 1.0870.
+The rule: **pip value depends on the quote currency**, the second one in the pair.
 
-- Move: 1.0870 − 1.0850 = **20 pips**
-- Pip value: **$1** per pip (mini lot)
-- Result: 20 × $1 = **$20 profit**
+**When the quote currency is your account currency.** Straightforward. On EUR/USD with a dollar account, a standard lot gives 10 per pip, a mini lot 1, a micro lot 0.10.
 
-Had you traded a standard lot, the same 20-pip move would be **$200**. Same market, same idea — ten times the risk.
+**When it is not.** You must convert. On EUR/GBP with a dollar account, pip value is calculated in pounds and then converted to dollars at the current GBP/USD rate. Because that rate moves, so does your pip value — slightly, but it matters for precise sizing.
 
-> Your lot size, not your prediction, is what decides how much a mistake costs you.
+**Yen pairs.** The pip is 0.01 rather than 0.0001, and the pip value in yen must be converted to your account currency. On a standard lot of USD/JPY, one pip is 1,000 yen, which at a rate of 150 is roughly 6.67 dollars — not the 10 that many people assume by analogy with dollar-quoted pairs.
 
-## Why this matters for risk
+Most platforms display pip value automatically. It is worth being able to check it manually, because a sizing error caused by assuming the wrong pip value is silent until the loss arrives.
 
-This is the practical use of pips. Suppose you have a $2,000 account and you're willing to risk **1%** ($20) on a trade, with a stop-loss 20 pips away.
+## Position sizing, worked through
 
-1. Risk allowed: $20
-2. Stop distance: 20 pips
-3. Maximum pip value: $20 ÷ 20 = **$1 per pip**
-4. That means: **one mini lot**
+This is the calculation that determines outcomes.
 
-Work in that order — risk first, then position size. Most beginners do it backwards, picking a lot size and discovering their risk afterwards.
+**Inputs:**
+- Account: 5,000
+- Maximum risk per trade: 1%, so 50
+- Stop distance: 25 pips
+- Pair: EUR/USD, dollar account
 
-## Common mistakes to avoid
+**Step 1.** Value per pip you can afford:
 
-- Trading standard lots on a small account "to make it worthwhile"
-- Ignoring that pip value shifts on pairs where USD isn't the quote currency
-- Forgetting that **spread** costs you pips on every single trade
-- Widening a stop-loss instead of reducing lot size
+```
+50 / 25 pips = 2.00 per pip
+```
+
+**Step 2.** Convert to lots. A mini lot gives 1.00 per pip on this pair, so:
+
+```
+2.00 / 1.00 = 2 mini lots  (0.2 standard lots)
+```
+
+**Step 3.** Confirm. Two mini lots is 20,000 of exposure. A 25-pip adverse move costs 50, which is 1% of the account. Correct.
+
+Change the stop to 50 pips and the position halves to one mini lot. The risk stays at 50. **The risk is the fixed input; the size is the output.**
+
+## The mistake this prevents
+
+The common approach is to choose a position size first — often the largest the account permits — and then place a stop wherever seems reasonable. Risk per trade then varies unpredictably from perhaps 2% to 20%, and the trader has no idea which.
+
+Running the calculation the other way round makes every loss the same size, which is what makes a sequence of losses survivable. Twenty consecutive losses at 1% leaves roughly 82% of the account. Twenty at 5% leaves about 36%.
+
+## Spread, in pips
+
+The spread is quoted in pips and is paid on entry. A 1.2 pip spread on EUR/USD means the position starts 1.2 pips down.
+
+That matters most for short-horizon strategies. A trade targeting 10 pips pays 12% of its target in spread before anything happens. A trade targeting 200 pips pays 0.6%. This single ratio explains much of why high-frequency retail strategies underperform: the cost is fixed per trade while the target shrinks.
+
+## Quick reference
+
+| Pair type | Pip location | Standard lot pip value |
+| --- | --- | --- |
+| EUR/USD, GBP/USD, AUD/USD | 4th decimal | 10 USD |
+| USD/JPY, EUR/JPY, GBP/JPY | 2nd decimal | 1,000 JPY, converted |
+| USD/CHF, USD/CAD | 4th decimal | In quote currency, converted |
+| EUR/GBP, EUR/CHF | 4th decimal | In quote currency, converted |
 
 ## The bottom line
 
-A pip measures the move; the lot size decides what that move is worth to you. Master this relationship and position sizing becomes arithmetic instead of guesswork — which is exactly what separates disciplined traders from gamblers.
+Pips and lots are elementary, and skipping the arithmetic is the most common reason a trader cannot answer the only question that matters before opening a position: how much will this cost me if I am wrong?
 
-*This article is educational and is not financial advice. Forex trading carries a high risk of loss.*
+Fix the risk. Measure the stop. Let those two determine the size. Everything downstream of that decision is easier.
+
+*This article is educational and is not financial advice. Leveraged foreign exchange trading carries a high risk of loss.*

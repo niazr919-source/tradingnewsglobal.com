@@ -1,75 +1,123 @@
 ---
-title: "Candlestick Charts: A Beginner's Guide to Reading Price Action"
-description: "Candlestick charts show the story behind every price move. Learn how to read the body, wicks, timeframes and common patterns — and why context beats pattern-spotting."
-category: "forex"
-author: "Daniel Okoro"
-authorRole: "FX & Macro Strategist"
-authorBio: "Daniel analyzes currency markets and central-bank policy for Trading News Global, drawing on years on institutional trading desks."
+title: "Candlestick Charts: What They Show, and What They Cannot Tell You"
+description: "Candlesticks compress four prices into one shape and are genuinely useful for reading a market. The pattern-recognition industry built on top of them is far less well supported."
+category: "trading-education"
+author: "Priya Nair"
 date: "2026-07-10"
-tags: ["candlestick charts", "technical analysis", "forex basics", "price action", "chart patterns"]
-keywords: ["candlestick chart basics", "how to read candlesticks", "candlestick patterns", "price action for beginners", "technical analysis basics"]
+updated: "2026-08-04"
+tags: ["candlestick charts", "technical analysis", "chart reading", "patterns", "trading basics"]
+keywords: ["how to read candlestick charts", "candlestick basics", "doji meaning", "do candlestick patterns work", "japanese candlesticks explained"]
 image: "/og-default.svg"
-cover: "/covers/forex-1.jpg"
+cover: "/covers/trading-2.jpg"
 featured: false
 trending: false
+sources:
+  - label: "CFA Institute — Technical analysis research and standards"
+    href: "https://www.cfainstitute.org/"
+  - label: "Lo, Mamaysky & Wang — Foundations of Technical Analysis"
+    href: "https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00265"
+  - label: "Park & Irwin — What Do We Know About the Profitability of Technical Analysis?"
+    href: "https://onlinelibrary.wiley.com/doi/10.1111/j.1467-6419.2007.00519.x"
+faq:
+  - q: "What do the parts of a candle represent?"
+    a: "The body spans the open and close prices, and the wicks show the highest and lowest prices reached during the period. Colour indicates direction — conventionally green or white for a close above the open, red or black for below. Four data points in one shape."
+  - q: "Do candlestick patterns actually work?"
+    a: "The academic evidence is mixed and generally weaker than the popular literature suggests. Studies testing patterns systematically find limited predictive power once transaction costs are included, and results are often not robust across markets or time periods. Candlesticks are more defensible as a way to read what happened than as a signal generator."
+  - q: "What is a doji?"
+    a: "A candle where open and close are almost identical, producing a very small body. It indicates that buyers and sellers finished the period roughly balanced despite whatever range occurred. It is often described as a reversal signal, but on its own it mostly indicates indecision, and its meaning depends heavily on where it appears."
+  - q: "Which timeframe should a beginner use?"
+    a: "Longer ones. Lower timeframes contain proportionally more noise and generate far more signals, most of which are meaningless, while multiplying transaction costs. Daily and four-hour charts filter noise and require fewer decisions, which suits both the evidence and most people's available attention."
 ---
 
-Candlestick charts are the default view in almost every trading platform, and for good reason: each candle packs four pieces of information into one shape. Learning to read them is the foundation of technical analysis.
+A candlestick chart compresses four numbers per period into a single shape. It is an efficient way to represent price information, and reading one properly is a genuinely useful skill.
+
+The large industry of pattern names built on top of it rests on considerably weaker foundations, and it is worth separating the two.
 
 ## Anatomy of a candle
 
-Every candlestick represents one period of time — one minute, one hour, one day — and shows four prices:
+Each candle covers one time period — a minute, an hour, a day — and encodes four prices:
 
-- **Open** — price at the start of the period
-- **Close** — price at the end
-- **High** — the highest point reached
-- **Low** — the lowest point reached
+- **Open** — the first traded price of the period
+- **High** — the highest reached
+- **Low** — the lowest reached
+- **Close** — the final price
 
-The **body** is the range between open and close. The thin lines above and below are the **wicks** (or shadows), showing the extremes that price reached but didn't hold.
+The **body** spans open to close. The **wicks** extend to the high and low.
 
-Typically a candle is coloured green when the close is above the open, and red when it's below.
+Colour shows direction: conventionally green or white when the close is above the open, red or black when below.
 
-## What the shape tells you
+## What the shape communicates
 
-| Shape | What it suggests |
-| --- | --- |
-| Long body | Strong, one-sided momentum |
-| Small body | Indecision; buyers and sellers balanced |
-| Long upper wick | Buyers pushed up but were rejected |
-| Long lower wick | Sellers pushed down but were rejected |
-| Almost no body | A pause or potential turning point |
+The proportions carry information about the balance within the period.
 
-> A wick is a record of rejection. It shows a price the market tried and refused to accept — which is often more informative than the close itself.
+| Shape | Structure | Reasonable reading |
+| --- | --- | --- |
+| Long body, short wicks | Sustained directional movement | One side controlled the period |
+| Short body, long wicks | Wide range, little net change | Contested, no resolution |
+| Long lower wick, close near high | Sold off, then recovered | Buying appeared at lower levels |
+| Long upper wick, close near low | Rallied, then faded | Selling appeared at higher levels |
+| Almost no body (doji) | Open and close nearly equal | Balance, indecision |
 
-## Timeframes change the story
+Note the framing. These describe what happened during the period. They do not state what happens next, and the distinction matters more than anything else in this article.
 
-The same market looks completely different across timeframes. A dramatic reversal on a 5-minute chart may be an insignificant blip on the daily chart.
+## The pattern industry
 
-- **Higher timeframes** (daily, 4-hour): slower, more reliable, less noise
-- **Lower timeframes** (5-minute, 1-minute): faster, noisier, more false signals
+Dozens of named patterns exist — hammers, engulfing candles, morning stars, three white soldiers. The literature around them typically presents each with a stated implication and a reliability rating.
 
-Many traders read the higher timeframe first to establish direction, then drop down for entry timing.
+The evidence is considerably weaker than that presentation implies.
 
-## A few common patterns
+Academic studies testing candlestick patterns systematically find limited predictive power once transaction costs are included. Results are frequently not robust across different markets, different periods or different parameter choices. Broader surveys of technical analysis find that early positive results in some markets have generally weakened over time, consistent with any genuine inefficiency being competed away once it is widely known.
 
-- **Doji** — open and close nearly equal; indecision
-- **Hammer** — small body with a long lower wick after a decline; possible rejection of lower prices
-- **Engulfing** — one candle's body completely covers the previous one; a potential momentum shift
+That does not mean chart reading is worthless. It means the specific claim — that a named three-candle formation reliably predicts direction — is not well supported.
 
-## The honest caveat about patterns
+## Why patterns appear to work
 
-Pattern names are useful shorthand, but they are **not** predictions. The same shape can mean very different things depending on where it appears.
+Three mechanisms explain the persistent belief.
 
-Always ask:
+**Selection in hindsight.** Scrolling back through a chart, you find the pattern where it preceded a move. The identical pattern where nothing followed is not salient, and there are far more of those.
 
-1. **Where** is this happening — at a key level, or in the middle of nowhere?
-2. **What came before** — a strong trend, or choppy sideways movement?
-3. **Is there confirmation** — does the next candle support the idea?
+**Vague definitions.** Many patterns lack precise criteria. How long must the wick be relative to the body? How close must the close be to the high? Without exact rules, identification becomes flexible enough to fit whatever happened.
 
-A hammer at a well-tested support level after an extended decline is meaningful. The identical hammer in the middle of a range is noise.
+**Multiple comparisons.** With dozens of patterns across multiple timeframes, something will always be present. Some of those will precede moves purely by chance.
+
+The honest test: define a pattern with precise numerical criteria, apply it mechanically to historical data across several markets, include realistic costs, and measure. Almost nobody promoting patterns has done this, and where it has been done the results have generally been unimpressive.
+
+## What is more defensible
+
+Some chart-derived observations have better support, largely because they reflect real market structure rather than shape recognition.
+
+**Trend.** The tendency for price movement to persist somewhat is one of the more robustly documented effects across asset classes, and it appears in academic research as momentum rather than as a chart pattern.
+
+**Support and resistance around obvious levels.** Prior highs and lows, round numbers, and prior session extremes attract order clustering — because many participants place orders there. This is a self-referential effect but a real one.
+
+**Volatility regime.** Whether ranges are expanding or contracting is directly observable and informative for position sizing, regardless of direction.
+
+**Volume confirmation.** A move on unusually high volume reflects more participation than the same move on thin trading.
+
+## Choosing a timeframe
+
+Lower timeframes are attractive because they produce more signals. That is precisely the problem.
+
+Over one minute, price movement in a liquid market is dominated by order flow mechanics rather than by information. There is very little to extract, and each signal acted upon pays a spread. The ratio of noise to signal rises as the timeframe falls, while costs rise with frequency.
+
+Daily and four-hour charts filter more noise, generate fewer decisions, and are consistent with the finding that lower trading frequency correlates with better outcomes.
+
+## Using charts sensibly
+
+**Read them as a record, not a forecast.** A chart tells you what has happened and where participants have transacted. It is descriptive.
+
+**Combine with context.** A technical level means more when it coincides with something — a policy meeting, an earnings release, a data print.
+
+**Define anything you rely on numerically.** If a signal cannot be stated precisely enough to be tested, it cannot be evaluated, only believed.
+
+**Test before trusting.** Apply the rule to historical data with realistic costs. Most rules do not survive this.
+
+**Never let a chart determine size.** Position sizing derives from risk limits, not from how convincing a formation looks.
 
 ## The bottom line
 
-Candlesticks are a language for describing what buyers and sellers did during a period. Learn to read bodies and wicks as evidence of pressure and rejection, always consider context and timeframe, and treat patterns as clues rather than signals.
+Candlestick charts are an efficient and useful way to see what a market has done. Learning to read them properly — range, close position, the balance within a period — is worthwhile.
+
+The elaborate taxonomy of named patterns is a different proposition, and the evidence supporting it is thin. Treat charts as a description of what happened, be sceptical of anything presented as a reliable signal, and remember that the profitable part of trading is risk management rather than pattern recognition.
 
 *This article is educational and is not financial advice. Trading carries a high risk of loss.*

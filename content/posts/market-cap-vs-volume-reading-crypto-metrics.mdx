@@ -1,70 +1,128 @@
 ---
-title: "Market Cap vs Volume: How to Read Crypto Metrics Properly"
-description: "Market cap and trading volume tell very different stories. Learn what each metric really measures, why low float inflates valuations, and how to spot misleading numbers."
+title: "Market Cap vs Volume: Reading Crypto Metrics Without Being Misled"
+description: "Market capitalisation is the most quoted crypto number and one of the easiest to manipulate. Here is what it actually measures, why volume and liquidity matter more, and which metrics to trust."
 category: "crypto"
 author: "Maya Chen"
-authorRole: "Senior Crypto Correspondent"
-authorBio: "Maya covers digital assets, DeFi and on-chain markets for Trading News Global, with a decade reporting on emerging financial technology."
 date: "2026-07-13"
-tags: ["crypto basics", "market cap", "trading volume", "altcoins", "due diligence"]
-keywords: ["market cap vs volume", "crypto market cap explained", "trading volume crypto", "circulating supply", "fully diluted valuation"]
+updated: "2026-08-03"
+tags: ["market cap", "volume", "liquidity", "tokenomics", "crypto basics"]
+keywords: ["crypto market cap explained", "market cap vs volume", "fully diluted valuation", "crypto liquidity depth", "circulating supply"]
 image: "/og-default.svg"
-cover: "/covers/crypto-1.jpg"
+cover: "/covers/crypto-4.jpg"
 featured: false
 trending: false
+sources:
+  - label: "IOSCO — Crypto-asset market integrity recommendations"
+    href: "https://www.iosco.org/library/pubdocs/pdf/IOSCOPD741.pdf"
+  - label: "Bank for International Settlements — Crypto market structure"
+    href: "https://www.bis.org/publ/qtrpdf/r_qt2303.htm"
+  - label: "Financial Stability Board — Crypto-asset market vulnerabilities"
+    href: "https://www.fsb.org/2023/02/the-financial-stability-risks-of-decentralised-finance/"
+faq:
+  - q: "What does market capitalisation actually measure?"
+    a: "Circulating supply multiplied by the last traded price. It is not the amount of money invested in an asset, and it is not what could be realised by selling. It assumes every unit could be sold at the current price simultaneously, which is never true for anything and wildly untrue for thin markets."
+  - q: "What is fully diluted valuation?"
+    a: "Total eventual supply multiplied by the current price, including tokens not yet released. When FDV is many times market cap, a large quantity of supply is scheduled to enter circulation, and those tokens will need buyers. A wide gap between the two is one of the more useful warning signs available."
+  - q: "Why is reported volume unreliable?"
+    a: "Because it can be manufactured. Wash trading — buying and selling with yourself to create apparent activity — costs little on venues with low fees or fee rebates, and inflates a metric that many traders and listing sites use as a proxy for legitimacy. Volume on established, regulated venues is more trustworthy than aggregate figures."
+  - q: "What is the most useful single metric?"
+    a: "Order book depth — how much you could actually sell before moving the price by a set percentage. It answers the question that matters, which is whether you can exit at anything resembling the quoted price. It is also much harder to fake than volume or market cap."
 ---
 
-Two numbers dominate every crypto listing page: **market capitalization** and **24-hour volume**. They look similar and are constantly confused — but they measure completely different things, and misreading them is one of the most common beginner mistakes.
+Every crypto listing site leads with market capitalisation, and it has become the default measure of whether a project is significant. It is also one of the most misleading numbers in the asset class, and understanding why explains a great deal about how thin markets behave.
 
-## Market cap: what a project is "worth"
+## What market cap is
 
-Market capitalization is simply:
+```
+Market cap = Circulating supply x Current price
+```
 
-**Market cap = current price × circulating supply**
+That is the whole calculation, and its weakness is contained in it. The price used is the last trade — potentially for a tiny quantity — multiplied across the entire supply.
 
-It estimates the total value of all coins currently in circulation. It's useful for comparing the relative size of projects — a $50 billion asset and a $5 million asset are in entirely different risk categories.
+Two things it is emphatically not:
 
-### The circulating supply trap
+**It is not money invested.** A token with a billion-dollar market cap has not received a billion dollars. It may have received a small fraction of that. Price is set at the margin, by the most recent transaction, and applied to everything.
 
-Here's what trips people up. Market cap only counts coins **in circulation**. Many projects lock up large portions of supply for teams, investors or future release.
+**It is not what could be realised.** Selling the full supply at the current price is impossible. In a thin market, selling even a small percentage moves the price substantially.
 
-That leads to a second metric: **Fully Diluted Valuation (FDV)**, which uses the *maximum* supply instead.
+## The multiplier effect
 
-| Metric | Formula | What it shows |
+This is the part worth internalising, because it explains why small tokens move as they do.
+
+In a market with limited depth, a modest amount of buying can lift the price considerably, and that new price is then multiplied across the entire supply. A small quantity of real money can add a very large amount of notional market cap.
+
+The reverse is identical and faster. Modest selling in a thin book drops the price, and the market cap falls by a multiple of the money that left.
+
+This is why small tokens can appear to gain and lose enormous valuations without much capital actually changing hands, and why market cap is a poor guide to how much value is genuinely at stake.
+
+## Fully diluted valuation
+
+FDV uses the **total eventual supply**, including tokens locked, vesting or not yet minted.
+
+| | Market cap | FDV |
 | --- | --- | --- |
-| Market cap | Price × circulating supply | Value of coins available now |
-| FDV | Price × total supply | Value if every coin existed today |
+| Uses | Circulating supply | Total future supply |
+| Answers | What is priced now | What is priced assuming all supply exists |
 
-> If a token's FDV is many times its market cap, a large amount of supply is still waiting to be unlocked. That future supply can put heavy downward pressure on price.
+The ratio between them is one of the more useful checks available. If FDV is many multiples of market cap, a large quantity of tokens is scheduled to enter circulation. Those tokens will be released to teams, investors and treasuries, many of whom acquired them at far lower prices, and they will need buyers.
 
-## Volume: how much is actually trading
+Sustained selling pressure from unlocks is a common and entirely foreseeable reason for a token to drift downward despite good news. Unlock schedules are usually published. Reading them takes minutes.
 
-Trading volume measures the **value exchanged** over a period, usually 24 hours. It tells you about liquidity and interest, not value.
+## Volume, and why it is often fiction
 
-High volume generally means:
+Volume is meant to show how much trading occurred. In crypto it is frequently inflated.
 
-- You can enter and exit positions more easily
-- Spreads are tighter and slippage is lower
-- The price is more likely to reflect genuine supply and demand
+**Wash trading** — executing trades against yourself to create the appearance of activity — is inexpensive on venues with low or rebated fees. It exists because volume is used as a proxy for legitimacy: listing sites rank by it, traders screen on it, and projects are judged by it.
 
-Low volume means the opposite — and a low-volume asset can be moved dramatically by a single sizeable order.
+More reliable readings:
 
-## The ratio that reveals a lot
+- Prefer volume on established venues with real regulatory oversight over aggregate figures.
+- Compare volume against market cap. A token turning over a very large fraction of its market cap daily, with no news, is behaving oddly.
+- Check whether volume is spread across venues or concentrated on one obscure exchange.
+- Look at whether volume persists between price spikes.
 
-Compare volume to market cap. A healthy, actively traded asset usually sees meaningful daily volume relative to its size. Warning signs include:
+## The metric that actually matters: depth
 
-- **Very low volume, very high market cap** — the valuation may be illusory, propped up by thin trading
-- **Volume far exceeding market cap** — sometimes genuine excitement, sometimes artificial "wash trading" designed to fake activity
+Order book depth measures how much you could buy or sell before moving the price by a given percentage. It answers the only question that matters when you want to exit.
 
-## Applying it in practice
+Two tokens with identical market caps can be entirely different propositions:
 
-1. Check **circulating vs total supply** before judging a valuation
-2. Look at whether volume is spread across **several reputable exchanges** or concentrated on one
-3. Ask *why* a metric moved — a market cap rise from real buying is very different from one caused by newly unlocked tokens
-4. Never treat "low market cap" as automatic upside; it usually just means higher risk
+| | Token A | Token B |
+| --- | --- | --- |
+| Market cap | 500m | 500m |
+| Daily volume | 40m | 40m |
+| Sale moving price 2% | 3m | 60k |
+
+Token B cannot absorb a meaningful exit. The market cap is a number on a screen rather than a value anyone could realise.
+
+Depth is harder to fake than volume because it requires real capital sitting in the book, exposed to being filled.
+
+## Other metrics worth reading
+
+**Supply distribution.** What proportion is held by the largest addresses? Concentration means a small number of holders can determine the price. Note that exchange wallets appear as large holders and are not the same thing as insiders.
+
+**Realised capitalisation.** Values each unit at the price it last moved on-chain, rather than at the current price. A better estimate of capital actually committed.
+
+**Fee revenue.** For protocols with genuine usage, what users pay to use them. One of the few crypto metrics resembling a conventional fundamental.
+
+**Active addresses.** Useful directionally, though inflatable and distorted by exchange activity.
+
+**Exchange balances.** How much sits on exchanges, which is a rough proxy for supply available to be sold quickly.
+
+## A practical checklist
+
+1. Check the **market cap to FDV ratio** and read the unlock schedule.
+2. Look at **depth**, not headline volume, before assuming you could exit.
+3. Compare **volume to market cap** and treat extreme ratios sceptically.
+4. Examine **holder concentration**, distinguishing exchange wallets from private ones.
+5. Ask whether the protocol **earns anything**.
+6. Check where volume actually occurs — venue quality matters more than the total.
+7. Look at **behaviour during a quiet period**, not during a rally.
 
 ## The bottom line
 
-Market cap tells you **size**. Volume tells you **liquidity**. Neither tells you whether something is a good investment. Read them together, always check supply structure, and be suspicious of numbers that don't line up.
+Market capitalisation answers a question nobody is really asking: what would this be worth if every unit could be sold at once at the last traded price. In deep markets that fiction is harmless. In thin ones it is actively misleading, because it makes small tokens look substantial.
 
-*This article is educational and is not financial advice.*
+Liquidity is what determines whether a number on a screen corresponds to money you could actually have. It is less prominently displayed, harder to manipulate, and considerably more informative.
+
+*This article is educational and is not financial advice. Cryptocurrency is highly volatile and illiquid tokens carry a risk of total loss.*

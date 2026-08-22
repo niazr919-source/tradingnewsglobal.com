@@ -1,0 +1,103 @@
+---
+title: "Ethereum Staking Explained: Where the Yield Comes From and What It Costs"
+description: "Staking pays a return for helping secure the network. Understanding where that yield originates — and the four distinct risks attached to it — matters more than the headline percentage."
+category: "crypto"
+author: "Maya Chen"
+date: "2026-08-06"
+tags: ["Ethereum", "staking", "yield", "DeFi", "risk"]
+keywords: ["ethereum staking explained", "eth staking yield", "liquid staking risks", "staking slashing", "how does eth staking work"]
+image: "/og-default.svg"
+cover: "/covers/crypto-5.jpg"
+featured: false
+trending: false
+sources:
+  - label: "Ethereum Foundation — Staking documentation"
+    href: "https://ethereum.org/en/staking/"
+  - label: "Ethereum Foundation — Proof-of-stake rewards and penalties"
+    href: "https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/rewards-and-penalties/"
+  - label: "Ethereum Foundation — Solo staking requirements"
+    href: "https://ethereum.org/en/staking/solo/"
+faq:
+  - q: "How much ETH do you need to run your own validator?"
+    a: "32 ETH for a solo validator, plus a machine that stays online reliably. Pooled and liquid staking services accept far smaller amounts by aggregating deposits, at the cost of introducing an intermediary you must trust."
+  - q: "Where does the staking yield actually come from?"
+    a: "Three sources: newly issued ETH paid to validators for attesting and proposing blocks, a share of transaction priority fees, and payments related to block ordering. The first is dilution funded by all holders; the other two are real economic activity. The mix shifts with how busy the network is."
+  - q: "Can you lose staked ETH?"
+    a: "Yes. Small penalties accrue for being offline. Larger slashing penalties apply for provable misbehaviour such as signing conflicting blocks. Separately, and much more commonly, the ETH price can fall by far more than any yield earns. Liquid staking tokens add smart contract and depeg risk on top."
+  - q: "Is a liquid staking token the same as ETH?"
+    a: "No. It is a claim on staked ETH issued by a protocol, and it trades at whatever the market will pay. It has traded below the value of the underlying during periods of stress. Treating it as interchangeable with ETH — particularly when using it as collateral — is how leveraged staking positions get liquidated."
+---
+
+Staking is often presented as the crypto equivalent of a savings account: deposit, earn a percentage, withdraw. That framing is wrong in a way that matters, because it obscures both where the return originates and what you are accepting in exchange.
+
+## What a validator does
+
+Ethereum secures itself through validators — participants who lock up ETH as a bond and, in return, are given responsibility for confirming the chain.
+
+A validator's job is unglamorous. Most of the time it attests: it observes what other validators propose and signs a statement that it agrees. Occasionally it is selected to propose a block itself. It must be online and correct. Being offline earns small penalties; being provably dishonest earns large ones.
+
+Running one solo requires **32 ETH** and a machine with reliable power and connectivity.
+
+## Where the yield comes from
+
+This is the question worth asking of any yield, in any market. Ethereum staking has three distinct sources, and they are not equivalent.
+
+**1. New issuance.** The protocol creates new ETH and pays it to validators. This is the base layer of the reward and it is, straightforwardly, dilution: every holder who is not staking sees their proportional share decrease. Some of the advertised yield is therefore a transfer from non-stakers to stakers rather than new value.
+
+**2. Priority fees.** Users pay extra to have transactions included sooner. These go to the validator proposing the block. This is genuine economic activity — real demand for blockspace — and it rises when the network is busy.
+
+**3. Payments for block ordering.** Validators can capture value from how transactions are sequenced within a block, generally via specialised infrastructure that bids for the right to construct blocks. This is real revenue, and it is also an area of ongoing research and concern regarding centralisation.
+
+The important consequence: **the headline yield is not a fixed rate.** It falls as more ETH is staked, because issuance is shared among more validators, and it rises when network activity increases. Any quoted number is a snapshot.
+
+## The four risks, stated plainly
+
+### 1. Price risk, which dominates everything else
+
+If you earn a mid-single-digit percentage yield and the ETH price falls 40%, you have lost heavily. This is not a subtle point, but it is routinely lost in comparisons between staking yields and bank interest rates. Those are not comparable instruments. One is a return denominated in a volatile asset; the other is a return denominated in the currency you pay rent in.
+
+### 2. Penalties and slashing
+
+- **Inactivity penalties**: small, gradual losses for being offline. Ordinary downtime costs little.
+- **Slashing**: a substantial penalty and forced exit, applied for provably contradictory behaviour such as signing two conflicting blocks. This is rare and generally results from misconfiguration — most commonly running the same validator keys on two machines at once.
+
+Slashing is designed to be catastrophic precisely so that attacking the network is irrational. It is not a routine hazard for a correctly configured validator, but it is not zero either.
+
+### 3. Liquidity and exit queues
+
+Staked ETH is not instantly available. Both entering and exiting the validator set pass through queues that lengthen when many participants move at once — which, predictably, is during market stress, exactly when someone might most want access to their capital.
+
+### 4. Intermediary risk
+
+Most people stake through a service rather than running a validator. Each route adds risk:
+
+| Route | Minimum | Additional risk |
+| --- | --- | --- |
+| Solo validator | 32 ETH | Your own operational uptime and key security |
+| Staking pool | Small | Operator competence and honesty |
+| Liquid staking protocol | Small | Smart contract bugs, governance, token depeg |
+| Centralised exchange | Small | Full custodial risk; the exchange holds your assets |
+
+## Liquid staking and the leverage problem
+
+Liquid staking protocols issue a token representing your staked position, which can be traded or used elsewhere while the underlying stays locked. It solves the liquidity problem and creates a subtler one.
+
+That token is not ETH. It is a claim on ETH, and it trades at a market price. Under stress it has traded below the value of the underlying stake, because holders wanting immediate exit accept a discount rather than wait in the queue.
+
+This becomes dangerous when the token is used as collateral. A common pattern: deposit the liquid staking token, borrow ETH against it, stake that, repeat. It multiplies the yield and also multiplies exposure to any discount. When the token traded below parity in past episodes, positions built this way were liquidated in sequence, and the forced selling widened the discount further.
+
+If you cannot explain what happens to your position when the liquid staking token trades 5% below the underlying, you should not be using it as collateral.
+
+## Tax, briefly
+
+Many jurisdictions treat staking rewards as income at the point of receipt, valued at that moment, with a separate capital gains event when the asset is later sold. This produces a well-known trap: an obligation crystallised at a high price, paid from an asset whose price subsequently fell. Rules vary considerably by country. Check yours before you begin, not in the following tax year.
+
+## A realistic assessment
+
+Staking is a reasonable proposition for someone who already holds ETH for the long term, understands the exit mechanics, and treats the yield as a modest supplement rather than the reason for holding.
+
+It is a poor proposition for someone buying ETH *in order to* earn the yield. In that case the yield is a rounding error against the price volatility, and the decision is really a directional bet on ETH wearing the costume of a fixed-income product.
+
+The general rule applies here as everywhere: if you cannot identify who is paying the yield and why, you have not found the risk yet. In Ethereum staking the answer is at least legible — partly dilution from other holders, partly real fees from network users. That is more than can be said for many crypto yields.
+
+*This article is educational and is not financial advice. Cryptocurrency is highly volatile and staking carries risks including loss of principal.*

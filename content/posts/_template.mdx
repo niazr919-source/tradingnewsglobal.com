@@ -1,34 +1,64 @@
 ---
 title: "Your Headline Goes Here"
-description: "A one to two sentence summary used for SEO meta description and article previews."
-category: "crypto"            # one of: crypto | forex | binary-trading
-author: "Author Name"
-authorRole: "Contributor"
-authorBio: "Short author bio shown in the article footer."
-date: "2026-07-25"            # YYYY-MM-DD
-# updated: "2026-07-26"       # optional
+description: "One or two sentences used as the SEO meta description and the article preview. Say what the reader will understand by the end."
+category: "crypto"            # crypto | forex | markets | trading-education
+author: "Maya Chen"           # must match a name in src/lib/authors.ts
+date: "2026-08-22"            # YYYY-MM-DD
+# updated: "2026-09-01"       # add when you materially revise the article
 tags: ["Tag One", "Tag Two", "Tag Three"]
 keywords: ["primary keyword", "secondary keyword"]   # optional; defaults to tags
-image: "/og-default.svg"      # optional social/preview image in /public
-# cover: "/covers/my-photo.jpg"  # optional real cover photo (put file in public/covers/).
-                                # If omitted, a themed illustration is shown automatically.
-featured: false               # true → eligible for the homepage hero
-trending: false               # true → eligible for the "Top Read" sidebar
+image: "/og-default.svg"      # social preview image in /public
+cover: "/covers/crypto-1.jpg" # cover photo; omit for an auto-generated illustration
+featured: false               # true -> eligible for the homepage lead
+trending: false               # true -> eligible for the "Most read" rail
+
+# Sources render at the foot of the article AND become schema.org citations.
+# On a finance site these are the strongest trust signal available.
+# Prefer primary sources: regulators, central banks, statistical agencies.
+sources:
+  - label: "Regulator or primary source name"
+    href: "https://example.gov/document"
+
+# FAQ entries render as an accordion and generate FAQPage structured data,
+# which is eligible for rich results in search. Answer in full sentences.
+faq:
+  - q: "A question a reader would actually type into a search engine?"
+    a: "A direct, complete answer in two to four sentences. Do not tease the article body."
 ---
 
-Write your intro paragraph here. The first lines set the scene for the reader.
+Open with the point. State what this article explains and why it matters, in two or three
+sentences. Avoid throat-clearing about how important the topic is.
 
 ## First section heading
 
-Body content in **Markdown**. Supports GitHub-flavored markdown: lists, tables,
-blockquotes and more.
+Body content in **Markdown**, with GitHub-flavoured extensions: lists, tables,
+blockquotes and code blocks.
 
-- Bullet one
-- Bullet two
+Every `##` and `###` heading is added automatically to the table of contents with a
+matching anchor, so write headings a reader could navigate by.
 
-> A callout or key takeaway.
+| Column | Column |
+| --- | --- |
+| Tables scroll horizontally on mobile | Keep them to four columns or fewer |
+
+> Blockquotes are styled as pull-out callouts. Use one for the single sentence you most
+> want a skimming reader to take away.
 
 ## Second section heading
 
-More content. Every `##` and `###` heading is automatically added to the article's
-table of contents with a matching anchor link.
+House style notes:
+
+- **Risk goes in the body, not only in the footer.** Where a product loses money for most
+  retail traders, say so and cite the regulator.
+- **No price targets, no signals, no buy-now framing.** See the editorial policy.
+- **Attribute numbers.** If a figure matters, it belongs in `sources`.
+- **Prefer the mechanism over the narrative.** Explain why something happens, not just that
+  it did.
+- **Aim for 1,000 words or more.** Thin content is the most common reason a finance site
+  fails an ad-network or search quality review.
+
+## The bottom line
+
+Close with what the reader should actually take away. One short paragraph.
+
+*This article is educational and is not financial advice.*

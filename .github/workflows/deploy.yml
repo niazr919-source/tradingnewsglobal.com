@@ -1,0 +1,70 @@
+# Build the static export and publish it to Hostinger over FTP.
+#
+# One-time setup — GitHub repo → Settings → Secrets and variables → Actions:
+#   FTP_SERVER    ftp.tradingnewsglobal.com   (hPanel → Files → FTP Accounts)
+#   FTP_USERNAME  u123456789.deploy
+#   FTP_PASSWORD  the FTP account password
+#
+# Hostinger serves from public_html/ — that is the server-dir below.
+
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # lets you re-deploy by hand from the Actions tab
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://tradingnewsglobal.com
+          # Add NEXT_PUBLIC_ADSENSE_CLIENT as a repo secret once AdSense issues
+          # your publisher ID, then uncomment the next line.
+          # NEXT_PUBLIC_ADSENSE_CLIENT: ${{ secrets.NEXT_PUBLIC_ADSENSE_CLIENT }}
+
+      - name: Verify the export looks complete
+        run: |
+          test -f out/index.html            || { echo "::error::missing index.html"; exit 1; }
+          test -f out/sitemap.xml           || { echo "::error::missing sitemap.xml"; exit 1; }
+          test -f out/robots.txt            || { echo "::error::missing robots.txt"; exit 1; }
+          test -f out/.htaccess             || { echo "::error::missing .htaccess"; exit 1; }
+          echo "Exported $(find out -name '*.html' | wc -l) HTML pages"
+
+      - name: Check for broken internal links
+        run: node scripts/check-links.mjs
+
+      - name: Deploy to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: /public_html/
+          # Only changed files are uploaded — the action keeps a manifest on the
+          # server, so subsequent deploys take seconds rather than minutes.
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**

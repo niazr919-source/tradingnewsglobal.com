@@ -1,77 +1,80 @@
 import Link from "next/link";
-import { format } from "date-fns";
-import { Clock, Flame } from "lucide-react";
 import type { Post } from "@/lib/posts";
 import { CategoryBadge } from "./CategoryBadge";
 import { PostCover } from "./PostCover";
+import { PostMeta } from "./PostCard";
 
-/** Breaking-news hero: 1 large featured post + up to 2 stacked sub-features. */
+/**
+ * Front-page lead: one dominant story with a cover, two supporting stories
+ * stacked beside it. Deliberately typographic rather than image-heavy — this is
+ * a publication, not a card wall.
+ */
 export function HeroSection({ posts }: { posts: Post[] }) {
   if (posts.length === 0) return null;
   const [lead, ...rest] = posts;
   const subs = rest.slice(0, 2);
 
   return (
-    <section className="grid gap-4 lg:grid-cols-3">
-      {/* Lead story */}
-      <article className="group relative col-span-1 flex min-h-[320px] flex-col justify-end overflow-hidden rounded-2xl border border-border bg-card p-6 lg:col-span-2 lg:min-h-[420px]">
-        <PostCover
-          post={lead}
-          overlay
-          priority
-          className="absolute inset-0"
-          sizes="(min-width: 1024px) 66vw, 100vw"
-        />
-        <div className="relative">
-          <div className="mb-3 flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full bg-down px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-white ring-1 ring-inset ring-white/20">
-              <Flame className="h-3 w-3" /> Breaking
+    <section aria-label="Top stories" className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+      {/* Lead */}
+      <article className="group lg:col-span-8">
+        <Link href={`/blog/${lead.slug}`} tabIndex={-1} aria-hidden>
+          <PostCover
+            post={lead}
+            priority
+            className="aspect-[16/9] w-full rounded-xl"
+            sizes="(min-width: 1024px) 62vw, 100vw"
+          />
+        </Link>
+        <div className="mt-4">
+          <div className="mb-2.5 flex flex-wrap items-center gap-2">
+            <CategoryBadge category={lead.category} />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+              Top story
             </span>
-            <CategoryBadge category={lead.category} asLink={false} />
           </div>
-          <h2 className="max-w-2xl text-2xl font-bold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
-            <Link href={`/blog/${lead.slug}`} className="transition-opacity hover:opacity-90">
+          <h2 className="font-display text-[28px] font-semibold leading-[1.14] tracking-[-0.02em] sm:text-[38px]">
+            <Link href={`/blog/${lead.slug}`} className="transition-colors group-hover:text-primary">
               {lead.title}
             </Link>
           </h2>
-          <p className="mt-3 max-w-2xl text-sm text-white/85 sm:text-base">{lead.description}</p>
-          <div className="mt-4 flex items-center gap-2 text-xs text-white/75">
-            <span className="font-medium">{lead.author}</span>
-            <span aria-hidden>•</span>
-            <time dateTime={lead.date}>{format(new Date(lead.date), "MMM d, yyyy")}</time>
-            <span aria-hidden>•</span>
-            <span className="inline-flex items-center gap-1">
-              <Clock className="h-3 w-3" />
-              {lead.readingTime} min read
-            </span>
-          </div>
+          <p className="mt-3 max-w-2xl text-[15.5px] leading-relaxed text-muted-foreground">
+            {lead.description}
+          </p>
+          <PostMeta post={lead} className="mt-4" />
         </div>
       </article>
 
-      {/* Stacked sub-features */}
-      <div className="grid grid-cols-1 gap-4">
-        {subs.map((post) => (
-          <article
-            key={post.slug}
-            className="group relative flex min-h-[150px] flex-col justify-end overflow-hidden rounded-2xl border border-border bg-card p-5"
-          >
-            <PostCover post={post} overlay className="absolute inset-0" sizes="(min-width: 1024px) 33vw, 100vw" />
-            <div className="relative">
-              <CategoryBadge category={post.category} asLink={false} className="mb-2" />
-              <h3 className="text-lg font-semibold leading-snug text-white">
-                <Link href={`/blog/${post.slug}`} className="transition-opacity hover:opacity-90">
-                  {post.title}
-                </Link>
-              </h3>
-              <div className="mt-2 flex items-center gap-2 text-xs text-white/75">
-                <time dateTime={post.date}>{format(new Date(post.date), "MMM d, yyyy")}</time>
-                <span aria-hidden>•</span>
-                <span>{post.readingTime} min</span>
-              </div>
+      {/* Supporting */}
+      <div className="lg:col-span-4">
+        <h2 className="mb-4 border-b border-border pb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          Also this week
+        </h2>
+        <div className="divide-y divide-border">
+          {subs.map((post) => (
+            <div key={post.slug} className="py-4 first:pt-0 last:pb-0">
+              <ArticleTeaser post={post} />
             </div>
-          </article>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
+  );
+}
+
+function ArticleTeaser({ post }: { post: Post }) {
+  return (
+    <article className="group">
+      <CategoryBadge category={post.category} className="mb-2" />
+      <h3 className="font-display text-[19px] font-semibold leading-[1.22]">
+        <Link href={`/blog/${post.slug}`} className="transition-colors group-hover:text-primary">
+          {post.title}
+        </Link>
+      </h3>
+      <p className="mt-1.5 line-clamp-2 text-[13.5px] leading-relaxed text-muted-foreground">
+        {post.description}
+      </p>
+      <PostMeta post={post} className="mt-2.5" />
+    </article>
   );
 }

@@ -1,76 +1,124 @@
 ---
-title: "Forex Leverage and Margin Explained (And Why It Cuts Both Ways)"
-description: "Leverage lets you control a large position with small capital — magnifying gains and losses alike. Learn how margin works, what a margin call is, and how to use leverage safely."
+title: "Leverage and Margin Explained: The Arithmetic Behind Most Blown Accounts"
+description: "Leverage does not make you more likely to be right. It shortens the distance between being wrong and being closed out. Here is exactly how margin, liquidation and position sizing interact."
 category: "forex"
 author: "Daniel Okoro"
-authorRole: "FX & Macro Strategist"
-authorBio: "Daniel analyzes currency markets and central-bank policy for Trading News Global, drawing on years on institutional trading desks."
 date: "2026-07-14"
-tags: ["forex basics", "leverage", "margin", "risk management", "position sizing"]
-keywords: ["forex leverage explained", "what is margin in forex", "margin call", "leverage risk", "how leverage works"]
+updated: "2026-08-14"
+tags: ["leverage", "margin", "risk management", "position sizing", "liquidation"]
+keywords: ["forex leverage explained", "what is margin in trading", "margin call explained", "leverage risk", "how much leverage should i use"]
 image: "/og-default.svg"
-cover: "/covers/forex-4.jpg"
+cover: "/covers/forex-5.jpg"
 featured: false
-trending: false
+trending: true
+sources:
+  - label: "ESMA — Leverage limits for retail clients trading CFDs"
+    href: "https://www.esma.europa.eu/press-news/esma-news/esma-agrees-prohibit-binary-options-and-restrict-cfds-protect-retail-investors"
+  - label: "FCA — Restricting contract for difference products sold to retail clients"
+    href: "https://www.fca.org.uk/publications/policy-statements/ps19-18-restricting-contract-for-difference-products-sold-retail-clients"
+  - label: "ASIC — CFD product intervention order"
+    href: "https://asic.gov.au/regulatory-resources/find-a-document/media-releases/2020-releases/20-254mr-asic-product-intervention-order-strengthens-cfd-protections/"
+faq:
+  - q: "What does 30:1 leverage actually mean?"
+    a: "That you can control a position 30 times the size of the margin you post. Deposit 1,000 and you can hold 30,000 of exposure. It also means a 3.3% adverse move in the underlying consumes your entire margin, because the loss is calculated on the full 30,000, not on your 1,000."
+  - q: "Why do regulators cap leverage?"
+    a: "Because analysis of client outcome data showed that higher leverage correlated with worse results and faster account depletion. The EU, UK and Australia all imposed caps of around 30:1 on major currency pairs for retail clients after reviewing that evidence, along with negative balance protection so clients cannot owe more than they deposited."
+  - q: "Is a margin call the same as liquidation?"
+    a: "No. A margin call is a warning that equity has fallen toward the required level, giving you the chance to add funds or reduce exposure. Liquidation, or stop-out, is the broker automatically closing positions once equity falls below a threshold. In fast markets the two can arrive effectively together, so treating the call as a comfortable warning is a mistake."
+  - q: "How much leverage should a beginner use?"
+    a: "The question is better framed as risk per trade rather than leverage. Decide the maximum percentage of the account you are willing to lose on a single position — commonly 1% or less — and let that plus your stop distance determine position size. Leverage then becomes an output of the calculation rather than a setting you choose."
 ---
 
-Leverage is the most powerful — and most dangerous — feature in forex trading. It's also the single biggest reason new traders lose accounts quickly. Understanding it properly is not optional.
+Leverage is the reason foreign exchange is accessible to people with modest capital, and it is the mechanism behind the large majority of destroyed retail accounts.
 
-## What leverage actually is
+Both statements are true simultaneously, and the arithmetic explaining them takes about ten minutes to understand.
 
-Leverage lets you control a position much larger than your own capital. It's expressed as a ratio:
+## What leverage is
 
-- **1:30** — $1,000 controls $30,000
-- **1:100** — $1,000 controls $100,000
-- **1:500** — $1,000 controls $500,000
+Leverage lets you control a position larger than the capital you commit. The broker provides the difference; your capital acts as security.
 
-Your broker effectively lends you the difference. Regulated brokers in many regions cap retail leverage (often around 1:30) precisely because higher ratios cause so much harm.
+At 30:1, depositing 1,000 units of currency lets you hold 30,000 of exposure.
 
-## Margin: the deposit you put up
+The essential point, and the one that gets lost: **profit and loss are calculated on the full position, not on your deposit.** A 1% move on 30,000 is 300, which against 1,000 of capital is a 30% swing.
 
-**Margin** is the portion of your own money set aside to open the position. It isn't a fee — it's collateral.
+## Margin, in three terms
 
-At 1:100 leverage, opening a $100,000 position requires **$1,000** of margin (1%).
+**Required margin** is the capital the broker holds against your open position. At 30:1 on a 30,000 position, that is 1,000.
 
-| Term | Meaning |
-| --- | --- |
-| Used margin | Capital locked in open positions |
-| Free margin | What remains available to trade or absorb losses |
-| Margin level | Equity ÷ used margin, as a percentage |
-| Margin call | Broker warning that your equity is running low |
-| Stop out | Broker forcibly closes positions to prevent further loss |
+**Free margin** is what remains available for new positions or to absorb losses.
 
-## Why it cuts both ways
+**Equity** is your balance plus or minus unrealised profit and loss. This is the number that matters, and it moves continuously while positions are open.
 
-Here's the maths that people underestimate. With a $100,000 position:
+## The liquidation table
 
-- A **1% move in your favour** = +$1,000
-- A **1% move against you** = −$1,000
+This is the whole risk in one place.
 
-If your account holds $1,000, that 1% adverse move is **your entire account**. The market only has to breathe against you.
+| Leverage | Position on 1,000 | Adverse move that wipes margin |
+| --- | --- | --- |
+| 1:1 | 1,000 | 100% |
+| 5:1 | 5,000 | 20% |
+| 10:1 | 10,000 | 10% |
+| 30:1 | 30,000 | 3.3% |
+| 100:1 | 100,000 | 1% |
+| 500:1 | 500,000 | 0.2% |
 
-> Leverage does not increase your edge. It only increases the size of the outcome — in both directions.
+Read the last column against how currencies actually behave. Major pairs commonly move more than 1% in a day. At 100:1 leverage, an ordinary day closes the account.
 
-## The margin call spiral
+At 500:1 — still advertised by brokers outside regulated jurisdictions — a 0.2% move is sufficient. That is a routine fluctuation during any active session, which means the position is not a trade so much as a coin flip with a very short fuse.
 
-As losses mount, free margin shrinks. Once the margin level falls below your broker's threshold, you get a **margin call**. If it keeps falling, the broker triggers a **stop out**, closing positions automatically at whatever price is available.
+## Margin call and stop-out
 
-This often happens at the worst possible moment — during volatile news, when spreads widen and slippage is worst.
+As equity falls, two thresholds matter.
 
-## Using leverage sensibly
+**Margin call** is a warning that equity has dropped toward the required level. You can deposit more or close positions.
 
-1. **Risk a fixed small percentage** per trade (commonly 1–2%), regardless of available leverage
-2. **Always use a stop-loss** — decide your exit before entering
-3. **Size positions from your risk**, not from what the broker permits
-4. **Reduce size around major news** when volatility spikes
-5. Remember that **available leverage is a limit, not a target**
+**Stop-out** is automatic liquidation once equity falls below the broker's threshold. Positions are closed for you, usually worst-loss first, at whatever price is available.
 
-## A useful reframe
+Treating the margin call as comfortable notice is a mistake, because in fast markets both thresholds can be crossed within the same move. During a gap, positions can be closed at prices well beyond the stop-out level.
 
-Think of high leverage as a *permission*, not an instruction. A broker offering 1:500 is not suggesting you use it. Professional traders typically operate at a small fraction of the leverage available to them, because survival matters more than any single trade.
+**Negative balance protection**, required for retail clients in several jurisdictions, ensures you cannot lose more than you deposited. Where it is not required, you can end up owing the broker money. This has happened at scale during currency shocks, and it is one of the strongest arguments for using a regulated broker in your own jurisdiction.
+
+## Why regulators intervened
+
+The EU, UK and Australia each capped retail leverage after reviewing client outcome data, not on theoretical grounds. The caps are typically around 30:1 for major currency pairs, with lower limits for more volatile instruments.
+
+The consistent finding was straightforward: higher leverage correlated with worse outcomes and faster depletion of accounts. Regulators also mandated negative balance protection and standardised risk warnings at the same time.
+
+## Reframing the question
+
+Most discussion asks what leverage to use. That is the wrong variable to set.
+
+The right sequence is:
+
+1. **Decide the risk per trade.** A common figure is 1% or less of account equity.
+2. **Determine the stop distance** from your analysis, in pips.
+3. **Calculate the position size** that makes those two consistent.
+4. **Observe the leverage** that results.
+
+Worked through: a 10,000 account, 1% risk, and a 50-pip stop. Risk allowance is 100. On a pair where a standard lot moves 10 per pip, 50 pips of movement on a standard lot is 500 — five times too much. The correct size is 0.2 lots, giving 2 per pip and a 100 loss at the stop.
+
+The leverage employed falls out of that calculation. It is a consequence, never a target.
+
+## Why the stop distance matters as much as the size
+
+A tight stop permits a larger position for the same risk, which is why traders drift toward tight stops. The trade-off is that tighter stops are hit more often by ordinary noise.
+
+There is no free choice here. Either you accept a wider stop and a smaller position, or a tighter stop and a higher probability of being stopped out of positions that would have worked. The one option unavailable is a tight stop, a large position, and a low stop-out rate.
+
+## The costs leverage amplifies
+
+Leverage magnifies more than the price move:
+
+- **Spread** is paid on the full position size.
+- **Overnight financing** accrues on the full notional, not on your margin, and compounds on positions held for weeks.
+- **Slippage** is proportional to position size.
+
+A leveraged position held for months can accumulate financing charges that exceed any reasonable expected gain, which is why leverage suits short holding periods and works against long ones.
 
 ## The bottom line
 
-Leverage magnifies everything — profits, losses, and mistakes. The traders who last are the ones who treat it as a risk-control problem rather than an opportunity to trade bigger. Size small, use stops, and let consistency compound.
+Leverage does not improve your analysis. It shortens the distance between being wrong and being removed from the position, and it does so on a scale most people do not check before opening a trade.
 
-*This article is educational and is not financial advice. Leveraged trading carries a high risk of losing money rapidly.*
+The single most useful habit is to look at the liquidation table above, find the row matching your leverage, and ask honestly whether the instrument you are trading routinely moves that far. For most retail traders using high leverage, the honest answer is yes — which is the finding buried inside every retail loss statistic.
+
+*This article is educational and is not financial advice. Leveraged trading carries a high risk of loss and is not suitable for all investors.*

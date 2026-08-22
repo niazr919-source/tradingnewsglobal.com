@@ -3,8 +3,19 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { CategorySlug, isCategorySlug } from "./categories";
+import { getAuthorByName, type Author } from "./authors";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "posts");
+
+export interface PostSource {
+  label: string;
+  href: string;
+}
+
+export interface PostFaq {
+  q: string;
+  a: string;
+}
 
 export interface Post {
   slug: string;
@@ -12,6 +23,7 @@ export interface Post {
   description: string;
   category: CategorySlug;
   author: string;
+  authorSlug?: string;
   authorRole: string;
   authorBio: string;
   date: string; // ISO string
@@ -23,11 +35,19 @@ export interface Post {
   featured: boolean;
   trending: boolean;
   readingTime: number; // minutes
+  wordCount: number;
+  /** External references shown at the foot of the article. */
+  sources: PostSource[];
+  /** Rendered as an FAQ block and as FAQPage JSON-LD. */
+  faq: PostFaq[];
   content: string; // raw markdown/mdx body
 }
 
-function calcReadingTime(text: string): number {
-  const words = text.trim().split(/\s+/).filter(Boolean).length;
+function countWords(text: string): number {
+  return text.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function calcReadingTime(words: number): number {
   return Math.max(1, Math.round(words / 200));
 }
 
@@ -35,6 +55,30 @@ function toStringArray(value: unknown): string[] {
   if (Array.isArray(value)) return value.map((v) => String(v));
   if (typeof value === "string") return value.split(",").map((s) => s.trim()).filter(Boolean);
   return [];
+}
+
+function toSources(value: unknown): PostSource[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => {
+      if (!item || typeof item !== "object") return null;
+      const { label, href } = item as Record<string, unknown>;
+      if (!label || !href) return null;
+      return { label: String(label), href: String(href) };
+    })
+    .filter((s): s is PostSource => s !== null);
+}
+
+function toFaq(value: unknown): PostFaq[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => {
+      if (!item || typeof item !== "object") return null;
+      const { q, a } = item as Record<string, unknown>;
+      if (!q || !a) return null;
+      return { q: String(q), a: String(a) };
+    })
+    .filter((f): f is PostFaq => f !== null);
 }
 
 function parseFile(fileName: string): Post | null {
@@ -49,16 +93,22 @@ function parseFile(fileName: string): Post | null {
     return null;
   }
 
+  const authorName = String(data.author ?? "Trading News Global Newsroom");
+  const masthead: Author | undefined = getAuthorByName(authorName);
+  const words = countWords(content);
+
   return {
     slug,
     title: String(data.title ?? slug),
     description: String(data.description ?? ""),
     category,
-    author: String(data.author ?? "Trading News Global Newsroom"),
-    authorRole: String(data.authorRole ?? "Markets Desk"),
+    author: masthead?.name ?? authorName,
+    authorSlug: masthead?.slug,
+    authorRole: String(data.authorRole ?? masthead?.role ?? "Contributor"),
     authorBio: String(
       data.authorBio ??
-        "Part of the Trading News Global editorial team covering global markets, macro trends and trading strategy."
+        masthead?.bio ??
+        "Part of the Trading News Global editorial team covering global markets and trading education."
     ),
     date: new Date(data.date ?? Date.now()).toISOString(),
     updated: data.updated ? new Date(data.updated).toISOString() : undefined,
@@ -68,20 +118,31 @@ function parseFile(fileName: string): Post | null {
     cover: data.cover ? String(data.cover) : undefined,
     featured: Boolean(data.featured),
     trending: Boolean(data.trending),
-    readingTime: calcReadingTime(content),
+    readingTime: calcReadingTime(words),
+    wordCount: words,
+    sources: toSources(data.sources),
+    faq: toFaq(data.faq),
     content,
   };
 }
 
-/** All posts sorted newest first. */
+let cache: Post[] | null = null;
+
+// Only memoize in production builds. In dev the cache would hide edits to MDX
+// files until the server restarted.
+const shouldCache = process.env.NODE_ENV === "production";
+
+/** All posts sorted newest first. Memoized at build time. */
 export function getAllPosts(): Post[] {
+  if (shouldCache && cache) return cache;
   if (!fs.existsSync(POSTS_DIR)) return [];
-  return fs
+  cache = fs
     .readdirSync(POSTS_DIR)
     .filter((f) => /\.mdx?$/.test(f) && !f.startsWith("_"))
     .map(parseFile)
     .filter((p): p is Post => p !== null)
     .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+  return cache;
 }
 
 export function getPostSlugs(): string[] {
@@ -96,10 +157,14 @@ export function getPostsByCategory(category: CategorySlug): Post[] {
   return getAllPosts().filter((p) => p.category === category);
 }
 
+export function getPostsByAuthor(authorSlug: string): Post[] {
+  return getAllPosts().filter((p) => p.authorSlug === authorSlug);
+}
+
 export function getFeaturedPosts(limit = 3): Post[] {
   const all = getAllPosts();
   const featured = all.filter((p) => p.featured);
-  const pool = featured.length >= limit ? featured : all;
+  const pool = featured.length >= limit ? featured : [...featured, ...all.filter((p) => !p.featured)];
   return pool.slice(0, limit);
 }
 

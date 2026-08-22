@@ -13,18 +13,21 @@ export function CategoryBadge({
 }) {
   const cat = categories[category];
   const classes = cn(
-    "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ring-1 ring-inset",
-    cat.badgeClass,
+    "inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.13em] transition-opacity hover:opacity-70",
     className
   );
+  const content = (
+    <>
+      <span className="h-1.5 w-1.5 rounded-full" style={{ background: cat.accent }} aria-hidden />
+      <span style={{ color: cat.accent }}>{cat.shortName}</span>
+    </>
+  );
 
-  if (!asLink) {
-    return <span className={classes}>{cat.shortName}</span>;
-  }
+  if (!asLink) return <span className={classes}>{content}</span>;
 
   return (
     <Link href={`/category/${cat.slug}`} className={classes}>
-      {cat.shortName}
+      {content}
     </Link>
   );
 }

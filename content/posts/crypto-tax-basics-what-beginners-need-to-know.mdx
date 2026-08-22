@@ -1,76 +1,144 @@
 ---
-title: "Crypto Tax Basics: What Every Beginner Needs to Know"
-description: "Crypto is taxable in most countries — and ignoring it is costly. Learn what triggers a taxable event, why record-keeping matters, and the common mistakes to avoid."
+title: "Crypto Tax Basics: The Events That Create a Bill, and the Records You Need"
+description: "Most crypto tax problems come from not knowing which actions are taxable. Selling is obvious. Swapping, spending, staking and bridging usually are too — and records are your responsibility."
 category: "crypto"
 author: "Maya Chen"
-authorRole: "Senior Crypto Correspondent"
-authorBio: "Maya covers digital assets, DeFi and on-chain markets for Trading News Global, with a decade reporting on emerging financial technology."
 date: "2026-07-08"
-tags: ["crypto tax", "crypto basics", "record keeping", "compliance", "capital gains"]
-keywords: ["crypto tax basics", "cryptocurrency taxes", "taxable events crypto", "crypto capital gains", "crypto tax for beginners"]
+updated: "2026-08-07"
+tags: ["tax", "compliance", "record keeping", "staking", "crypto basics"]
+keywords: ["crypto tax basics", "is swapping crypto taxable", "crypto capital gains", "staking rewards tax", "crypto record keeping"]
 image: "/og-default.svg"
-cover: "/covers/crypto-4.jpg"
+cover: "/covers/crypto-6.jpg"
 featured: false
 trending: false
+sources:
+  - label: "US Internal Revenue Service — Digital asset guidance"
+    href: "https://www.irs.gov/filing/digital-assets"
+  - label: "UK HMRC — Cryptoassets Manual"
+    href: "https://www.gov.uk/hmrc-internal-manuals/cryptoassets-manual"
+  - label: "OECD — Crypto-Asset Reporting Framework (CARF)"
+    href: "https://www.oecd.org/tax/exchange-of-tax-information/crypto-asset-reporting-framework-and-amendments-to-the-common-reporting-standard.htm"
+faq:
+  - q: "Is swapping one cryptocurrency for another taxable?"
+    a: "In most major jurisdictions, yes. Tax authorities generally treat a swap as disposing of the first asset and acquiring the second, which realises a gain or loss on the first even though no conventional currency was involved. This surprises people every year and is one of the most common sources of unexpected bills."
+  - q: "Do I owe tax if I have not withdrawn to my bank account?"
+    a: "Usually yes. The taxable event is the disposal, not the withdrawal. Selling into a stablecoin, swapping tokens, or spending crypto on goods can all realise a gain while the proceeds remain entirely on-chain."
+  - q: "How are staking and mining rewards taxed?"
+    a: "Commonly as income at the point of receipt, valued at the market price at that moment, with a later capital gains calculation when the asset is sold. This creates the well-known trap of an income tax charge crystallised at a high price, payable from an asset whose value later fell. Treatment varies by country and continues to evolve."
+  - q: "What if I have lost my transaction records?"
+    a: "You are still responsible for reporting accurately. Reconstruct what you can from exchange export files, wallet addresses on block explorers, and bank statements. Portfolio and tax software can automate much of this. Where reconstruction is impossible, take a documented, consistent and conservative approach, and take professional advice."
 ---
 
-In most countries, cryptocurrency is treated as **property or an asset**, not currency — which means using it can trigger taxes. This is one of the most overlooked parts of crypto, and getting it wrong can be expensive.
+Crypto tax problems rarely come from people trying to evade anything. They come from not knowing that an action was taxable at all — and discovering it a year later, when the records no longer exist and the assets are worth less than the bill.
 
-> **Important:** Tax rules vary significantly by country and change often. This is general education, not tax advice. Always consult a qualified tax professional for your situation.
+This is general educational information. Rules differ substantially by country and change often, so treat this as a map of the questions rather than as an answer for your situation.
 
-## What is a taxable event?
+## The principle underneath everything
 
-A taxable event is any action that may create a tax obligation. In many jurisdictions, these commonly include:
+Most tax authorities do not treat cryptocurrency as currency. They treat it as **property**. Disposing of property realises a gain or a loss, measured against what you paid for it.
 
-- **Selling** crypto for fiat currency (e.g. dollars)
-- **Trading** one crypto for another (e.g. BTC for ETH)
-- **Spending** crypto on goods or services
-- **Earning** crypto — from staking, mining, interest or as payment
+That single classification explains most of what follows, including the parts that surprise people.
 
-And what typically is **not** a taxable event:
+## Events that are usually taxable
 
-- **Buying** crypto with fiat and holding it
-- **Moving** crypto between your own wallets
-- **Holding** through price changes (unrealised gains)
+| Action | Typically taxable | Why |
+| --- | --- | --- |
+| Selling crypto for fiat | Yes | Clear disposal |
+| Swapping one token for another | Yes | Disposal of the first asset |
+| Spending crypto on goods | Yes | Disposal at market value |
+| Converting to a stablecoin | Yes | Still a disposal |
+| Receiving staking or mining rewards | Usually, as income | New value received |
+| Receiving an airdrop | Often, as income | Depends on jurisdiction and circumstances |
+| Being paid in crypto | Yes, as income | Same as any payment |
+| Lending or yield income | Usually, as income | Return on capital |
 
-## Capital gains: the core concept
+## Events that are usually not taxable
 
-When you dispose of crypto, the taxable amount is usually the difference between what you paid (your **cost basis**) and what you received.
+| Action | Typically taxable | Why |
+| --- | --- | --- |
+| Buying crypto with fiat | No | Acquisition, not disposal |
+| Holding | No | Unrealised |
+| Moving between your own wallets | No | No change of ownership |
+| Gifting to a spouse | Often not | Varies significantly by jurisdiction |
+| Donating to a registered charity | Often relief available | Varies by jurisdiction |
 
-| | Example |
-| --- | --- |
-| Bought 1 token for | $1,000 |
-| Sold it later for | $1,600 |
-| Taxable gain | $600 |
+**The transfer point deserves emphasis.** Moving assets between wallets you control is not a disposal, but it looks identical to one on a block explorer. If you cannot demonstrate that both addresses are yours, you may be asked to treat it as a sale. Keep records of your own addresses.
 
-Many countries also distinguish between **short-term** and **long-term** holdings, often taxing assets held longer at a lower rate. The details differ everywhere — which is exactly why records matter.
+## The three that catch people out
 
-## Why record-keeping is everything
+**Token-to-token swaps.** Trading one token for another realises the gain on the first, even though you never touched conventional currency and may not have withdrawn anything. Someone who made hundreds of swaps in a rising market can owe substantial tax without ever having cashed out.
 
-The single biggest crypto tax mistake is poor records. Every trade, swap and reward needs a date, value and cost basis. This gets complicated quickly if you:
+**Staking rewards taxed at receipt.** If rewards are income when received, the liability is fixed at that day's price. If the token subsequently falls sharply, the tax owed can exceed the current value of the assets that generated it. This is a real and recurring problem, not a hypothetical one.
 
-- Trade across multiple exchanges
-- Use DeFi protocols
-- Receive staking or airdrop rewards
+**Spending crypto.** Buying a laptop with an asset that has appreciated is a disposal at market value. The purchase creates a gain to report.
 
-Keep a running log from the start. Reconstructing years of activity later is painful and error-prone.
+## Working out the gain
 
-## Common mistakes to avoid
+The formula is straightforward:
 
-1. **Assuming crypto-to-crypto trades are tax-free** — in many places they aren't
-2. **Forgetting earned crypto** — staking and rewards are often taxable as income
-3. **Losing cost-basis records** when moving between platforms
-4. **Ignoring small transactions** that add up across a year
+```
+Gain = Proceeds - Cost basis - Allowable costs
+```
 
-## A sensible approach
+**Cost basis** is what you paid, including acquisition fees. The complication arises when you bought the same asset at different times and prices, because you must decide which units you disposed of.
 
-- Track everything from day one, ideally with dedicated crypto-tax software
-- Understand which events are taxable in **your** country
-- Set aside a portion of gains for potential tax owed
-- Consult a professional before filing, especially with DeFi activity
+Common methods:
+
+- **FIFO** — first in, first out. The default in many jurisdictions.
+- **Specific identification** — nominating exactly which units were sold. Permitted in some places, with strict record requirements.
+- **Pooled or average cost** — a single averaged basis across holdings, used in the UK among others, with additional same-day and short-window matching rules.
+
+You generally cannot choose freely, and you cannot switch methods to suit a given year. Establish which applies to you before you need it.
+
+## Losses are worth recording
+
+Losses generally offset gains, and in many jurisdictions can be carried forward to offset future gains. Given the volatility of this asset class, unclaimed losses are one of the most common ways people overpay.
+
+Some jurisdictions also allow a claim where an asset has become genuinely worthless or permanently inaccessible, though the evidential bar is usually high and the procedure specific.
+
+Note that **wash sale** rules — disallowing a loss if you repurchase the same asset within a set window — apply to crypto in some jurisdictions and not others, and the position has been changing. Check current rules before relying on a strategy that depends on this.
+
+## Records: the part that actually determines your outcome
+
+The exchange will not do this for you, and if it fails or you lose access, its records may become unavailable permanently.
+
+For every transaction, keep:
+
+- Date and time
+- Asset and quantity
+- Value in your local currency at that moment
+- Fees paid
+- Counterparty or platform
+- Transaction hash and wallet addresses
+- The purpose — particularly for transfers between your own wallets
+
+**Do this continuously.** Reconstructing three years of activity across five platforms, two of which have since closed, is the single most expensive avoidable mistake in this area. Export your history from every platform at least annually and store it independently.
+
+Portfolio tracking and crypto tax software can import from exchanges and wallets and generate reports. They are imperfect — they struggle with complex DeFi activity — but they are far better than a spreadsheet started in a panic.
+
+## Reporting is becoming automatic
+
+The direction of travel is unambiguous. The OECD Crypto-Asset Reporting Framework establishes automatic exchange of crypto account information between participating tax authorities, mirroring what already exists for bank accounts. Exchanges in major jurisdictions increasingly report user data directly.
+
+The practical implication: assume your activity is visible. Filing accurately is considerably cheaper than being asked about it later.
+
+## When to get professional help
+
+Consider an accountant with genuine crypto experience if you:
+
+- have significant gains;
+- have used DeFi protocols, liquidity pools or derivatives;
+- have earned staking, mining or yield income at scale;
+- have moved between countries during the tax year;
+- have missing records to reconstruct;
+- hold crypto through a company or trust.
+
+The fee is usually small against the cost of an error, and the field is specialised enough that general practitioners often get it wrong.
 
 ## The bottom line
 
-Crypto taxes aren't optional, and "I didn't know" rarely helps with tax authorities. Understand what triggers a taxable event, keep meticulous records, and get professional advice for your jurisdiction. The effort is far cheaper than the alternative.
+Two things create almost all crypto tax problems: not knowing that swapping and spending are disposals, and not keeping records at the time.
 
-*This article is educational and is not financial or tax advice.*
+Both are solvable with an afternoon of attention. Neither is solvable retrospectively at any reasonable cost.
+
+*This article is general information, not tax advice. Rules differ by country and change frequently — consult a qualified professional in your jurisdiction.*

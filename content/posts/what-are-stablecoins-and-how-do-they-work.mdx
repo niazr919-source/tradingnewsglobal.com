@@ -1,77 +1,122 @@
 ---
 title: "What Are Stablecoins and How Do They Actually Stay Stable?"
-description: "Stablecoins aim to hold a steady value, but they achieve it in very different ways. Compare fiat-backed, crypto-backed and algorithmic models — and the risks of each."
+description: "Stablecoins aim to hold a steady value, but they achieve it in very different ways. Compare fiat-backed, crypto-backed and algorithmic models — and understand exactly how each one breaks."
 category: "crypto"
 author: "Maya Chen"
-authorRole: "Senior Crypto Correspondent"
-authorBio: "Maya covers digital assets, DeFi and on-chain markets for Trading News Global, with a decade reporting on emerging financial technology."
 date: "2026-07-11"
-tags: ["stablecoins", "crypto basics", "DeFi", "regulation", "Tokenized RWAs"]
+updated: "2026-08-15"
+tags: ["stablecoins", "crypto basics", "DeFi", "regulation", "tokenized RWAs"]
 keywords: ["what are stablecoins", "how do stablecoins work", "fiat-backed stablecoin", "algorithmic stablecoin", "stablecoin depeg"]
 image: "/og-default.svg"
 cover: "/covers/crypto-2.jpg"
 featured: false
-trending: false
+trending: true
+sources:
+  - label: "Bank for International Settlements — The stablecoin landscape"
+    href: "https://www.bis.org/publ/qtrpdf/r_qt2209.htm"
+  - label: "President's Working Group on Financial Markets — Report on Stablecoins"
+    href: "https://home.treasury.gov/system/files/136/StableCoinReport_Nov1_508.pdf"
+  - label: "European Union — Markets in Crypto-Assets Regulation (MiCA)"
+    href: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32023R1114"
+faq:
+  - q: "Are stablecoins actually safe?"
+    a: "Safety depends entirely on what backs the token and who holds the backing. A stablecoin fully reserved in short-dated government bills with regular independent attestation is a very different proposition from one backed by illiquid assets or by nothing but an algorithm. The word stablecoin describes a goal, not a guarantee, and several have failed completely."
+  - q: "What causes a stablecoin to depeg?"
+    a: "Four common triggers: doubt about whether reserves exist as claimed, a wave of redemptions the issuer cannot meet quickly, a problem at a partner bank or custodian holding the reserves, or collateral falling in value faster than the system can liquidate it. Depegs are usually liquidity events before they are solvency events."
+  - q: "Do stablecoins pay interest?"
+    a: "The token itself normally does not. The issuer earns the yield on the reserves and generally keeps it. Where a platform offers yield on stablecoin deposits, that yield comes from lending your tokens to someone else, which introduces credit risk that has nothing to do with the stablecoin and has caused significant losses."
+  - q: "What does MiCA change for stablecoins in Europe?"
+    a: "It creates an authorisation regime for issuers, sets requirements on reserve composition and segregation, and grants holders a right of redemption at par. In practice it pushes the market toward fully reserved, supervised issuers and away from opaque or algorithmic designs for use within the EU."
 ---
 
-A **stablecoin** is a cryptocurrency designed to hold a steady value — most commonly pegged to one US dollar. They act as the cash layer of crypto markets, letting traders move in and out of volatility without leaving the blockchain.
+A **stablecoin** is a cryptocurrency designed to hold a steady value — most commonly one US dollar. They function as the cash layer of crypto markets, letting people move in and out of volatile positions without leaving the blockchain, and increasingly as a settlement rail in their own right.
 
-But "stable" is a design goal, not a guarantee. How a stablecoin maintains its peg determines how much you should trust it.
+But stable is a design goal, not a property. How a stablecoin maintains its peg determines how much you should trust it, and the three main designs fail in completely different ways.
 
-## The three main models
+## Model one: fiat-backed
 
-### 1. Fiat-backed (reserve-backed)
+The issuer holds real assets — dollars, short-dated government bills, cash equivalents — and issues one token per unit held. Each token is redeemable for one dollar from the issuer.
 
-The issuer holds real dollars, Treasury bills and cash equivalents in bank accounts. Each token is meant to be redeemable for $1.
+This is the simplest design and the dominant one by volume. The peg holds through arbitrage: if the token trades at 99 cents, someone buys it, redeems it with the issuer for a dollar, and pockets the difference. That buying pressure pushes the price back up.
 
-- **Strength:** simple, well understood, historically the most robust
-- **Weakness:** you must trust the issuer's reserves and their auditors
+**What has to be true for it to work:**
 
-### 2. Crypto-backed (overcollateralized)
+- The reserves genuinely exist, in the quantity claimed.
+- They are liquid enough to meet redemptions quickly.
+- Redemption is actually available, in practice and not merely on paper.
+- The banks and custodians holding the reserves are themselves sound.
 
-Backed by other cryptocurrencies locked in smart contracts. Because crypto is volatile, these are **overcollateralized** — you might lock $150 of crypto to mint $100 of stablecoin.
+**How it fails.** Every historical stress in this category has come from one of those four. Doubts about reserve composition trigger redemptions; redemptions require selling assets; if assets are illiquid or trapped at a failing bank, the issuer cannot meet them, and the peg breaks under the queue rather than under the arithmetic.
 
-- **Strength:** transparent, verifiable on-chain
-- **Weakness:** sharp market crashes can trigger mass liquidations
+The dependency on the traditional banking system is easy to overlook. A dollar-backed stablecoin is only as strong as the bank where those dollars sit.
 
-### 3. Algorithmic
+## Model two: crypto-backed and overcollateralised
 
-Attempts to hold the peg through supply-adjusting mechanisms and incentives, often with little or no hard collateral.
+Instead of dollars, the backing is other cryptocurrency locked in smart contracts. Because that collateral is volatile, the system requires **more** collateral than the value issued — perhaps 150 units of crypto locked to mint 100 units of stablecoin.
 
-- **Strength:** capital efficient in theory
-- **Weakness:** historically fragile — several have collapsed entirely
+If the collateral value falls toward the threshold, the position is automatically liquidated: the collateral is sold and the stablecoin repurchased and burned.
 
-| Model | Backed by | Main risk |
-| --- | --- | --- |
-| Fiat-backed | Cash & short-term bonds | Issuer / custodial trust |
-| Crypto-backed | Overcollateralized crypto | Liquidation cascades |
-| Algorithmic | Code & incentives | Peg collapse ("death spiral") |
+**Strengths.** Everything is verifiable on-chain. There is no bank, no custodian and no requirement to trust an issuer's word about reserves.
 
-## What a "depeg" means
+**How it fails.** In a sharp, fast market decline, many positions hit their liquidation thresholds simultaneously. The system tries to sell a large quantity of collateral into a market that is already falling and short of buyers. Liquidations cascade, each one pushing the collateral price lower and triggering the next. If liquidation cannot keep pace with the fall, the system ends up undercollateralised.
 
-A depeg happens when a stablecoin trades away from its target — say $0.97 instead of $1.00. Causes include:
+Capital efficiency is the other cost: locking 150 to create 100 is expensive.
 
-- Doubts about whether reserves genuinely exist
-- A rush of redemptions the issuer can't meet quickly
-- Problems at a partner bank or custodian
-- Collateral collapsing faster than the system can liquidate
+## Model three: algorithmic
 
-> Even brief depegs matter. If you're using a stablecoin as collateral in DeFi, a small drop can trigger liquidations across your positions.
+The peg is maintained by protocol rules and incentives rather than by hard collateral — typically by expanding and contracting supply, often through a paired volatile token that absorbs the adjustment.
+
+**The appeal.** No reserves are required, so it scales without capital.
+
+**How it fails.** The mechanism relies on people being willing to buy the absorbing token during stress. That willingness is exactly what disappears during stress. When confidence goes, the protocol issues more of the absorbing token, its price falls, which reduces confidence further, which requires more issuance. This is the death spiral, and it has destroyed multi-billion-dollar systems within days.
+
+The category has a poor record, and regulators have been explicit about it.
+
+## Comparison
+
+| | Fiat-backed | Crypto-backed | Algorithmic |
+| --- | --- | --- | --- |
+| Backed by | Cash and short-term bonds | Overcollateralised crypto | Code and incentives |
+| Verifiability | Attestation or audit | On-chain, direct | On-chain, but reflexive |
+| Main risk | Issuer, custodian, banking | Liquidation cascade | Confidence collapse |
+| Capital efficiency | 1:1 | Poor, over 1:1 | High |
+| Track record | Generally held, with episodes | Generally held | Multiple total failures |
+
+## What a depeg actually means
+
+A depeg is when the token trades away from its target — 97 cents instead of a dollar.
+
+Brief depegs are more consequential than they appear. In decentralised finance, stablecoins are widely used as collateral. A drop to 97 cents can push leveraged positions below their liquidation thresholds, triggering forced selling in assets entirely unrelated to the stablecoin. The contagion path runs through collateral, not through sentiment.
+
+This is why a two-hour depeg can produce losses that persist long after the peg is restored.
 
 ## What to check before trusting one
 
-1. **Reserve transparency** — are there regular, credible attestations?
-2. **What backs it** — cash and Treasuries are safer than exotic assets
-3. **Redemption rights** — can holders actually redeem for dollars?
-4. **Regulatory standing** — increasingly, jurisdictions require licensing
-5. **Track record** — has it held its peg through past market stress?
+1. **What backs it.** Cash and Treasury bills are not the same as commercial paper, corporate debt or other crypto. Read the composition, not the headline.
+2. **Who verifies it.** A monthly attestation by a recognised accounting firm is meaningful. A self-published dashboard is not.
+3. **Whether you can redeem.** Many holders cannot redeem directly with the issuer at all, only sell on an exchange. That difference matters most precisely when it matters.
+4. **Where the reserves sit.** Concentration at a single bank is a single point of failure.
+5. **Regulatory standing.** Authorisation under a framework such as MiCA imposes reserve and redemption requirements that a self-regulated issuer does not face.
+6. **Behaviour under past stress.** Did it hold during previous market dislocations, and how quickly did it recover?
 
-## Why they matter beyond trading
+## The yield question
 
-Stablecoins are becoming genuine payment rails — fast, cheap cross-border transfers that settle in minutes. They're also the natural settlement layer for tokenized real-world assets, which is why regulators worldwide are now writing rules for them.
+Stablecoins do not generate yield by holding them. The issuer earns the return on the reserves.
+
+Where a platform offers a return on stablecoin deposits, that return comes from lending your tokens to a borrower. You are no longer holding a stablecoin; you are an unsecured creditor of whoever the platform lent to. Several large failures in this sector were exactly this: people believed they held dollars, and in fact held a claim on a lender who could not pay.
+
+> If a platform offers a yield on a stablecoin, the correct question is not how much. It is who is borrowing, against what collateral, and what happens when they cannot repay.
+
+## Where this is going
+
+Stablecoins have moved beyond trading infrastructure. They now settle cross-border payments faster and more cheaply than correspondent banking, and they are the natural cash leg for tokenized real-world assets. That has drawn regulators in seriously, with frameworks now in force or being written across major jurisdictions.
+
+The direction is consistent: full reserving in high-quality liquid assets, segregation of those assets, a legal right to redeem at par, and supervision of issuers. That is, essentially, a requirement that a stablecoin be what most users already assumed it was.
 
 ## The bottom line
 
-Stablecoins are infrastructure, not investments. Their value comes from reliability, so choose based on **transparency and backing**, not on yield offers. And remember: a stablecoin is only as strong as whatever stands behind it.
+Stablecoins are infrastructure, not investments. Their value proposition is reliability, so choose on **transparency and backing** rather than on convenience or yield.
+
+And hold onto the underlying point: a stablecoin is only ever as strong as whatever stands behind it. When you cannot identify what that is, you have identified the risk.
 
 *This article is educational and is not financial advice.*

@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { CategorySlug, isCategorySlug } from "./categories";
-import { getAuthorByName, type Author } from "./authors";
+import { newsroom } from "./newsroom";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "posts");
 
@@ -22,8 +22,8 @@ export interface Post {
   title: string;
   description: string;
   category: CategorySlug;
+  /** Byline. Defaults to the newsroom masthead. */
   author: string;
-  authorSlug?: string;
   authorRole: string;
   authorBio: string;
   date: string; // ISO string
@@ -93,8 +93,7 @@ function parseFile(fileName: string): Post | null {
     return null;
   }
 
-  const authorName = String(data.author ?? "Trading News Global Newsroom");
-  const masthead: Author | undefined = getAuthorByName(authorName);
+  const authorName = String(data.author ?? newsroom.byline).trim() || newsroom.byline;
   const words = countWords(content);
 
   return {
@@ -102,14 +101,9 @@ function parseFile(fileName: string): Post | null {
     title: String(data.title ?? slug),
     description: String(data.description ?? ""),
     category,
-    author: masthead?.name ?? authorName,
-    authorSlug: masthead?.slug,
-    authorRole: String(data.authorRole ?? masthead?.role ?? "Contributor"),
-    authorBio: String(
-      data.authorBio ??
-        masthead?.bio ??
-        "Part of the Trading News Global editorial team covering global markets and trading education."
-    ),
+    author: authorName,
+    authorRole: String(data.authorRole ?? newsroom.role),
+    authorBio: String(data.authorBio ?? newsroom.bio),
     date: new Date(data.date ?? Date.now()).toISOString(),
     updated: data.updated ? new Date(data.updated).toISOString() : undefined,
     tags: toStringArray(data.tags),
@@ -155,10 +149,6 @@ export function getPostBySlug(slug: string): Post | undefined {
 
 export function getPostsByCategory(category: CategorySlug): Post[] {
   return getAllPosts().filter((p) => p.category === category);
-}
-
-export function getPostsByAuthor(authorSlug: string): Post[] {
-  return getAllPosts().filter((p) => p.authorSlug === authorSlug);
 }
 
 export function getFeaturedPosts(limit = 3): Post[] {

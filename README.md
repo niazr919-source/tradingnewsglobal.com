@@ -120,7 +120,7 @@ analytics storage defaulting to `denied` until the reader opts in.
    | Field | Notes |
    | --- | --- |
    | `category` | `crypto`, `forex`, `markets` or `trading-education` |
-   | `author` | Must match a name in `src/lib/authors.ts` |
+   | `author` | Defaults to the newsroom byline; set only for a real named contributor |
    | `date` | `YYYY-MM-DD` |
    | `updated` | Add when you materially revise it; shown next to the byline |
    | `cover` | A file in `public/covers/`; omit for a generated illustration |
@@ -146,12 +146,12 @@ public/
   covers/                 Cover photos, optimized by npm run optimize:covers
   .htaccess               Hostinger config — copied into the export
   ads.txt                 Replace the placeholder publisher ID
-src/app/                  Routes: /, /blog/[slug], /category/[slug], /authors/[slug],
+src/app/                  Routes: /, /blog/[slug], /category/[slug], /newsroom,
                           /archive, plus about, contact and all policy pages
 src/components/           UI: header, ticker, cards, TOC, consent banner, ad slots
 src/lib/
   posts.ts                MDX pipeline: parsing, reading time, sources, FAQ
-  authors.ts              The masthead — bylines resolve against this
+  newsroom.ts             The masthead: byline, desk remits, contact routes
   categories.ts           The four sections
   seo.ts                  Metadata, Article/Breadcrumb/FAQ JSON-LD
   site.ts                 Domain, contact addresses, social links
@@ -167,12 +167,28 @@ scripts/                  Cover optimization and link checking
 - [ ] Replace the placeholder social URLs in `src/lib/site.ts`
 - [ ] Create the four mailboxes referenced in `src/lib/site.ts` (`editor@`, `corrections@`,
       `privacy@`, `advertising@`) — Hostinger includes free domain email
-- [ ] **Replace the writers in `src/lib/authors.ts` with real people.** A byline that does
-      not correspond to a contactable person is a liability on a finance site
+- [ ] Optional: if a real named contributor joins, add them to `src/lib/newsroom.ts`
+      and set `author:` on their articles. Only ever name a real, contactable person
 - [ ] Submit `sitemap.xml` to Google Search Console and Bing Webmaster Tools
 - [ ] Confirm `https://tradingnewsglobal.com/ads.txt` is reachable after deploy
 
 ---
+
+## Authorship
+
+Articles are published under the **`Trading News Global Editorial Team`** masthead rather than
+under individual bylines. This is a deliberate, honest position for a publication of this size:
+accountability sits with the publication, there is one standard applied to every article, and
+one place to bring a complaint. `/newsroom` sets out what each desk covers, the standards the
+work is held to, and how to report a correction.
+
+Article structured data therefore declares an `Organization` as the author, which is valid
+schema.org and true. **Do not replace it with a `Person` who does not exist** — fabricated
+bylines are a documented way to lose search trust, and on a finance site they are the kind of
+thing an ad-network review is specifically looking for.
+
+If a real named writer joins, add them to `src/lib/newsroom.ts`, give them a profile page, and
+set `author:` in their articles' frontmatter.
 
 ## Editorial position
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig, absoluteUrl } from "./site";
 import { categories } from "./categories";
-import { getAuthorByName } from "./authors";
+import { newsroom } from "./newsroom";
 import type { Post } from "./posts";
 
 /** Default OpenGraph image path served from /public. */
@@ -23,12 +23,7 @@ export function buildArticleMetadata(post: Post): Metadata {
     title: post.title,
     description: post.description,
     keywords: [...post.keywords, ...cat.keywords],
-    authors: [
-      {
-        name: post.author,
-        url: post.authorSlug ? absoluteUrl(`/authors/${post.authorSlug}`) : undefined,
-      },
-    ],
+    authors: [{ name: post.author, url: absoluteUrl("/newsroom") }],
     category: cat.name,
     alternates: { canonical },
     openGraph: {
@@ -66,8 +61,6 @@ export function buildArticleMetadata(post: Post): Metadata {
 export function buildArticleJsonLd(post: Post) {
   const url = absoluteUrl(`/blog/${post.slug}`);
   const cat = categories[post.category];
-  const masthead = getAuthorByName(post.author);
-
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -82,13 +75,13 @@ export function buildArticleJsonLd(post: Post) {
     timeRequired: `PT${post.readingTime}M`,
     inLanguage: siteConfig.language,
     isAccessibleForFree: true,
+    // Published under the masthead, so the author IS the organisation. Naming a
+    // Person here who does not exist would be structured data that lies.
     author: {
-      "@type": "Person",
+      "@type": "Organization",
       name: post.author,
-      jobTitle: post.authorRole,
-      description: masthead?.short,
-      knowsAbout: masthead?.expertise,
-      url: masthead ? absoluteUrl(`/authors/${masthead.slug}`) : undefined,
+      url: absoluteUrl("/newsroom"),
+      email: newsroom.email,
     },
     publisher: {
       "@type": "Organization",

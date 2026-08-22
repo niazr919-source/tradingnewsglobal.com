@@ -85,16 +85,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <p className="mt-4 text-[17px] leading-relaxed text-muted-foreground">{post.description}</p>
 
             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 border-y border-border py-3 text-[13px] text-muted-foreground">
-              {post.authorSlug ? (
-                <Link
-                  href={`/authors/${post.authorSlug}`}
-                  className="font-semibold text-foreground hover:text-primary"
-                >
-                  {post.author}
-                </Link>
-              ) : (
-                <span className="font-semibold text-foreground">{post.author}</span>
-              )}
+              <Link href="/newsroom" className="font-semibold text-foreground hover:text-primary">
+                {post.author}
+              </Link>
               <span aria-hidden>·</span>
               <PostDate date={post.date} long />
               {wasUpdated && (

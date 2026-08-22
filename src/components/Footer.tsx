@@ -1,15 +1,14 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 import { categoryList } from "@/lib/categories";
-import { authors } from "@/lib/authors";
 import { Newsletter } from "./Newsletter";
 import { SocialLinks } from "./SocialLinks";
 import { Wordmark } from "./Wordmark";
 
 const aboutLinks = [
   { label: "About us", href: "/about" },
+  { label: "The newsroom", href: "/newsroom" },
   { label: "Editorial policy", href: "/editorial-policy" },
-  { label: "Our writers", href: "/authors" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -59,11 +58,7 @@ export function Footer() {
                   {l.label}
                 </FooterLink>
               ))}
-              {authors.slice(0, 2).map((a) => (
-                <FooterLink key={a.slug} href={`/authors/${a.slug}`}>
-                  {a.name}
-                </FooterLink>
-              ))}
+              <FooterLink href="/archive">Article archive</FooterLink>
             </FooterColumn>
 
             <FooterColumn title="Legal">

@@ -128,16 +128,12 @@ export function PostMeta({
     <div className={cn("flex flex-wrap items-center gap-x-2 gap-y-1 text-[11.5px] text-muted-foreground", className)}>
       {!hideAuthor && (
         <>
-          {post.authorSlug ? (
-            <Link
-              href={`/authors/${post.authorSlug}`}
-              className="font-medium text-foreground/75 transition-colors hover:text-primary"
-            >
-              {post.author}
-            </Link>
-          ) : (
-            <span className="font-medium text-foreground/75">{post.author}</span>
-          )}
+          <Link
+            href="/newsroom"
+            className="font-medium text-foreground/75 transition-colors hover:text-primary"
+          >
+            {post.author}
+          </Link>
           <span aria-hidden>·</span>
         </>
       )}

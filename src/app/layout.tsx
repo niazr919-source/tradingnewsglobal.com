@@ -52,8 +52,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: siteConfig.twitter,
-    creator: siteConfig.twitter,
     title: siteConfig.title,
     description: siteConfig.description,
     images: ["/og-default.svg"],
@@ -91,7 +89,6 @@ const orgJsonLd = {
   description: siteConfig.description,
   foundingDate: String(siteConfig.foundedYear),
   email: siteConfig.email.editorial,
-  sameAs: siteConfig.social.map((s) => s.href),
   publishingPrinciples: absoluteUrl("/editorial-policy"),
   ethicsPolicy: absoluteUrl("/editorial-policy"),
   correctionsPolicy: absoluteUrl("/editorial-policy"),

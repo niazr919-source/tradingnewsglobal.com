@@ -8,7 +8,6 @@ import { categoryList } from "@/lib/categories";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
 import { SearchDialog, type SearchItem } from "./SearchDialog";
-import { SocialLinks } from "./SocialLinks";
 import { Wordmark } from "./Wordmark";
 
 const secondaryLinks = [
@@ -174,12 +173,6 @@ export function Navbar({ searchItems }: { searchItems: SearchItem[] }) {
             ))}
           </div>
 
-          <div className="mt-auto border-t border-border pt-5">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              Follow
-            </p>
-            <SocialLinks />
-          </div>
         </div>
       </div>
 

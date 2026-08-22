@@ -2,7 +2,6 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 import { categoryList } from "@/lib/categories";
 import { Newsletter } from "./Newsletter";
-import { SocialLinks } from "./SocialLinks";
 import { Wordmark } from "./Wordmark";
 
 const aboutLinks = [
@@ -34,12 +33,6 @@ export function Footer() {
             </p>
             <div className="mt-6 max-w-sm">
               <Newsletter />
-            </div>
-            <div className="mt-6">
-              <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                Follow
-              </p>
-              <SocialLinks />
             </div>
           </div>
 

@@ -15,7 +15,6 @@ export const siteConfig = {
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://tradingnewsglobal.com").replace(/\/+$/, ""),
   locale: "en_US",
   language: "en",
-  twitter: "@tradingnewsglb",
   publisher: "Trading News Global",
   foundedYear: 2026,
 
@@ -40,17 +39,7 @@ export const siteConfig = {
     "financial education",
   ],
 
-  /** Replace with your real profile links before launch. */
-  social: [
-    { platform: "facebook", label: "Facebook", href: "https://facebook.com/tradingnewsglobal" },
-    { platform: "instagram", label: "Instagram", href: "https://instagram.com/tradingnewsglobal" },
-    { platform: "pinterest", label: "Pinterest", href: "https://pinterest.com/tradingnewsglobal" },
-    { platform: "telegram", label: "Telegram", href: "https://t.me/tradingnewsglobal" },
-    { platform: "whatsapp", label: "WhatsApp", href: "https://wa.me/10000000000" },
-  ],
 } as const;
-
-export type SocialPlatform = (typeof siteConfig.social)[number]["platform"];
 
 /**
  * Build an absolute URL from a site-relative path.

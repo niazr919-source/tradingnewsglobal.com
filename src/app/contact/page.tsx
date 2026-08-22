@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AlertCircle, Mail, Megaphone, PenLine, ShieldCheck } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
-import { SocialLinks } from "@/components/SocialLinks";
 import { ContactForm } from "@/components/ContactForm";
 import { siteConfig, absoluteUrl } from "@/lib/site";
 
@@ -101,12 +100,6 @@ export default function ContactPage() {
         <a href={`mailto:${siteConfig.email.editorial}`}>{siteConfig.email.editorial}</a>. We publish
         nothing of the sort.
       </p>
-
-      <h2>Elsewhere</h2>
-      <p>We post article links and nothing else on these accounts:</p>
-      <div className="not-prose">
-        <SocialLinks />
-      </div>
 
       <h2>Postal enquiries</h2>
       <p>

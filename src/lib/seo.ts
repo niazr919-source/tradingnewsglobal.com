@@ -42,8 +42,6 @@ export function buildArticleMetadata(post: Post): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      site: siteConfig.twitter,
-      creator: siteConfig.twitter,
       title,
       description: post.description,
       images: [cover],

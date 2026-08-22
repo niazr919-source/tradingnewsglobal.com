@@ -109,7 +109,9 @@ export function TickerBar() {
   return (
     <div className="w-full overflow-hidden border-b border-border bg-surface">
       <div className="flex items-center">
-        <span className="hidden shrink-0 items-center gap-1.5 border-r border-border px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.13em] text-muted-foreground sm:flex">
+        {/* Sits above the marquee and needs its own background, or the scrolling
+            prices slide visibly underneath the label. */}
+        <span className="relative z-10 hidden shrink-0 items-center gap-1.5 border-r border-border bg-surface px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.13em] text-muted-foreground sm:flex">
           <span className="h-1.5 w-1.5 rounded-full bg-up" />
           Markets
         </span>

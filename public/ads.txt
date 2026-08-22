@@ -1,13 +1,6 @@
 # ads.txt — Authorized Digital Sellers (IAB Tech Lab)
-# Served at https://tradingnewsglobal.com/ads.txt
+# https://tradingnewsglobal.com/ads.txt
 #
-# ── ACTION REQUIRED BEFORE / DURING ADSENSE SETUP ──────────────────────────────
-# Replace pub-0000000000000000 below with YOUR publisher ID, which you can see at
-#   AdSense → Account → Settings → Account information
-# It looks like pub-1234567890123456. Use the pub- form here (no "ca-" prefix).
-# The same ID (with the ca- prefix) goes in NEXT_PUBLIC_ADSENSE_CLIENT.
-#
-# Leaving the placeholder in place is worse than having no ads.txt at all, because
-# it declares an account that is not yours. If you are not ready, delete this file.
-# ──────────────────────────────────────────────────────────────────────────────
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# Publisher ID issued by Google AdSense.
+# Must stay in sync with NEXT_PUBLIC_ADSENSE_CLIENT (which uses the ca- prefix).
+google.com, pub-2716080376550479, DIRECT, f08c47fec0942fa0

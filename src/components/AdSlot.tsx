@@ -8,14 +8,17 @@ const AD_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
 /**
  * Ad unit.
  *
- * - With NEXT_PUBLIC_ADSENSE_CLIENT set, renders a real AdSense unit.
- * - Without it, renders a quiet placeholder so layout is stable while the site
- *   is under review. Google explicitly does not require live ad code to approve
- *   a site, and shipping empty <ins> tags with no publisher ID is worse than
- *   shipping none at all.
+ * Renders a real AdSense unit only when BOTH the publisher ID and a specific ad
+ * `slot` are available. An <ins> tag carrying a publisher ID but no slot cannot
+ * be filled and is invalid markup, so without a slot this falls back to the
+ * neutral placeholder instead.
  *
- * Every unit is labelled "Advertisement" — required by AdSense policy so ads are
- * never mistaken for editorial content.
+ * That means display units stay dormant until you create ad units in the
+ * AdSense dashboard and pass their IDs here. Auto ads are unaffected — they run
+ * from the script in <head> and need no slot.
+ *
+ * Every unit is labelled "Advertisement", which AdSense policy requires so ads
+ * are never mistaken for editorial content.
  */
 export function AdSlot({
   slot,
@@ -29,18 +32,19 @@ export function AdSlot({
   label?: string;
 }) {
   const pushed = useRef(false);
+  const isLive = Boolean(AD_CLIENT && slot);
 
   useEffect(() => {
-    if (!AD_CLIENT || pushed.current) return;
+    if (!isLive || pushed.current) return;
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
       pushed.current = true;
     } catch {
       /* script not ready */
     }
-  }, []);
+  }, [isLive]);
 
-  if (!AD_CLIENT) {
+  if (!isLive) {
     return (
       <div
         aria-hidden

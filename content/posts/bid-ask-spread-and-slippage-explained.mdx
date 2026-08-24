@@ -1,0 +1,130 @@
+---
+title: "Bid-Ask Spread and Slippage: The Costs Nobody Quotes You"
+description: "Commission is advertised. The spread and slippage are not, and for an active trader they usually cost more. Here is where the money goes and how to measure it."
+seoTitle: "Bid-Ask Spread and Slippage Explained"
+seoDescription: "The spread and slippage are the trading costs nobody advertises, and for active traders they dwarf commission. How they work and how to reduce them."
+category: "trading-education"
+author: "Trading News Global Editorial Team"
+date: "2026-08-23"
+tags: ["spread", "slippage", "liquidity", "trading costs", "execution"]
+keywords: ["what is bid ask spread", "what is slippage in trading", "trading costs explained", "why did my order fill at a different price", "spread cost calculation"]
+image: "/og-default.png"
+cover: "/covers/trading-4.jpg"
+featured: false
+trending: false
+sources:
+  - label: "US SEC — Trading basics: understanding the bid-ask spread"
+    href: "https://www.sec.gov/investor/alerts/trading-basics.pdf"
+  - label: "FCA — Best execution obligations"
+    href: "https://www.fca.org.uk/firms/best-execution"
+  - label: "ESMA — MiFID II best execution reporting"
+    href: "https://www.esma.europa.eu/policy-rules/mifid-ii-and-mifir"
+faq:
+  - q: "What is the bid-ask spread?"
+    a: "The gap between the highest price a buyer will pay (the bid) and the lowest a seller will accept (the ask). You buy at the ask and sell at the bid, so you cross that gap on entry and start every position at a small loss. It is compensation to market makers for standing ready to trade and bearing inventory risk."
+  - q: "Why did my order fill at a worse price than I saw?"
+    a: "Slippage. Between clicking and executing, the price moved, or your order was larger than the quantity available at the top price and filled through several levels. It is worst in thin markets, around scheduled news, and at session opens and closes."
+  - q: "How do I calculate what the spread costs me?"
+    a: "Divide the spread by the price to get the percentage cost per round trip, then multiply by how many times you trade. A 0.05% spread traded twenty times a month is roughly 12% of turnover a year. Against a small edge, that is usually the whole edge."
+  - q: "Does a zero-commission broker mean free trading?"
+    a: "No. The cost moves into the spread or into payment for order flow, where your order is routed to a firm that pays for it. You still pay; the payment is just no longer itemised on your statement, which makes it harder to measure."
+---
+
+Every broker advertises its commission. Almost none advertise the two costs that usually matter more.
+
+For anyone trading frequently, the **spread** and **slippage** typically exceed commission by a wide margin — and because neither appears as a line item, most traders never measure them.
+
+## The bid-ask spread
+
+At any moment a market has two prices:
+
+- The **bid** — the highest price a buyer is currently willing to pay.
+- The **ask** (or offer) — the lowest price a seller will accept.
+
+The gap between them is the spread. **You buy at the ask and sell at the bid**, which means the instant you open a position you are down by the spread. Before anything happens, before you are right or wrong, you are behind.
+
+Suppose an instrument shows 100.00 bid and 100.05 ask. Buy at 100.05 and sell immediately at 100.00 and you have lost 0.05 — 0.05% of the position — having taken no view at all.
+
+## Why the spread exists
+
+It is not a fee invented to extract money. It is the compensation paid to whoever stands ready to trade with you.
+
+A market maker quotes both sides continuously, taking on inventory it may not want and bearing the risk that the price moves against it before it can offset. The spread pays for that service and that risk.
+
+Which is why spreads widen exactly when you would prefer they did not — during volatility, around news, and in thin instruments. The risk of quoting both sides is higher, so the compensation rises.
+
+| Condition | Effect on spread |
+| --- | --- |
+| Deep, liquid instrument | Very tight |
+| Thin or exotic instrument | Wide |
+| Major session overlap | Tightest |
+| Overnight or holiday | Wider |
+| Seconds around a data release | Dramatically wider |
+| Market stress | Wider, sometimes several times normal |
+
+## Slippage
+
+Slippage is the difference between the price you expected and the price you received.
+
+Two distinct causes, worth separating:
+
+**1. The market moved.** Between your click and the execution, the price changed. Milliseconds are enough in a fast market.
+
+**2. Your order was too big for the top of the book.** Available quantity at the best price is finite. An order larger than that fills partly at the best price and the remainder at progressively worse ones. This is **market impact**, and it grows with size and shrinks with liquidity.
+
+Slippage is not always negative — occasionally you fill better than expected. But it is asymmetric in practice, because the conditions producing large slippage tend to be conditions where price is moving against a crowd, and you are usually part of the crowd.
+
+## The stop-loss problem
+
+This deserves its own section because it is where slippage does real damage.
+
+A stop-loss becomes a market order when triggered. It fills at the next available price, whatever that is.
+
+In a gap — over a weekend, on an unexpected announcement — there may be no price at all between your stop and somewhere far below. Your stop triggers and fills there. Traders who believed their downside was capped at the stop level discover the cap was theoretical.
+
+> A stop-loss caps your intention, not your loss. Position sizing is what caps your loss.
+
+## Doing the arithmetic
+
+Here is where the numbers become uncomfortable.
+
+Take a 0.05% round-trip spread cost — tight, by retail standards.
+
+| Trades per month | Annual cost as % of turnover |
+| --- | --- |
+| 5 | ~3% |
+| 20 | ~12% |
+| 50 | ~30% |
+| 100 | ~60% |
+
+Now recall that most strategies have, at best, a small edge. A strategy with a genuine 1% monthly edge, traded fifty times a month, hands its entire edge and more to the spread.
+
+**This is the arithmetic behind the finding that trading frequency correlates negatively with returns.** It is not that frequent traders are worse analysts. It is that frequency multiplies a fixed cost against a small edge.
+
+## Zero-commission is not free
+
+Commission-free brokers still earn money on your trades, generally through a wider spread or through payment for order flow — routing your order to a firm that pays for the right to execute it.
+
+You are not being cheated, and the arrangement is disclosed. But the cost has moved from a visible line item into the execution price, where you cannot easily measure it. "Free" trading is a change in where the cost sits, not whether it exists.
+
+## Reducing what you pay
+
+**Trade less.** The single largest lever, and the least popular.
+
+**Use limit orders for entries.** A limit order lets you sit on the bid rather than crossing the spread. You may not fill, which costs you nothing.
+
+**Trade liquid instruments.** Major pairs and large-cap shares have far tighter spreads than exotic ones.
+
+**Avoid the worst windows.** Scheduled news, session opens, thin overnight hours.
+
+**Size to the book.** If your order is large relative to what is quoted, break it up.
+
+**Measure it.** Log your intended price and your fill price on every trade. After fifty trades, you will know your real execution cost — a number almost no retail trader can currently state.
+
+## The bottom line
+
+Commission is the cost you can see. The spread and slippage are the costs you pay, and they scale with how often you trade rather than how well.
+
+If you cannot state your average round-trip cost in percentage terms, you cannot know whether your strategy has an edge — because the edge has to clear that number before anything is left.
+
+*This article is educational and is not financial advice. Trading carries a high risk of loss.*

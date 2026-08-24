@@ -54,6 +54,19 @@ export const linkTargets: LinkTarget[] = [
     phrases: ["candlestick", "chart pattern"],
   },
 
+  {
+    slug: "market-limit-and-stop-orders-explained",
+    phrases: ["stop-loss", "limit order", "market order", "trailing stop"],
+  },
+  {
+    slug: "what-is-a-cfd-and-why-regulators-restrict-them",
+    phrases: ["contracts for difference", "CFD", "leveraged derivative"],
+  },
+  {
+    slug: "bid-ask-spread-and-slippage-explained",
+    phrases: ["slippage", "bid-ask spread"],
+  },
+
   // ---- forex ----
   {
     slug: "forex-leverage-and-margin-explained",
@@ -92,6 +105,11 @@ export const linkTargets: LinkTarget[] = [
     phrases: ["scenario map", "policy divergence"],
   },
 
+  {
+    slug: "how-currency-pegs-work-and-why-they-break",
+    phrases: ["currency peg", "impossible trinity", "fixed exchange rate"],
+  },
+
   // ---- markets ----
   {
     slug: "bond-yields-explained-why-they-drive-everything",
@@ -116,6 +134,15 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "bull-vs-bear-markets-explained",
     phrases: ["bear market", "bull market", "recovery arithmetic"],
+  },
+
+  {
+    slug: "how-etfs-work-explained",
+    phrases: ["exchange-traded fund", "expense ratio", "tracking error"],
+  },
+  {
+    slug: "what-is-quantitative-easing-explained",
+    phrases: ["quantitative easing", "central bank balance sheet", "asset purchase"],
   },
 
   // ---- crypto ----
@@ -166,6 +193,14 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "ai-crypto-tokens-surge-rwa-tokenization",
     phrases: ["narrative rotation", "sector rotation"],
+  },
+  {
+    slug: "what-moves-the-price-of-bitcoin",
+    phrases: ["global liquidity", "marginal buyer", "price of Bitcoin"],
+  },
+  {
+    slug: "how-to-read-a-crypto-whitepaper",
+    phrases: ["whitepaper", "token distribution"],
   },
 ];
 

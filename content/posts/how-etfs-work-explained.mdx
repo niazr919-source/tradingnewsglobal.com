@@ -1,0 +1,125 @@
+---
+title: "How ETFs Work: Creation, Redemption and What You Actually Own"
+description: "An ETF trades like a share and holds a basket like a fund. The mechanism keeping its price honest is the part almost nobody explains, and it is the part that occasionally fails."
+seoTitle: "How ETFs Work: The Mechanism Explained"
+seoDescription: "How ETFs track their index, what creation and redemption actually do, the difference between physical and synthetic, and where tracking error comes from."
+category: "markets"
+author: "Trading News Global Editorial Team"
+date: "2026-08-23"
+tags: ["ETFs", "index funds", "tracking error", "expense ratio", "investing basics"]
+keywords: ["how do etfs work", "etf creation and redemption", "physical vs synthetic etf", "etf tracking error", "what is an expense ratio"]
+image: "/og-default.png"
+cover: "/covers/trading-5.jpg"
+featured: false
+trending: false
+sources:
+  - label: "US SEC — Investor bulletin on exchange-traded funds"
+    href: "https://www.sec.gov/investor/alerts/etfs.pdf"
+  - label: "ESMA — Guidelines on ETFs and other UCITS issues"
+    href: "https://www.esma.europa.eu/document/guidelines-etfs-and-other-ucits-issues"
+  - label: "Bank for International Settlements — ETFs and market structure"
+    href: "https://www.bis.org/publ/qtrpdf/r_qt1809h.htm"
+faq:
+  - q: "What keeps an ETF trading close to the value of its holdings?"
+    a: "Arbitrage by authorised participants. If the ETF trades above the value of its underlying basket, they create new shares by delivering the basket and sell them, and that extra supply pushes the price down. If it trades below, they buy shares and redeem them for the basket. The profit motive keeps price and value aligned without anyone managing it."
+  - q: "What is the difference between a physical and a synthetic ETF?"
+    a: "A physical ETF owns the actual assets in the index. A synthetic ETF holds collateral and enters a swap with a bank that agrees to pay the index return. Synthetic structures can track hard-to-access markets more precisely, but they add counterparty risk: if the swap provider fails, you depend on the collateral."
+  - q: "Why does an ETF not exactly match its index?"
+    a: "Tracking error comes from fees deducted daily, cash held between dividend receipt and reinvestment, the cost of trading when the index rebalances, sampling rather than holding every constituent, and withholding tax on foreign dividends. Small individually, they compound over years."
+  - q: "Is the expense ratio the only cost?"
+    a: "No. You also pay the bid-ask spread each time you trade, any brokerage commission, and indirectly the fund's own internal trading costs. For a long-term holding the expense ratio dominates; for frequent trading the spread often costs more."
+---
+
+An exchange-traded fund is two things at once: a fund that holds a basket of assets, and a security that trades on an exchange all day like a share.
+
+That combination is genuinely useful, and the mechanism that makes it work is the part most explanations skip — which is unfortunate, because it is also the part that occasionally fails.
+
+## The problem ETFs solve
+
+A traditional mutual fund prices once a day. You submit an order without knowing the price, and it executes at the net asset value calculated after the close.
+
+An ETF trades continuously at a live price. You see what you are paying, you can use limit orders, and you can trade intraday.
+
+But this creates an obvious question. If the ETF's price is set by supply and demand on an exchange, what stops it drifting away from the value of what it actually holds?
+
+## Creation and redemption
+
+The answer is a mechanism running quietly in the background, driven entirely by profit.
+
+Large institutions called **authorised participants** have a contractual right to exchange ETF shares for the underlying basket, and vice versa, in large blocks.
+
+**When the ETF trades above the value of its holdings:**
+1. An AP buys the underlying assets in the market.
+2. Delivers them to the fund in exchange for newly created ETF shares.
+3. Sells those shares on the exchange at the higher price.
+4. The extra supply pushes the ETF price down toward fair value.
+
+**When it trades below:**
+1. An AP buys cheap ETF shares on the exchange.
+2. Redeems them with the fund for the underlying basket.
+3. Sells the basket at its higher value.
+4. The buying pushes the ETF price up.
+
+Nobody manages this. The arbitrage profit does the work, and it is why liquid ETFs track their holdings closely without requiring anyone to enforce it.
+
+## When the mechanism strains
+
+The arbitrage assumes APs can trade the underlying assets freely. When that assumption breaks, the ETF and its holdings can separate.
+
+This has been observed in ETFs holding **less liquid assets** — corporate bonds in particular — during periods of market stress. The underlying bonds stopped trading in size, APs could not price or assemble the basket confidently, and the ETF traded at a meaningful discount to its stated net asset value.
+
+There is a reasonable argument that the ETF price was the more accurate one in those moments, because it reflected what a buyer would actually pay, while the stated asset value reflected stale quotes. Either way, the practical point holds: **an ETF is only as liquid as what it owns.** A liquid wrapper does not make illiquid contents liquid.
+
+## Physical versus synthetic
+
+| | Physical | Synthetic |
+| --- | --- | --- |
+| Holds | The actual index constituents | Collateral plus a swap contract |
+| Return source | The assets themselves | A bank agrees to pay the index return |
+| Main risk | Tracking error, sampling | Counterparty failure |
+| Best for | Liquid, accessible markets | Hard-to-access or restricted markets |
+
+Physical ETFs either hold every constituent (full replication) or a representative subset (sampling), which is common for indices with thousands of members.
+
+Synthetic ETFs can track markets that are difficult or expensive to hold directly, often with lower tracking error. The cost is counterparty risk — if the swap provider fails, you rely on the posted collateral. European regulation constrains this exposure, but it does not eliminate it.
+
+Most mainstream equity ETFs are physical. If a fund is synthetic, it will say so, and the reason is usually worth understanding.
+
+## Where tracking error comes from
+
+An ETF never exactly matches its index. The gap comes from:
+
+- **Fees**, deducted continuously.
+- **Cash drag** — dividends received sit as cash briefly before reinvestment.
+- **Rebalancing costs** when the index changes constituents, and every tracker must trade at the same time.
+- **Sampling**, where the fund holds a subset rather than everything.
+- **Withholding tax** on foreign dividends, which the index calculation may not assume.
+
+Individually small. Compounded over a decade, the difference between a well-run and poorly-run tracker of the same index is real money.
+
+## The costs you actually pay
+
+**The expense ratio** is charged continuously against assets. For a long-term holding this dominates everything else, because it applies to the whole balance every year regardless of performance.
+
+**The bid-ask spread** is paid on every trade. On a large, heavily traded ETF it is negligible; on a niche one it can exceed a year of management fees in a single round trip.
+
+**Commission**, depending on your broker.
+
+The practical implication: for buy-and-hold, optimise the expense ratio. For frequent trading, the spread matters more than the headline fee.
+
+## What to check before buying one
+
+1. **What does it actually hold?** Read the top ten positions. Thematic ETFs frequently hold something quite different from what the name implies.
+2. **How concentrated is it?** Many index funds are dominated by a handful of very large constituents.
+3. **Physical or synthetic**, and if synthetic, who the counterparty is.
+4. **Fund size and daily volume.** Small, thinly traded funds have wider spreads and occasionally close, forcing a taxable exit at a time not of your choosing.
+5. **Accumulating or distributing**, which affects your tax treatment.
+6. **Domicile**, which affects withholding tax on dividends.
+
+## The bottom line
+
+An ETF is a wrapper. It makes a basket of assets tradable like a single share, and an arbitrage mechanism keeps its price honest as long as the underlying market functions.
+
+That last clause carries the risk. The wrapper is not what you own — the contents are. Judge an ETF on what it holds, what that costs you annually, and how liquid those holdings are when markets are not calm.
+
+*This article is educational and is not financial advice. The value of investments can fall as well as rise.*

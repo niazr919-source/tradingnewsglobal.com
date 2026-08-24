@@ -72,3 +72,9 @@ jobs:
             **/.git*
             **/.git*/**
             **/node_modules/**
+
+      - name: Notify IndexNow (Bing, Yandex, Seznam, Naver)
+        # Runs after the upload so the key file and new pages are already live.
+        # Never fails the deploy — a rejected ping is not a broken release.
+        continue-on-error: true
+        run: node scripts/indexnow.mjs

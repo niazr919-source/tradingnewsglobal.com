@@ -21,6 +21,10 @@ export interface Post {
   slug: string;
   title: string;
   description: string;
+  /** Shorter title for the <title> tag; falls back to `title`. */
+  seoTitle?: string;
+  /** Shorter meta description; falls back to `description`. */
+  seoDescription?: string;
   category: CategorySlug;
   /** Byline. Defaults to the newsroom masthead. */
   author: string;
@@ -100,6 +104,8 @@ function parseFile(fileName: string): Post | null {
     slug,
     title: String(data.title ?? slug),
     description: String(data.description ?? ""),
+    seoTitle: data.seoTitle ? String(data.seoTitle) : undefined,
+    seoDescription: data.seoDescription ? String(data.seoDescription) : undefined,
     category,
     author: authorName,
     authorRole: String(data.authorRole ?? newsroom.role),

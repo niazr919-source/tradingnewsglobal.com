@@ -11,7 +11,7 @@ export const siteConfig = {
   title: "Trading News Global — Crypto, Forex & Market Analysis",
   tagline: "Markets, explained without the hype.",
   description:
-    "Trading News Global publishes independent explainers and analysis on cryptocurrency, forex and global markets — written in plain language, with the risks stated up front.",
+    "Independent explainers on cryptocurrency, forex and global markets — in plain language, with the risks stated up front.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://tradingnewsglobal.com").replace(/\/+$/, ""),
   locale: "en_US",
   language: "en",

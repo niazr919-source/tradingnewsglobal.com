@@ -27,22 +27,22 @@ export async function generateMetadata({
   const title = `${cat.name} News & Analysis`;
   return {
     title,
-    description: cat.description,
+    description: cat.metaDescription,
     keywords: cat.keywords,
     alternates: { canonical },
     openGraph: {
       type: "website",
       url: canonical,
       title: `${title} | ${siteConfig.name}`,
-      description: cat.description,
+      description: cat.metaDescription,
       siteName: siteConfig.name,
-      images: [{ url: "/og-default.svg", width: 1200, height: 630, alt: cat.name }],
+      images: [{ url: "/og-default.png", width: 1200, height: 630, alt: cat.name }],
     },
     twitter: {
       card: "summary_large_image",
       title,
-      description: cat.description,
-      images: ["/og-default.svg"],
+      description: cat.metaDescription,
+      images: ["/og-default.png"],
     },
   };
 }

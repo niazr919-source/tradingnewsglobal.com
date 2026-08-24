@@ -60,6 +60,7 @@ export function Footer() {
                   {l.label}
                 </FooterLink>
               ))}
+              <FooterLink href="/feed.xml">RSS feed</FooterLink>
               <FooterLink href="/sitemap.xml">Sitemap</FooterLink>
             </FooterColumn>
           </div>

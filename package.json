@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "optimize:covers": "node scripts/optimize-covers.mjs",
-    "check:links": "node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "og:image": "node scripts/make-og-image.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

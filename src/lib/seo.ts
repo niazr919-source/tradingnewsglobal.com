@@ -5,7 +5,7 @@ import { newsroom } from "./newsroom";
 import type { Post } from "./posts";
 
 /** Default OpenGraph image path served from /public. */
-const DEFAULT_OG = "/og-default.svg";
+const DEFAULT_OG = "/og-default.png";
 
 function ogImage(image?: string) {
   const src = image || DEFAULT_OG;
@@ -16,12 +16,19 @@ function ogImage(image?: string) {
 export function buildArticleMetadata(post: Post): Metadata {
   const canonical = absoluteUrl(`/blog/${post.slug}`);
   const cat = categories[post.category];
-  const title = `${post.title} | ${siteConfig.name}`;
   const cover = ogImage(post.cover ?? post.image);
 
+  // The <title> uses seoTitle when the editorial headline is too long for a
+  // search result, and skips the "| Site Name" suffix that the root template
+  // appends — on an article that suffix costs 22 characters of visible title
+  // for no benefit.
+  const metaTitle = post.seoTitle ?? post.title;
+  const metaDescription = post.seoDescription ?? post.description;
+  const socialTitle = `${post.title} | ${siteConfig.name}`;
+
   return {
-    title: post.title,
-    description: post.description,
+    title: { absolute: metaTitle },
+    description: metaDescription,
     keywords: [...post.keywords, ...cat.keywords],
     authors: [{ name: post.author, url: absoluteUrl("/newsroom") }],
     category: cat.name,
@@ -29,7 +36,7 @@ export function buildArticleMetadata(post: Post): Metadata {
     openGraph: {
       type: "article",
       url: canonical,
-      title,
+      title: socialTitle,
       description: post.description,
       siteName: siteConfig.name,
       locale: siteConfig.locale,
@@ -42,7 +49,7 @@ export function buildArticleMetadata(post: Post): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: socialTitle,
       description: post.description,
       images: [cover],
     },

@@ -40,6 +40,14 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
 
+      {/* Every page needs exactly one H1. The visible design leads with the top
+          story rather than a page title, so this names the page for crawlers and
+          screen readers without altering the layout. It states plainly what the
+          page is — it is not hidden keyword text. */}
+      <h1 className="sr-only">
+        {siteConfig.name} — {siteConfig.tagline} Crypto, forex and market analysis.
+      </h1>
+
       <HeroSection posts={featured} />
 
       <hr className="my-10 border-border lg:my-12" />

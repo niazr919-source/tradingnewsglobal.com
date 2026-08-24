@@ -49,10 +49,14 @@ jobs:
           test -f out/sitemap.xml           || { echo "::error::missing sitemap.xml"; exit 1; }
           test -f out/robots.txt            || { echo "::error::missing robots.txt"; exit 1; }
           test -f out/.htaccess             || { echo "::error::missing .htaccess"; exit 1; }
+          test -f out/feed.xml              || { echo "::error::missing feed.xml"; exit 1; }
           echo "Exported $(find out -name '*.html' | wc -l) HTML pages"
 
       - name: Check for broken internal links
         run: node scripts/check-links.mjs
+
+      - name: SEO audit
+        run: node scripts/seo-audit.mjs
 
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5

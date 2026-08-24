@@ -5,6 +5,7 @@ import { Clock, ExternalLink } from "lucide-react";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/posts";
 import { categories } from "@/lib/categories";
 import { absoluteUrl } from "@/lib/site";
+import { addInternalLinks } from "@/lib/internal-links";
 import {
   buildArticleMetadata,
   buildArticleJsonLd,
@@ -48,6 +49,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const url = absoluteUrl(`/blog/${post.slug}`);
   const faqJsonLd = buildFaqJsonLd(post);
   const wasUpdated = post.updated && post.updated !== post.date;
+
+  // Contextual links are injected at render rather than written into the MDX,
+  // so the mapping stays in one place and new articles wire themselves up.
+  const body = addInternalLinks(post.content, post.slug);
 
   return (
     <article className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -120,7 +125,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
           {/* Body */}
           <div className="mx-auto mt-8 max-w-[46rem]">
-            <Markdown>{post.content}</Markdown>
+            <Markdown>{body}</Markdown>
 
             {/* FAQ */}
             {post.faq.length > 0 && (

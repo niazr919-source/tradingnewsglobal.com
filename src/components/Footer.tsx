@@ -7,6 +7,7 @@ import { Wordmark } from "./Wordmark";
 const aboutLinks = [
   { label: "About us", href: "/about" },
   { label: "The newsroom", href: "/newsroom" },
+  { label: "Glossary", href: "/glossary" },
   { label: "Editorial policy", href: "/editorial-policy" },
   { label: "Contact", href: "/contact" },
 ];

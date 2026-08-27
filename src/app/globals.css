@@ -63,7 +63,7 @@
 
   --font-sans: var(--font-inter);
   --font-serif: var(--font-newsreader);
-  --font-mono: var(--font-mono-nums);
+  --font-mono: var(--font-inter), ui-monospace, SFMono-Regular, monospace;
 
   --animate-ticker: ticker 60s linear infinite;
   --animate-fade-up: fade-up 0.4s ease-out both;
@@ -109,9 +109,10 @@ body {
   letter-spacing: -0.011em;
 }
 
+/* Inter has tabular figures, so aligned digits need no extra font file. */
 .tabular {
   font-variant-numeric: tabular-nums;
-  font-family: var(--font-mono-nums), ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-feature-settings: "tnum" 1;
 }
 
 ::selection {

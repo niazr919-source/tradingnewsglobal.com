@@ -11,6 +11,7 @@ import { SearchDialog, type SearchItem } from "./SearchDialog";
 import { Wordmark } from "./Wordmark";
 
 const secondaryLinks = [
+  { label: "Glossary", href: "/glossary" },
   { label: "About", href: "/about" },
   { label: "Editorial Policy", href: "/editorial-policy" },
   { label: "Contact", href: "/contact" },

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter, Newsreader, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Newsreader } from "next/font/google";
 import "./globals.css";
 import { siteConfig, absoluteUrl } from "@/lib/site";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -14,19 +14,19 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
+// Only the weights actually used: 400 for serif body, 600 for headings, and
+// 400 italic for the wordmark. Requesting 500 and 700 cost two render-blocking
+// font files for styles nothing referenced.
 const newsreader = Newsreader({
   variable: "--font-newsreader",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   style: ["normal", "italic"],
 });
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-mono-nums",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600"],
-});
+// IBM Plex Mono was loaded in three weights to render ticker prices. Inter ships
+// tabular figures, so `font-variant-numeric: tabular-nums` gives aligned digits
+// with no extra font download at all.
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -156,7 +156,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${newsreader.variable} ${plexMono.variable} h-full`}
+      className={`${inter.variable} ${newsreader.variable} h-full`}
       suppressHydrationWarning
     >
       <head>

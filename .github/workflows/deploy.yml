@@ -82,7 +82,9 @@ jobs:
             **/node_modules/**
 
       - name: Retry deploy once if the first attempt failed
+        id: retry
         if: steps.deploy.outcome == 'failure'
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -98,10 +100,12 @@ jobs:
             **/node_modules/**
 
       # ------------------------------------------------------------- verify it
-      # A deploy that reports success but did not actually publish is the
-      # failure mode that wasted the most time here, so check the live site
-      # rather than trusting the upload step's exit code.
+      # This step, not the FTP exit code, decides whether the deploy worked.
+      # The action against this host reports failure while still delivering the
+      # files, so trusting its exit code produced both false alarms and, worse,
+      # skipped the only check that looks at reality.
       - name: Verify the live site matches this build
+        if: always()
         run: |
           sleep 20
           fail=0
@@ -127,5 +131,6 @@ jobs:
 
       - name: Notify IndexNow (Bing, Yandex, Seznam, Naver)
         # Never fails the deploy — a rejected ping is not a broken release.
+        if: success()
         continue-on-error: true
         run: node scripts/indexnow.mjs

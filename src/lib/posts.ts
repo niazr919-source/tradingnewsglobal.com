@@ -44,6 +44,8 @@ export interface Post {
   sources: PostSource[];
   /** Rendered as an FAQ block and as FAQPage JSON-LD. */
   faq: PostFaq[];
+  /** Answer-first summary shown above the article and used as schema abstract. */
+  takeaways: string[];
   content: string; // raw markdown/mdx body
 }
 
@@ -122,6 +124,7 @@ function parseFile(fileName: string): Post | null {
     wordCount: words,
     sources: toSources(data.sources),
     faq: toFaq(data.faq),
+    takeaways: toStringArray(data.takeaways),
     content,
   };
 }

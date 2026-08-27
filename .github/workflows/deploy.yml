@@ -50,6 +50,7 @@ jobs:
           test -f out/robots.txt            || { echo "::error::missing robots.txt"; exit 1; }
           test -f out/.htaccess             || { echo "::error::missing .htaccess"; exit 1; }
           test -f out/feed.xml              || { echo "::error::missing feed.xml"; exit 1; }
+          test -f out/llms.txt              || { echo "::error::missing llms.txt"; exit 1; }
           echo "Exported $(find out -name '*.html' | wc -l) HTML pages"
 
       - name: Check for broken internal links

@@ -77,6 +77,9 @@ export function buildArticleJsonLd(post: Post) {
     articleSection: cat.name,
     keywords: [...post.keywords, ...post.tags].join(", "),
     wordCount: post.wordCount,
+    // The answer-first summary, offered to anything parsing the page for a
+    // short factual extract rather than scraping the opening paragraph.
+    ...(post.takeaways.length > 0 && { abstract: post.takeaways.join(" ") }),
     timeRequired: `PT${post.readingTime}M`,
     inLanguage: siteConfig.language,
     isAccessibleForFree: true,

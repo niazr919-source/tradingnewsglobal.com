@@ -23,6 +23,7 @@ import { PostCover } from "@/components/PostCover";
 import { PostDate } from "@/components/PostDate";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { RiskWarning } from "@/components/TrendingSidebar";
+import { KeyTakeaways } from "@/components/KeyTakeaways";
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -117,6 +118,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             className="mt-7 aspect-[16/9] w-full rounded-xl"
             sizes="(min-width: 1024px) 780px, 100vw"
           />
+
+          {post.takeaways.length > 0 && (
+            <div className="mx-auto mt-7 max-w-[46rem]">
+              <KeyTakeaways points={post.takeaways} />
+            </div>
+          )}
 
           {/* Mobile table of contents */}
           <div className="mx-auto mt-7 max-w-[46rem] lg:hidden">

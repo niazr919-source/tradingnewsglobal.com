@@ -16,11 +16,16 @@ on:
 
 concurrency:
   group: deploy-production
-  cancel-in-progress: true
+  # Deliberately NOT cancel-in-progress. Cancelling a run mid-FTP-transfer
+  # leaves a partial upload and an inconsistent sync-state file on the server,
+  # which then breaks the following deploy too. Queue instead, so every
+  # transfer finishes before the next one starts.
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Check out the repository
@@ -39,19 +44,15 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://tradingnewsglobal.com
-          # Add NEXT_PUBLIC_ADSENSE_CLIENT as a repo secret once AdSense issues
-          # your publisher ID, then uncomment the next line.
-          # NEXT_PUBLIC_ADSENSE_CLIENT: ${{ secrets.NEXT_PUBLIC_ADSENSE_CLIENT }}
+          # NEXT_PUBLIC_ADSENSE_CLIENT lives in .env.production — the publisher
+          # ID is public by design, so it needs no secret.
 
       - name: Verify the export looks complete
         run: |
-          test -f out/index.html            || { echo "::error::missing index.html"; exit 1; }
-          test -f out/sitemap.xml           || { echo "::error::missing sitemap.xml"; exit 1; }
-          test -f out/robots.txt            || { echo "::error::missing robots.txt"; exit 1; }
-          test -f out/.htaccess             || { echo "::error::missing .htaccess"; exit 1; }
-          test -f out/feed.xml              || { echo "::error::missing feed.xml"; exit 1; }
-          test -f out/llms.txt              || { echo "::error::missing llms.txt"; exit 1; }
-          echo "Exported $(find out -name '*.html' | wc -l) HTML pages"
+          for f in index.html sitemap.xml robots.txt .htaccess feed.xml llms.txt 404.html; do
+            test -f "out/$f" || { echo "::error::missing out/$f"; exit 1; }
+          done
+          echo "Exported $(find out -name '*.html' | wc -l) HTML pages, $(du -sh out | cut -f1)"
 
       - name: Check for broken internal links
         run: node scripts/check-links.mjs
@@ -59,7 +60,13 @@ jobs:
       - name: SEO audit
         run: node scripts/seo-audit.mjs
 
+      # ---------------------------------------------------------------- upload
+      # FTP to shared hosting is not always reliable with several thousand small
+      # files. The retry runs only if the first attempt fails, and resumes from
+      # the server-side state file rather than re-uploading everything.
       - name: Deploy to Hostinger
+        id: deploy
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -67,15 +74,58 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
           server-dir: /public_html/
-          # Only changed files are uploaded — the action keeps a manifest on the
-          # server, so subsequent deploys take seconds rather than minutes.
+          timeout: 120000
+          log-level: minimal
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
 
+      - name: Retry deploy once if the first attempt failed
+        if: steps.deploy.outcome == 'failure'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: /public_html/
+          timeout: 120000
+          log-level: standard
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+
+      # ------------------------------------------------------------- verify it
+      # A deploy that reports success but did not actually publish is the
+      # failure mode that wasted the most time here, so check the live site
+      # rather than trusting the upload step's exit code.
+      - name: Verify the live site matches this build
+        run: |
+          sleep 20
+          fail=0
+          for p in / /sitemap.xml /robots.txt /feed.xml /llms.txt /glossary/ /newsroom/; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 "https://tradingnewsglobal.com${p}?cb=${RANDOM}" || echo 000)
+            if [ "$code" != "200" ]; then
+              echo "::error::${p} returned ${code}"
+              fail=1
+            else
+              echo "ok   ${p}"
+            fi
+          done
+
+          live=$(curl -sS --max-time 20 "https://tradingnewsglobal.com/sitemap.xml?cb=${RANDOM}" | grep -c '<loc>' || echo 0)
+          built=$(grep -c '<loc>' out/sitemap.xml)
+          echo "sitemap URLs — live: ${live}, built: ${built}"
+          if [ "$live" != "$built" ]; then
+            echo "::error::live sitemap has ${live} URLs but this build has ${built} — the upload is incomplete"
+            fail=1
+          fi
+
+          exit $fail
+
       - name: Notify IndexNow (Bing, Yandex, Seznam, Naver)
-        # Runs after the upload so the key file and new pages are already live.
         # Never fails the deploy — a rejected ping is not a broken release.
         continue-on-error: true
         run: node scripts/indexnow.mjs

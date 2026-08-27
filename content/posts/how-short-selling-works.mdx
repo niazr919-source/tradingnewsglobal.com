@@ -1,0 +1,125 @@
+---
+title: "How Short Selling Works, and Why the Risk Is Asymmetric"
+description: "Selling something you do not own sounds strange until you see the mechanism. The important part is the payoff shape: capped gains, uncapped losses, and a borrow that can be recalled."
+seoTitle: "How Short Selling Works (And Its Real Risks)"
+seoDescription: "How shorting works step by step, why losses are theoretically unlimited, what a short squeeze is, and the borrow costs most explanations skip."
+category: "trading-education"
+author: "Trading News Global Editorial Team"
+date: "2026-08-25"
+tags: ["short selling", "risk", "short squeeze", "borrowing", "market mechanics"]
+keywords: ["how does short selling work", "what is shorting a stock", "short squeeze explained", "short selling risks", "stock borrow fee"]
+image: "/og-default.png"
+cover: "/covers/trading-1.jpg"
+featured: false
+trending: true
+sources:
+  - label: "US SEC — Key points about regulation SHO and short selling"
+    href: "https://www.sec.gov/investor/pubs/regsho.htm"
+  - label: "ESMA — Short selling regulation"
+    href: "https://www.esma.europa.eu/esmas-activities/markets-and-infrastructure/short-selling"
+  - label: "FCA — Short selling rules and disclosure"
+    href: "https://www.fca.org.uk/markets/short-selling"
+faq:
+  - q: "How can you sell something you do not own?"
+    a: "You borrow it first. Your broker locates shares held by another client or an institution, lends them to you, and you sell them in the market. Later you buy the shares back and return them. The lender receives a fee and keeps the economic rights, including dividends, which you must reimburse."
+  - q: "Why are short selling losses unlimited?"
+    a: "Because a price can rise without limit but can only fall to zero. A long position risks 100% of what you put in. A short position that doubles costs you 100%, one that triples costs 200%, and there is no ceiling. The payoff is the exact inverse of a long position, and that asymmetry is the whole risk."
+  - q: "What is a short squeeze?"
+    a: "A rising price forcing short sellers to buy back to limit losses, which pushes the price higher, forcing more buying. Heavily shorted stocks are vulnerable because there are many positions that must eventually be closed by buying, and losses grow as the price rises rather than shrinking."
+  - q: "What does it cost to hold a short position?"
+    a: "A borrow fee charged for as long as you hold, which for hard-to-borrow shares can run to double-digit annual percentages. You also reimburse any dividends to the lender. Both accrue daily and work against a position held for any length of time."
+---
+
+Short selling means profiting when a price falls. The mechanism sounds impossible until you see it, and the risk profile is genuinely different from anything a long-only investor has encountered.
+
+## The mechanism, step by step
+
+1. **You borrow** shares from your broker, who sources them from another client or an institutional lender.
+2. **You sell them** immediately in the market at the current price.
+3. **You wait**, hoping the price falls.
+4. **You buy them back** — closing the short.
+5. **You return** the borrowed shares to the lender.
+
+Your profit is the difference between what you sold at and what you bought back at, minus costs.
+
+Sell at 100, buy back at 70, and you keep 30 per share. Sell at 100, buy back at 140, and you have lost 40.
+
+## Why the risk is asymmetric
+
+This is the part that matters more than the mechanism.
+
+**Going long:** you buy at 100. The worst case is the price reaching zero and you lose 100 — your entire stake, and no more. The upside has no ceiling.
+
+**Going short:** you sell at 100. The best case is the price reaching zero and you gain 100. The **loss** has no ceiling, because a price can rise indefinitely.
+
+| Price move | Long P&L | Short P&L |
+| --- | --- | --- |
+| −50% | −50 | +50 |
+| −100% | −100 | +100 |
+| +100% | +100 | **−100** |
+| +200% | +200 | **−200** |
+| +500% | +500 | **−500** |
+
+A long position that goes wrong becomes a smaller problem as it falls — your remaining exposure shrinks. **A short position that goes wrong becomes a larger problem as it rises.** Your exposure grows precisely as the position moves against you, which is the opposite of every intuition built from buying things.
+
+## The costs nobody mentions
+
+**Borrow fee.** You pay to rent the shares, quoted as an annualised rate and charged daily. For a widely held stock it may be a fraction of a percent. For a heavily shorted or scarce one it can reach double digits annually, occasionally far more. That cost accrues whether or not the trade works.
+
+**Dividends.** The lender is entitled to whatever the shares pay. If a dividend is declared while you are short, **you pay it** out of your own pocket.
+
+**Margin.** Short positions require margin, and the requirement increases as the position moves against you — meaning you may need to post more capital at exactly the point you least want to.
+
+Together these make shorting a poor fit for long holding periods. The costs compound daily against a position whose thesis may take a year to play out.
+
+## Recall risk
+
+The shares are borrowed, and the lender can ask for them back.
+
+If they do — because they want to sell, or vote, or the broker loses access to the supply — you are **forced to close** regardless of what you think about the position. This is a **buy-in**, and it happens at the worst moments, when borrow is scarce because everyone wants to short the same thing.
+
+There is no equivalent risk in a long position. Nobody can force you to sell something you own outright.
+
+## Short squeezes
+
+Put the pieces together and the squeeze mechanism follows:
+
+1. A heavily shorted stock starts rising.
+2. Short sellers face growing losses and rising margin requirements.
+3. Some close their positions — which means **buying**.
+4. That buying pushes the price higher.
+5. More shorts hit their limits and buy.
+6. Borrow becomes scarce, triggering buy-ins, forcing more buying.
+
+The feedback loop needs no news and no change in the company's prospects. It is driven entirely by positioning and by the asymmetry above.
+
+The measure usually cited is **short interest** — the proportion of available shares sold short. High short interest means a large quantity of purchases that must eventually happen.
+
+## Why short selling exists
+
+It has a poor reputation and a genuine function.
+
+**Price discovery.** If only optimists can express a view, prices reflect only optimism. Short sellers introduce the other side.
+
+**Fraud detection.** Several major corporate frauds were first exposed publicly by short sellers with a financial incentive to investigate rigorously.
+
+**Liquidity and hedging.** Market makers short routinely as part of providing two-sided quotes. Investors short to hedge existing exposure rather than to speculate.
+
+Regulators generally permit it while restricting the abusive form — naked shorting, where shares are sold without being borrowed — and requiring disclosure of large short positions. Temporary bans appear during crises, though evidence on whether they help is mixed at best.
+
+## If you are considering it
+
+- **Size assuming the position could double against you**, because it can.
+- **Check the borrow fee before entering**, not after.
+- **Know the dividend calendar** for anything you are short.
+- **Avoid crowded shorts.** High short interest is the precondition for a squeeze.
+- **Prefer defined-risk alternatives** if available. A put option costs a premium and caps your loss at that premium, which for most people is a better shape than unlimited downside.
+- **Have an exit rule written before entry**, because the pressure to abandon it grows as the position moves against you.
+
+## The bottom line
+
+Short selling is a legitimate mechanism with a genuine role in functioning markets. It is also structurally more dangerous than buying, for one reason that has nothing to do with skill: your exposure grows as you are proven wrong.
+
+Every risk management habit built from long positions gets that backwards, which is why shorting punishes traders who apply the same instincts to it.
+
+*This article is educational and is not financial advice. Short selling carries a risk of unlimited loss.*

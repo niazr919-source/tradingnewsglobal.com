@@ -67,6 +67,15 @@ export const linkTargets: LinkTarget[] = [
     phrases: ["slippage", "bid-ask spread"],
   },
 
+  {
+    slug: "how-short-selling-works",
+    phrases: ["short selling", "short squeeze", "sold short"],
+  },
+  {
+    slug: "what-do-market-makers-actually-do",
+    phrases: ["market maker", "adverse selection", "payment for order flow"],
+  },
+
   // ---- forex ----
   {
     slug: "forex-leverage-and-margin-explained",
@@ -110,6 +119,11 @@ export const linkTargets: LinkTarget[] = [
     phrases: ["currency peg", "impossible trinity", "fixed exchange rate"],
   },
 
+  {
+    slug: "purchasing-power-parity-explained",
+    phrases: ["purchasing power parity", "Big Mac Index"],
+  },
+
   // ---- markets ----
   {
     slug: "bond-yields-explained-why-they-drive-everything",
@@ -143,6 +157,23 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "what-is-quantitative-easing-explained",
     phrases: ["quantitative easing", "central bank balance sheet", "asset purchase"],
+  },
+
+  {
+    slug: "what-is-a-bond-and-how-does-it-work",
+    phrases: ["coupon", "face value", "credit spread", "fixed income"],
+  },
+  {
+    slug: "what-is-a-recession-and-how-is-it-measured",
+    phrases: ["recession", "jobless claims", "business cycle"],
+  },
+  {
+    slug: "dividend-yield-explained",
+    phrases: ["dividend yield", "payout ratio", "dividend"],
+  },
+  {
+    slug: "what-moves-the-price-of-silver",
+    phrases: ["silver", "gold-silver ratio"],
   },
 
   // ---- crypto ----
@@ -201,6 +232,10 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "how-to-read-a-crypto-whitepaper",
     phrases: ["whitepaper", "token distribution"],
+  },
+  {
+    slug: "what-is-a-cbdc-central-bank-digital-currency",
+    phrases: ["CBDC", "central bank digital currency"],
   },
 ];
 

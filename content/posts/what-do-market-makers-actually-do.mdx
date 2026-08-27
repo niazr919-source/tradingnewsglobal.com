@@ -1,0 +1,113 @@
+---
+title: "What Market Makers Actually Do, and How They Get Paid"
+description: "Someone has to be on the other side of your trade at 3am. Market makers are that someone, and understanding how they earn explains spreads, liquidity and why they vanish in a crisis."
+seoTitle: "What Do Market Makers Do? Liquidity Explained"
+seoDescription: "How market makers earn from the spread, why they manage inventory risk, and why liquidity disappears exactly when markets are most volatile."
+category: "trading-education"
+author: "Trading News Global Editorial Team"
+date: "2026-08-25"
+tags: ["market makers", "liquidity", "spread", "market structure", "order book"]
+keywords: ["what is a market maker", "how do market makers make money", "market maker vs broker", "why does liquidity disappear", "payment for order flow"]
+image: "/og-default.png"
+cover: "/covers/trading-5.jpg"
+featured: false
+trending: false
+sources:
+  - label: "US SEC — Specialists and market makers"
+    href: "https://www.sec.gov/answers/specialist.htm"
+  - label: "Bank for International Settlements — Market liquidity and market-making"
+    href: "https://www.bis.org/publ/mktc11.htm"
+  - label: "FCA — Market structure and liquidity provision"
+    href: "https://www.fca.org.uk/markets"
+faq:
+  - q: "How do market makers make money?"
+    a: "Primarily from the bid-ask spread. They quote a price to buy and a slightly higher price to sell, and profit from the difference across a very large number of small transactions. They are not trying to predict direction; they are trying to turn over inventory quickly while holding as little risk as possible."
+  - q: "Is a market maker the same as a broker?"
+    a: "No. A broker executes your order by finding a counterparty. A market maker is the counterparty, quoting both sides and taking the other end of your trade onto its own book. Some firms do both, which creates conflicts that regulators require to be disclosed and managed."
+  - q: "Why do spreads widen during volatility?"
+    a: "Because the risk of holding inventory rises. A market maker who buys from you must hold that position until it can be offset, and in a fast market the price can move sharply in between. Widening the spread is how it charges more for taking on more risk."
+  - q: "What is payment for order flow?"
+    a: "An arrangement where a broker routes customer orders to a particular market maker in exchange for payment. It funds commission-free trading, and it is why zero-commission is not the same as free — the cost moves into execution quality, where it is harder to measure. Banned in some jurisdictions and permitted with disclosure in others."
+---
+
+When you click buy at three in the morning and the order fills instantly, someone was on the other side. In most markets, most of the time, that someone is a market maker.
+
+Understanding what they do and how they earn explains spreads, why liquidity feels abundant right up until it isn't, and why "commission-free" trading is not free.
+
+## The job
+
+A market maker commits to quoting two prices continuously in a given instrument:
+
+- A **bid** — the price at which it will buy from you.
+- An **ask** — the price at which it will sell to you.
+
+The ask is always higher. That gap is the spread, and it is the compensation.
+
+Crucially, the market maker is **not trying to guess direction.** Its business is turning over inventory rapidly and capturing a tiny margin many thousands of times, while holding as little exposure as possible. A market maker with a strong directional view has stopped making markets and started speculating.
+
+## Why the spread has to exist
+
+The spread looks like a toll on your trading. It is payment for a genuine service and a genuine risk.
+
+When you sell, the market maker buys — whether or not it wants that position. It now holds inventory it must offset, and between acquiring and offsetting it, the price can move.
+
+Worse, it faces **adverse selection**. Some counterparties know something. If a piece of news is about to break, the informed trader hits the market maker's quote, and the market maker is left holding a position that is already wrong. The spread is priced to cover these losses out of the many small gains from uninformed flow.
+
+That framing explains everything about when spreads widen.
+
+## When spreads widen, and why
+
+| Condition | Effect | Reason |
+| --- | --- | --- |
+| Deep liquid instrument | Very tight | Easy to offset, low inventory risk |
+| Thin instrument | Wide | Hard to offset without moving the price |
+| Around scheduled news | Very wide | High probability the next trade is informed |
+| Market stress | Wide, sometimes extreme | Inventory risk enormous, hedges unreliable |
+| Quiet overnight session | Wider | Fewer participants to offset against |
+
+The pattern is consistent: **spreads widen precisely when you most want them tight.** This is not opportunism. It is the price of risk rising, and if market makers did not widen quotes they would simply stop quoting.
+
+## Why liquidity vanishes in a crisis
+
+This is the most important practical point, and it catches people out repeatedly.
+
+Market makers are not obliged to quote at any particular size or price. Their commitment is commercial, not moral. When volatility spikes and hedging becomes unreliable, the rational response is to widen quotes dramatically and shrink the size they will trade.
+
+The result is that liquidity is **not a property of an instrument**. It is a service being provided, and it can be withdrawn. A market that traded millions of units at a one-tick spread on Monday can have almost no depth on Wednesday.
+
+Every risk model that assumes you can exit at the last quoted price has this backwards. Depth in calm conditions tells you very little about depth in a crisis — which is exactly when you would need it.
+
+## Market maker versus broker
+
+Worth separating, because the words get used loosely:
+
+- **A broker** acts for you. It executes your order by finding a counterparty, and is generally obliged to seek best execution.
+- **A market maker** is the counterparty. It takes the other side onto its own book.
+
+Some firms do both. That creates an obvious conflict — a firm that profits when you lose has an interest that diverges from yours — which is why regulators require disclosure and, in many jurisdictions, structural separation. When choosing a broker, it is worth knowing which model it uses.
+
+## Payment for order flow
+
+Modern retail brokers frequently route customer orders to a specific market maker in return for payment.
+
+The market maker will pay for retail flow because it is, on average, uninformed — less likely to be trading on information that will immediately move the price against them. That flow is more profitable to trade against than institutional flow.
+
+This is what funds commission-free trading. It is not a scandal in itself, and it is disclosed. But it explains why **zero commission is not zero cost**: the cost has moved from a visible line item into your execution price, where you cannot easily measure it. Some jurisdictions have banned the practice; others permit it with disclosure.
+
+## What this means for you
+
+**Trade liquid instruments where possible.** Tighter spreads and deeper books mean lower cost and more reliable exits.
+
+**Use limit orders.** A limit order lets you sit on the bid rather than crossing the spread — you provide liquidity instead of paying for it.
+
+**Avoid the widest windows.** Scheduled news, session opens, thin overnight hours.
+
+**Never assume you can exit at the screen price.** Especially in size, and especially in stress. The quote is an offer for a certain quantity, not a guarantee for yours.
+
+## The bottom line
+
+Market makers exist because someone must be willing to trade when you want to, and that willingness costs money to provide. The spread is that cost, and it rises with risk.
+
+The consequence worth internalising is that liquidity is a service, not a feature. It is most abundant when you need it least, and it thins out exactly when it matters — which is why position sizing, rather than the presence of a stop order, is what actually determines whether you can get out.
+
+*This article is educational and is not financial advice. Trading carries a high risk of loss.*

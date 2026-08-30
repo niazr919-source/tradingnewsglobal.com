@@ -1,6 +1,1 @@
-# ads.txt — Authorized Digital Sellers (IAB Tech Lab)
-# https://tradingnewsglobal.com/ads.txt
-#
-# Publisher ID issued by Google AdSense.
-# Must stay in sync with NEXT_PUBLIC_ADSENSE_CLIENT (which uses the ca- prefix).
 google.com, pub-2716080376550479, DIRECT, f08c47fec0942fa0

@@ -1,0 +1,24 @@
+# Machine-read files must keep LF endings and never be touched by git's
+# autocrlf conversion. ads.txt in particular is parsed by AdSense and by
+# programmatic ad buyers, and a CRLF or a stray non-ASCII byte is an
+# unnecessary way to fail a parser.
+*.txt   text eol=lf
+*.xml   text eol=lf
+.htaccess text eol=lf
+
+# Source stays LF too, so the repo is consistent across machines.
+*.ts    text eol=lf
+*.tsx   text eol=lf
+*.mjs   text eol=lf
+*.css   text eol=lf
+*.json  text eol=lf
+*.mdx   text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+
+# Binaries must never be converted.
+*.jpg   binary
+*.png   binary
+*.svg   text eol=lf
+*.ico   binary
+*.woff2 binary

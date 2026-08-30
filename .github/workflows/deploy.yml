@@ -54,6 +54,19 @@ jobs:
           done
           echo "Exported $(find out -name '*.html' | wc -l) HTML pages, $(du -sh out | cut -f1)"
 
+          # ads.txt is machine-parsed by AdSense and by programmatic buyers.
+          # A stray non-ASCII byte or a CRLF is an avoidable way to fail a parser.
+          if LC_ALL=C grep -q '[^ -~]' out/ads.txt; then
+            echo "::error::ads.txt contains non-ASCII bytes"; exit 1
+          fi
+          if grep -q $'' out/ads.txt; then
+            echo "::error::ads.txt has CRLF line endings, expected LF"; exit 1
+          fi
+          grep -qE '^google\.com, pub-[0-9]{16}, DIRECT, f08c47fec0942fa0$' out/ads.txt || {
+            echo "::error::ads.txt does not contain a valid Google publisher record"; exit 1
+          }
+          echo "ads.txt: $(cat out/ads.txt)"
+
       - name: Check for broken internal links
         run: node scripts/check-links.mjs
 

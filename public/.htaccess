@@ -66,9 +66,13 @@ ErrorDocument 404 /404.html
     Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 
-  # ads.txt and sitemap.xml must be fetchable and reasonably fresh.
-  <FilesMatch "^(ads\.txt|robots\.txt|sitemap\.xml)$">
-    Header set Cache-Control "public, max-age=3600"
+  # Machine-read files. These are fetched by crawlers on the bare URL with no
+  # cache-busting query string, so a long TTL means a crawler can see a stale
+  # copy for an hour after a deploy — which is how an out-of-date ads.txt got
+  # reported as "Not found" while the origin was already correct.
+  # Five minutes keeps the CDN useful without hiding a fresh deploy.
+  <FilesMatch "^(ads\.txt|robots\.txt|sitemap\.xml|feed\.xml|llms\.txt)$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
 
   # ---------------------------------------------------------- Security headers

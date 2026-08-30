@@ -59,7 +59,8 @@ jobs:
           if LC_ALL=C grep -q '[^ -~]' out/ads.txt; then
             echo "::error::ads.txt contains non-ASCII bytes"; exit 1
           fi
-          if grep -q $'' out/ads.txt; then
+          if grep -q $'
+' out/ads.txt; then
             echo "::error::ads.txt has CRLF line endings, expected LF"; exit 1
           fi
           grep -qE '^google\.com, pub-[0-9]{16}, DIRECT, f08c47fec0942fa0$' out/ads.txt || {
@@ -131,6 +132,19 @@ jobs:
               echo "ok   ${p}"
             fi
           done
+
+          # Fetch machine-read files on the BARE url, exactly as a crawler does.
+          # Checking with a cache-busting query string tests a path no crawler
+          # uses and hides a stale CDN copy.
+          adslive=$(curl -sS --max-time 20 -H 'Cache-Control: no-cache' "https://tradingnewsglobal.com/ads.txt" || echo "")
+          adsbuilt=$(cat out/ads.txt)
+          if [ "$adslive" != "$adsbuilt" ]; then
+            echo "::warning::live ads.txt differs from the build (likely CDN cache, clears within 5 minutes)"
+            echo "  live:  $adslive"
+            echo "  built: $adsbuilt"
+          else
+            echo "ok   ads.txt matches the build"
+          fi
 
           live=$(curl -sS --max-time 20 "https://tradingnewsglobal.com/sitemap.xml?cb=${RANDOM}" | grep -c '<loc>' || echo 0)
           built=$(grep -c '<loc>' out/sitemap.xml)

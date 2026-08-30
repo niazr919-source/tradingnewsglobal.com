@@ -76,6 +76,15 @@ export const linkTargets: LinkTarget[] = [
     phrases: ["market maker", "adverse selection", "payment for order flow"],
   },
 
+  {
+    slug: "how-options-work-calls-and-puts",
+    phrases: ["call option", "put option", "time decay", "implied volatility"],
+  },
+  {
+    slug: "commodity-futures-explained",
+    phrases: ["futures contract", "rolling contracts", "initial margin"],
+  },
+
   // ---- forex ----
   {
     slug: "forex-leverage-and-margin-explained",
@@ -122,6 +131,11 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "purchasing-power-parity-explained",
     phrases: ["purchasing power parity", "Big Mac Index"],
+  },
+
+  {
+    slug: "how-forex-brokers-make-money",
+    phrases: ["A-book", "B-book", "dealing desk", "swap markup"],
   },
 
   // ---- markets ----
@@ -174,6 +188,27 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "what-moves-the-price-of-silver",
     phrases: ["silver", "gold-silver ratio"],
+  },
+
+  {
+    slug: "price-to-earnings-ratio-explained",
+    phrases: ["P/E ratio", "price-to-earnings", "value trap"],
+  },
+  {
+    slug: "how-to-read-a-balance-sheet",
+    phrases: ["balance sheet", "current ratio", "debt-to-equity", "goodwill"],
+  },
+  {
+    slug: "what-is-an-ipo-explained",
+    phrases: ["initial public offering", "IPO", "lock-up period"],
+  },
+  {
+    slug: "how-credit-ratings-work",
+    phrases: ["credit rating", "investment grade", "high yield"],
+  },
+  {
+    slug: "what-is-a-hedge-fund",
+    phrases: ["hedge fund", "survivorship bias", "two and twenty"],
   },
 
   // ---- crypto ----

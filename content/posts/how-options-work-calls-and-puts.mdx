@@ -1,0 +1,143 @@
+---
+title: "How Options Work: Calls, Puts and Why Most Expire Worthless"
+description: "An option is the right to buy or sell at a set price by a set date. The mechanics are simple; the reason most buyers lose money is that they are also paying for time, and time only runs one way."
+seoTitle: "How Options Work: Calls and Puts Explained"
+seoDescription: "Calls, puts, strike prices and expiry explained simply — plus why time decay works against option buyers and what implied volatility actually prices."
+category: "trading-education"
+author: "Trading News Global Editorial Team"
+date: "2026-08-30"
+tags: ["options", "calls and puts", "time decay", "implied volatility", "derivatives"]
+keywords: ["how do options work", "call and put options explained", "what is time decay", "implied volatility explained", "why do options expire worthless"]
+image: "/og-default.png"
+cover: "/covers/trading-1.jpg"
+featured: false
+trending: true
+sources:
+  - label: "US SEC — Investor bulletin on options"
+    href: "https://www.investor.gov/introduction-investing/investing-basics/glossary/option"
+  - label: "Options Clearing Corporation — Characteristics and Risks of Standardized Options"
+    href: "https://www.theocc.com/company-information/documents-and-archives/options-disclosure-document"
+  - label: "FINRA — Options trading risks"
+    href: "https://www.finra.org/investors/investing/investment-products/options"
+takeaways:
+  - "A call is the right to buy at a set price by a set date; a put is the right to sell. Buyers pay a premium and can lose only that premium; sellers receive it and take on far larger obligations."
+  - "An option's value has two parts: intrinsic value, which is real, and time value, which decays to zero by expiry regardless of what the underlying does."
+  - "Buying an option means being right about direction, size and timing simultaneously, which is why a correct directional view frequently still loses money."
+faq:
+  - q: "What is the difference between a call and a put?"
+    a: "A call gives the holder the right to buy the underlying at the strike price before expiry, so it gains value as the underlying rises. A put gives the right to sell, so it gains value as the underlying falls. In both cases the buyer pays a premium and is never obliged to exercise."
+  - q: "Why do most options expire worthless?"
+    a: "Because an option needs the underlying to move past the strike by more than the premium paid, within a fixed window. Time value decays to zero at expiry regardless of what happens, so a buyer who is right about direction but wrong about timing or magnitude still loses. Estimates vary, but a large majority of options held to expiry finish with no value."
+  - q: "What is time decay?"
+    a: "The erosion of an option's time value as expiry approaches, often called theta. It accelerates in the final weeks. It works against buyers every single day, including days when nothing happens, and works in favour of sellers."
+  - q: "Is selling options safer than buying them?"
+    a: "It has a higher probability of small gains and a much worse loss profile. A seller collects a premium that is capped, while the obligation can be far larger — for an uncovered call, theoretically unlimited. Higher win rate is not the same as lower risk."
+---
+
+An option is a contract giving the holder the right, but not the obligation, to buy or sell an asset at a fixed price by a fixed date.
+
+The mechanics take five minutes to learn. What takes longer to appreciate is why so many people who correctly predict a price move still lose money on the option they bought.
+
+## The two types
+
+**A call** gives the right to **buy** at the strike price. It gains value as the underlying rises.
+
+**A put** gives the right to **sell** at the strike price. It gains value as the underlying falls.
+
+Every contract has four defining features:
+
+- **Underlying** — the asset it relates to
+- **Strike price** — the price at which you may transact
+- **Expiry** — the date the right ends
+- **Premium** — what you pay for the contract
+
+## A worked example
+
+A share trades at 100. You buy a call with a 110 strike expiring in three months, paying a premium of 4.
+
+| Share price at expiry | Option worth | Your result |
+| --- | --- | --- |
+| 100 | 0 | −4, the premium |
+| 108 | 0 | −4 |
+| 110 | 0 | −4 |
+| 114 | 4 | 0, break-even |
+| 120 | 10 | +6 |
+| 140 | 30 | +26 |
+
+Note row three. **The share can rise 10% and you still lose everything.** The option only has value above 110, and you only profit above 114 — the strike plus the premium.
+
+That gap is the core problem for buyers: being right about direction is not enough.
+
+## Intrinsic value and time value
+
+An option's price has two components.
+
+**Intrinsic value** is what it would be worth if exercised now. For the call above with the share at 120, that is 10. It cannot be negative.
+
+**Time value** is everything else — the premium paid for the possibility that things improve before expiry.
+
+```
+Option price = Intrinsic value + Time value
+```
+
+**Time value decays to zero by expiry. Always.** That decay, called theta, accelerates in the final weeks.
+
+This is the asymmetry that defines option buying: you are paying for time, and time runs out at a known rate whether or not anything happens. An option can lose value on a day the underlying does not move at all.
+
+## What you are actually betting on
+
+Buying an option means being right about **three things at once**:
+
+1. **Direction** — which way it moves
+2. **Magnitude** — far enough past the strike to cover the premium
+3. **Timing** — within the life of the contract
+
+Get direction right and timing wrong and you lose. Get direction and timing right but the move is too small and you lose. This compounding requirement is why a majority of options held to expiry finish worthless.
+
+## Implied volatility
+
+The other large factor in an option's price is **implied volatility** — the market's expectation of how much the underlying will move.
+
+Higher expected movement means a higher chance of finishing past the strike, so options cost more.
+
+This creates a trap that catches people around scheduled events. Before an earnings announcement or a central bank decision, implied volatility rises and options become expensive. After the event, uncertainty resolves and implied volatility collapses.
+
+**The result: you can be right about the direction of the news and still lose money**, because the option repriced downward as volatility fell. This is often called volatility crush, and it is the most common way an apparently correct trade around a known event loses.
+
+## Buying versus selling
+
+| | Buyer | Seller |
+| --- | --- | --- |
+| Pays or receives | Pays premium | Receives premium |
+| Maximum gain | Large, uncapped for calls | The premium, capped |
+| Maximum loss | The premium | Large; unlimited for uncovered calls |
+| Time decay | Works against you | Works for you |
+| Typical win rate | Lower | Higher |
+
+Selling options is often described as safer because most expire worthless and the seller keeps the premium. That describes the **frequency** of outcomes, not their **size**.
+
+A seller collects small premiums repeatedly and occasionally takes a loss many times larger than any of them. That shape — frequent small gains, rare large losses — feels safe right up until the rare event, and it is the reason uncovered option selling has destroyed accounts that had been profitable for years.
+
+## Legitimate uses beyond speculation
+
+**Hedging.** Buying a put against shares you hold caps your downside. You pay a premium, exactly like insurance, and like insurance it usually expires unused.
+
+**Covered calls.** Selling calls against shares you own generates income and caps your upside. A reasonable trade if you were willing to sell at that price anyway.
+
+**Defined risk.** For a directional view, a bought option caps your loss at the premium — genuinely useful against instruments where the downside is otherwise open-ended.
+
+## Before you consider them
+
+- Understand that time decay works against you every day as a buyer.
+- Check implied volatility before buying around a scheduled event.
+- Never sell uncovered calls without understanding the loss is theoretically unlimited.
+- Size assuming the premium goes to zero, because frequently it does.
+- Read the standardised risk disclosure your broker is required to provide.
+
+## The bottom line
+
+Options are precise instruments for expressing a view about direction, magnitude and timing together. That precision is the appeal and the difficulty.
+
+Most buyers lose not because they were wrong about the market, but because they were insufficiently right — and the contract expired before the rest of the move arrived.
+
+*This article is educational and is not financial advice. Options are complex instruments and carry a high risk of loss, including the entire premium paid.*

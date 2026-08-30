@@ -116,33 +116,38 @@ jobs:
             **/node_modules/**
 
       # This step, not the FTP exit code, decides whether the deploy worked.
+      # It retries because the CDN needs a little time to pick up new files, and
+      # a check that fires once immediately after upload reports a false alarm.
       # Machine-read files are fetched on the bare URL, exactly as a crawler
-      # does - checking with a cache-busting query string tests a path no
-      # crawler uses and hides a stale CDN copy.
+      # does - a cache-busting query string tests a path no crawler uses and
+      # hides a stale CDN copy.
       - name: Verify the live site matches this build
         if: always()
         run: |
-          sleep 30
-          fail=0
-          for p in / /sitemap.xml /robots.txt /feed.xml /llms.txt /glossary/ /newsroom/ /ads.txt; do
-            code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 -H 'Cache-Control: no-cache' "https://tradingnewsglobal.com${p}" || echo 000)
-            if [ "$code" != "200" ]; then
-              echo "::error::${p} returned ${code}"
-              fail=1
-            else
-              echo "ok   ${p}"
+          built=$(grep -c '<loc>' out/sitemap.xml)
+          echo "build has ${built} sitemap URLs"
+
+          for attempt in $(seq 1 10); do
+            fail=0
+
+            for p in / /sitemap.xml /robots.txt /feed.xml /llms.txt /glossary/ /newsroom/ /ads.txt; do
+              code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 -H 'Cache-Control: no-cache' "https://tradingnewsglobal.com${p}" || echo 000)
+              [ "$code" = "200" ] || { echo "attempt ${attempt}: ${p} returned ${code}"; fail=1; }
+            done
+
+            live=$(curl -sS --max-time 20 -H 'Cache-Control: no-cache' "https://tradingnewsglobal.com/sitemap.xml" | grep -c '<loc>' || echo 0)
+            [ "$live" = "$built" ] || { echo "attempt ${attempt}: live sitemap has ${live} URLs, expected ${built}"; fail=1; }
+
+            if [ "$fail" = "0" ]; then
+              echo "live site matches this build (attempt ${attempt})"
+              exit 0
             fi
+
+            sleep 40
           done
 
-          live=$(curl -sS --max-time 20 -H 'Cache-Control: no-cache' "https://tradingnewsglobal.com/sitemap.xml" | grep -c '<loc>' || echo 0)
-          built=$(grep -c '<loc>' out/sitemap.xml)
-          echo "sitemap URLs - live: ${live}, built: ${built}"
-          if [ "$live" != "$built" ]; then
-            echo "::error::live sitemap has ${live} URLs but this build has ${built} - the upload is incomplete"
-            fail=1
-          fi
-
-          exit $fail
+          echo "::error::live site still does not match this build after 10 attempts over ~7 minutes"
+          exit 1
 
       - name: Notify IndexNow (Bing, Yandex, Seznam, Naver)
         if: success()

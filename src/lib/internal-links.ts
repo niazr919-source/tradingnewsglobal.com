@@ -85,6 +85,15 @@ export const linkTargets: LinkTarget[] = [
     phrases: ["futures contract", "rolling contracts", "initial margin"],
   },
 
+  {
+    slug: "futures-vs-options-vs-cfds-compared",
+    phrases: ["leveraged products", "derivatives compared"],
+  },
+  {
+    slug: "how-to-check-a-trading-platform-is-legitimate",
+    phrases: ["cloned firm", "regulator register", "unauthorised firm", "negative balance protection"],
+  },
+
   // ---- forex ----
   {
     slug: "forex-leverage-and-margin-explained",
@@ -214,6 +223,15 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "what-is-a-hedge-fund",
     phrases: ["hedge fund", "survivorship bias", "two and twenty"],
+  },
+
+  {
+    slug: "how-to-read-an-income-statement",
+    phrases: ["income statement", "gross margin", "operating margin", "EBITDA"],
+  },
+  {
+    slug: "how-to-read-a-cash-flow-statement",
+    phrases: ["cash flow statement", "operating cash flow", "free cash flow"],
   },
 
   // ---- crypto ----

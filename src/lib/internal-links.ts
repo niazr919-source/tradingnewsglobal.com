@@ -138,6 +138,11 @@ export const linkTargets: LinkTarget[] = [
     phrases: ["A-book", "B-book", "dealing desk", "swap markup"],
   },
 
+  {
+    slug: "what-does-the-fed-chair-actually-control",
+    phrases: ["Fed Chair", "FOMC voting members", "central bank independence"],
+  },
+
   // ---- markets ----
   {
     slug: "bond-yields-explained-why-they-drive-everything",
@@ -271,6 +276,18 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "what-is-a-cbdc-central-bank-digital-currency",
     phrases: ["CBDC", "central bank digital currency"],
+  },
+  {
+    slug: "what-is-the-clarity-act-crypto-regulation",
+    phrases: ["CLARITY Act", "digital commodity", "market structure bill"],
+  },
+  {
+    slug: "why-the-whole-crypto-market-falls-at-once",
+    phrases: ["liquidation cascade", "market-wide fall", "correlation"],
+  },
+  {
+    slug: "what-is-depin-decentralized-physical-infrastructure",
+    phrases: ["DePIN", "physical infrastructure network"],
   },
 ];
 

@@ -307,6 +307,27 @@ export const linkTargets: LinkTarget[] = [
     slug: "what-is-depin-decentralized-physical-infrastructure",
     phrases: ["DePIN", "physical infrastructure network"],
   },
+  // ---- market situation / macro (Sept 2026) ----
+  {
+    slug: "fed-dot-plot-explained",
+    phrases: ["Summary of Economic Projections", "median dot", "updated projections"],
+  },
+  {
+    slug: "why-interest-rates-move-bitcoin",
+    phrases: ["opportunity cost of holding", "non-yielding asset", "expected rate path"],
+  },
+  {
+    slug: "what-a-strong-dollar-does-to-markets",
+    phrases: ["strong dollar", "invoicing currency", "dollar-denominated debt"],
+  },
+  {
+    slug: "why-central-banks-buy-gold",
+    phrases: ["central bank gold", "reserve asset", "official sector"],
+  },
+  {
+    slug: "capital-expenditure-explained",
+    phrases: ["capital expenditure", "capex intensity", "maintenance capex"],
+  },
 ];
 
 /** Split a line into segments, marking which are safe to rewrite. */

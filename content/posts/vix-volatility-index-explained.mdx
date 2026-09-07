@@ -1,0 +1,117 @@
+---
+title: "The VIX: What the Fear Index Measures, and What It Does Not"
+description: "The VIX is quoted daily as a gauge of market fear. It is actually a calculation of expected volatility derived from options prices, and the difference between those two descriptions matters."
+seoTitle: "VIX Explained - What the Volatility Index Actually Measures"
+seoDescription: "How the VIX is calculated from S&P 500 options, what its level means in annualised terms, why it spikes faster than it falls, and why you cannot buy the index itself."
+category: "trading-education"
+author: "Trading News Global Editorial Team"
+date: "2026-09-06"
+tags: ["VIX", "volatility", "options", "risk", "market sentiment"]
+keywords: ["what is the vix", "vix explained", "how is the vix calculated", "vix levels meaning", "implied volatility explained"]
+image: "/og-default.png"
+cover: "/covers/trading-3.jpg"
+featured: false
+trending: false
+sources:
+  - label: "Cboe - VIX Index"
+    href: "https://www.cboe.com/tradable_products/vix/"
+  - label: "US SEC - Investor bulletin on exchange-traded products"
+    href: "https://www.sec.gov/oiea/investor-alerts-and-bulletins/exchange-traded-products"
+  - label: "FRED - S&P 500 index"
+    href: "https://fred.stlouisfed.org/series/SP500"
+takeaways:
+  - "The VIX estimates the market's expected volatility in the S&P 500 over the next 30 days, derived from the prices of a wide range of index options."
+  - "It is quoted as an annualised percentage. A VIX of 20 implies an expected annualised move of about 20%, which is roughly 5.8% over a month."
+  - "It measures expected size of movement, not direction. High volatility expectations are consistent with a sharp rally as well as a sharp fall."
+  - "You cannot buy the index. Products that track it hold futures, which behave differently from the index itself and can lose value even when the VIX is flat."
+faq:
+  - q: "What is the VIX?"
+    a: "An index published by Cboe that estimates how much the S&P 500 is expected to move over the coming 30 days, calculated from the prices of a broad range of S&P 500 options. It is often called the fear index because it tends to rise sharply when markets fall, but what it measures is expected volatility rather than fear."
+  - q: "What does a VIX of 20 mean?"
+    a: "It implies an expected annualised standard deviation of about 20% in the S&P 500. Converting to a one-month horizon means dividing by the square root of 12, giving roughly 5.8%. In broad terms, the market is pricing a reasonable chance the index moves within about that range over the next month, in either direction."
+  - q: "Does a high VIX mean the market will fall?"
+    a: "No. Volatility has no sign. A high reading means large moves are expected, not that they will be downward. In practice the VIX and equity prices are strongly negatively correlated, because falls tend to be faster and more disorderly than rallies - but that is a behavioural regularity, not part of the definition."
+  - q: "Can you invest in the VIX?"
+    a: "Not in the index itself, which is a calculation rather than a tradable asset. Exchange-traded products track VIX futures instead. Because those futures usually price above the spot index, rolling from one contract to the next tends to lose value over time, which is why several such products have declined heavily over long holding periods."
+---
+
+The VIX is the most quoted number in markets after the index level itself, and one of the most consistently misdescribed. "Fear index" is a good headline and a poor definition.
+
+What it actually reports is a calculation: how much movement the options market is currently pricing into the S&P 500 over the next thirty days.
+
+## Where the number comes from
+
+Options have prices, and those prices contain an assumption about future movement.
+
+An option is the right to buy or sell at a set price by a set date. Its value depends on how likely it is to end up worth exercising - and that depends heavily on how much the underlying asset is expected to move. More expected movement means a wider range of possible outcomes, which means a higher option price.
+
+Run that logic backwards. If you can see the price of an option, you can extract the level of expected movement implied by it. That is **implied volatility**.
+
+The VIX applies this across a broad range of S&P 500 options at different strike prices, weighting them to produce a single figure for expected 30-day volatility across the whole index. Cboe publishes the full methodology, and the important thing about it is that it is a **derived measurement**, not a survey and not an opinion.
+
+## Reading the level
+
+The VIX is quoted as an **annualised percentage**, which is the source of most confusion about it.
+
+A reading of 20 does not mean a 20% move is expected in the next month. It means an annualised standard deviation of about 20%.
+
+To get to a monthly figure, divide by the square root of 12 - roughly 3.46. So a VIX of 20 implies about 5.8% over a month. A VIX of 40 implies about 11.5%.
+
+Rough bands, useful as orientation rather than as rules:
+
+- **Below 15** - calm conditions, low expected movement
+- **15 to 25** - broadly normal
+- **25 to 35** - elevated, markets under stress
+- **Above 35** - crisis conditions
+
+These bands drift over time. What counts as a high reading in one regime is unremarkable in another, so the comparison worth making is to the recent range rather than to a fixed threshold.
+
+## Volatility has no direction
+
+This is the point most often lost.
+
+The VIX measures **expected magnitude**, not expected sign. A high reading says large moves are anticipated. It says nothing about which way.
+
+In practice the VIX and the S&P 500 are strongly negatively correlated, which is why the "fear" label sticks. That correlation exists because of how markets behave, not because of how the index is defined: declines tend to be faster and more disorderly than advances, and demand for downside protection rises sharply when prices fall, which lifts option prices and therefore the index.
+
+A market rallying violently would also produce a high VIX. It happens less often, which is why the association with falling prices feels like a rule.
+
+## Why it spikes and drifts
+
+The VIX has a distinctive shape over time: sharp vertical spikes followed by long slow declines.
+
+Spikes are fast because fear is fast. A shock sends demand for protection up immediately, option prices jump, and the calculated volatility jumps with them.
+
+Declines are slow because confidence rebuilds gradually. Even after prices recover, participants continue paying up for protection for a while afterwards.
+
+This asymmetry is why the VIX is more informative on the way up than on the way down, and why a falling VIX is a weak signal of anything in particular.
+
+## Why you cannot simply buy it
+
+The VIX is a calculation. There is no asset to hold.
+
+Products offering exposure hold **VIX futures** instead - contracts on the expected level of the index at a future date. That substitution introduces a problem that has cost a great many people money.
+
+VIX futures normally trade **above** the spot index, because uncertainty further out is priced higher. A fund holding them must repeatedly sell the expiring contract and buy a more expensive later one. That roll costs money every time, and it happens continuously.
+
+The consequence is that a long volatility product can lose value steadily even when the VIX itself is flat. Over years, several such products have declined by very large percentages while the index they reference went nowhere. Inverse products carry the mirror-image risk, and some have lost nearly all their value in a single trading session when volatility spiked.
+
+These are short-horizon tactical instruments. The regulator's own investor bulletins on exchange-traded products are worth reading before going near them.
+
+## What it is genuinely useful for
+
+**As a regime indicator.** Whether the market is in a calm or stressed state changes how other signals should be read.
+
+**As a cross-check on positioning.** A very low VIX alongside heavy leverage is a fragile combination, because it means protection is cheap precisely when few people are buying it.
+
+**As context for option pricing.** If you trade options at all, the general level of implied volatility tells you whether you are buying protection expensively or cheaply.
+
+It is not a timing tool. Low readings can persist for many months, and "the VIX is low, therefore a fall is coming" has been an expensive argument for a long time.
+
+## The bottom line
+
+The VIX is the options market's estimate of how much the S&P 500 will move over the next month, annualised, derived from a wide sample of option prices.
+
+It is not a forecast of direction, not a measurement of sentiment, and not something you can hold. Read as a gauge of expected turbulence and of what protection currently costs, it is genuinely useful. Read as a prediction, it will mislead you.
+
+*This article is educational and is not financial advice. Volatility products carry substantial risk of loss and are not suitable for long-term holding.*

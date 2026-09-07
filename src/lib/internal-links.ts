@@ -328,6 +328,31 @@ export const linkTargets: LinkTarget[] = [
     slug: "capital-expenditure-explained",
     phrases: ["capital expenditure", "capex intensity", "maintenance capex"],
   },
+  // ---- macro conditions and market plumbing (Sept 2026) ----
+  {
+    slug: "us-jobs-report-explained",
+    phrases: ["nonfarm payrolls", "jobs report", "household survey"],
+  },
+  {
+    slug: "yield-curve-inversion-explained",
+    phrases: ["inverted yield curve", "curve inversion", "challenge to the term premium"],
+  },
+  {
+    slug: "what-is-stagflation",
+    phrases: ["stagflation", "supply shock"],
+  },
+  {
+    slug: "vix-volatility-index-explained",
+    phrases: ["VIX", "fear index", "expected volatility"],
+  },
+  {
+    slug: "crypto-layer-2-networks-explained",
+    phrases: ["layer 2", "rollup", "sequencer"],
+  },
+  {
+    slug: "forex-market-hours-and-sessions-explained",
+    phrases: ["trading session", "London session", "daily rollover"],
+  },
 ];
 
 /** Split a line into segments, marking which are safe to rewrite. */

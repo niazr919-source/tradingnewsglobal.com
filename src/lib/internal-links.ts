@@ -155,7 +155,7 @@ export const linkTargets: LinkTarget[] = [
   // ---- markets ----
   {
     slug: "bond-yields-explained-why-they-drive-everything",
-    phrases: ["real yields", "yield curve", "bond yields", "term premium", "government bond"],
+    phrases: ["real yields", "yield curve", "bond yields", "government bond"],
   },
   {
     slug: "how-inflation-data-moves-markets",
@@ -377,6 +377,31 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "emerging-market-currencies-explained",
     phrases: ["emerging market currencies", "currency mismatch", "capital flows"],
+  },
+  // ---- live market trends (Sept 2026) ----
+  {
+    slug: "private-credit-explained",
+    phrases: ["private credit", "payment-in-kind", "direct lending"],
+  },
+  {
+    slug: "term-premium-explained",
+    phrases: ["term premium", "long-dated yields", "duration risk"],
+  },
+  {
+    slug: "geopolitical-risk-premium-oil",
+    phrases: ["geopolitical risk premium", "chokepoint", "supply disruption"],
+  },
+  {
+    slug: "stablecoins-and-the-treasury-bill-market",
+    phrases: ["GENIUS Act", "Treasury bills", "permitted reserves"],
+  },
+  {
+    slug: "bond-duration-explained",
+    phrases: ["duration", "convexity", "zero-coupon"],
+  },
+  {
+    slug: "safe-haven-currencies-explained",
+    phrases: ["safe-haven currencies", "funding currency for carry", "haven status"],
   },
 ];
 

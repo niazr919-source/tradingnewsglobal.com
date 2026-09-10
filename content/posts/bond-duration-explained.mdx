@@ -1,0 +1,120 @@
+---
+title: "Bond Duration: The Number That Tells You How Much a Rate Move Will Hurt"
+description: "Two bonds paying the same yield can respond to an identical change in interest rates by wildly different amounts. Duration is the measure that tells you which is which, before it happens."
+seoTitle: "Bond Duration Explained - Interest Rate Risk Measured"
+seoDescription: "What duration measures, how to use it to estimate price change, why it differs from maturity, and what convexity adds that duration alone misses."
+category: "trading-education"
+author: "Trading News Global Editorial Team"
+date: "2026-09-10"
+tags: ["duration", "bonds", "interest rate risk", "fixed income", "convexity"]
+keywords: ["what is bond duration", "duration explained bonds", "modified duration formula", "duration vs maturity", "convexity explained"]
+image: "/og-default.png"
+cover: "/covers/trading-6.jpg"
+featured: false
+trending: false
+sources:
+  - label: "US SEC investor.gov - Duration"
+    href: "https://www.investor.gov/introduction-investing/investing-basics/glossary/duration"
+  - label: "FINRA - Bonds"
+    href: "https://www.finra.org/investors/investing/investment-products/bonds"
+  - label: "US Treasury - Daily yield curve rates"
+    href: "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve"
+takeaways:
+  - "Duration measures how sensitive a bond's price is to a change in interest rates, expressed in years."
+  - "As a working rule, a bond with a duration of 7 will lose roughly 7% of its value if yields rise by one percentage point, and gain roughly that much if they fall."
+  - "Duration is shorter than maturity for any bond paying a coupon, because some of the money comes back before maturity. For a zero-coupon bond they are equal."
+  - "The estimate is accurate for small moves and progressively less accurate for large ones, which is where convexity - the curvature duration misses - becomes relevant."
+faq:
+  - q: "What is bond duration?"
+    a: "A measure of how much a bond's price will move when interest rates change, expressed in years. It reflects the weighted average time until the bond's cash flows arrive, and it doubles as a direct sensitivity measure - the higher the duration, the more the price moves for a given change in yield."
+  - q: "How do I use duration to estimate a price change?"
+    a: "Multiply the duration by the change in yield in percentage points and reverse the sign. A duration of 6 with yields rising 0.5 percentage points implies roughly a 3% price fall. Falling yields produce the mirror gain. The approximation works well for small moves and degrades as moves get larger."
+  - q: "Why is duration different from maturity?"
+    a: "Maturity is when the final payment arrives. Duration accounts for every payment along the way. A bond paying regular coupons returns some money early, which reduces the weighted average time to receive the cash and therefore reduces sensitivity to rate changes. Only a bond making no payments before maturity has duration equal to maturity."
+  - q: "What is convexity?"
+    a: "The curvature in the relationship between a bond's price and its yield, which duration alone does not capture. Because the price-yield relationship is curved rather than straight, duration slightly understates gains when yields fall and slightly overstates losses when they rise. The effect is small for modest moves and meaningful for large ones."
+---
+
+Two government bonds. Same issuer, same credit quality, similar yield. Interest rates rise by one percentage point.
+
+One falls about 2%. The other falls about 18%.
+
+The difference is duration, and it is the single most useful number in fixed income - because it turns interest rate risk from something you experience afterwards into something you can measure beforehand.
+
+## What it measures
+
+Duration answers a specific question: **if yields move by one percentage point, roughly how much will this bond's price move?**
+
+It is expressed in years, which is a source of confusion, because it is really a sensitivity measure. The units come from how it is calculated - a weighted average of the time until each of the bond's payments arrives, with each payment weighted by its present value.
+
+The intuition: money you receive far in the future is more affected by a change in discount rates than money you receive soon. A bond whose payments are concentrated far out is therefore more sensitive than one paying steadily along the way.
+
+## Using it
+
+The practical rule is simple.
+
+**Price change is approximately minus duration times the change in yield.**
+
+A bond with duration 7, yields rise 1 percentage point: about a 7% fall.
+A bond with duration 3, yields fall 0.5 points: about a 1.5% gain.
+A bond with duration 18, yields rise 1 point: about an 18% fall.
+
+That last one is not hypothetical. Long-dated government bonds carry high duration, and holders of thirty-year debt have experienced losses of that magnitude from rate moves alone - on instruments with no credit risk whatsoever.
+
+This is worth stating plainly, because "government bonds are safe" is true about default and says nothing about price. A default-free bond can lose a third of its value if rates rise enough. The safety refers to getting your money back at maturity, not to what happens in between.
+
+## Duration versus maturity
+
+They are often conflated and they are not the same thing.
+
+**Maturity** is when the final payment arrives.
+
+**Duration** accounts for all the payments, including the ones before maturity.
+
+A ten-year bond paying a healthy coupon returns money to you throughout that decade. Some cash arrives in year one, more in year two, and so on. The weighted average time to receive it is well under ten years - so its duration might be seven or eight.
+
+A **zero-coupon** bond pays nothing until the end. All the money arrives at maturity, so duration equals maturity exactly. These are the most rate-sensitive bonds available for a given maturity.
+
+The general rules follow from this:
+
+- **Longer maturity** means higher duration
+- **Lower coupon** means higher duration, because less money comes back early
+- **Lower yield** means higher duration, because distant payments carry more weight in present value terms
+
+That third rule has an uncomfortable implication. When yields are very low, duration is high - so portfolios are most sensitive to rising rates precisely when rates have the most room to rise.
+
+## What duration misses
+
+Duration assumes a straight-line relationship between yield and price. The real relationship is **curved**.
+
+That curvature is called **convexity**, and it works in the holder's favour for conventional bonds. When yields fall, prices rise slightly more than duration predicts. When yields rise, prices fall slightly less.
+
+For small moves this is negligible. For large moves it matters, and duration alone will consistently mis-estimate both directions in the same helpful way.
+
+Convexity is not always positive. Bonds that can be repaid early by the issuer - callable bonds, and mortgage-backed securities where homeowners refinance - can exhibit negative convexity. When rates fall, the borrower repays early, so the holder does not get the full price gain they would otherwise. Upside is capped; downside is not. Anyone holding mortgage-related debt is holding this characteristic whether or not they have thought about it.
+
+## Where it gets used
+
+**Comparing bonds.** Two bonds with the same yield and different durations are not the same investment. The higher-duration one is taking substantially more interest rate risk for the same compensation.
+
+**Sizing risk in a portfolio.** A bond fund publishes its average duration. That number, multiplied by a plausible rate move, gives you a direct estimate of what you could lose. It takes seconds and most holders never do it.
+
+**Matching liabilities.** Pension funds and insurers owe money at known future dates. Matching the duration of assets to the duration of those obligations means both move together when rates change, which neutralises the risk. This is a large part of why institutional demand for very long-dated bonds exists at all.
+
+**Expressing a view.** Someone expecting rates to fall extends duration to capture more of the gain. Someone expecting rates to rise shortens it. This is the main lever in active bond management.
+
+## The limits
+
+**It assumes a parallel shift.** Duration describes what happens if all yields move by the same amount. In practice the curve twists - short rates can rise while long rates fall. Duration will not capture that.
+
+**It is a snapshot.** Duration changes as time passes and as yields move. It is not a fixed property.
+
+**It says nothing about credit.** A corporate bond has both interest rate risk and default risk. Duration measures the first and is silent on the second.
+
+## The bottom line
+
+Duration converts a vague worry - "what happens to my bonds if rates rise?" - into an arithmetic answer. Multiply duration by the expected rate move and you have your estimate.
+
+It is published for every bond fund, it takes one multiplication to use, and it explains why two apparently similar holdings can behave so differently in the same market. For anyone holding fixed income in any form, it is the number worth knowing.
+
+*This article is educational and is not financial advice. Bond prices and yields move inversely and are subject to interest rate risk.*

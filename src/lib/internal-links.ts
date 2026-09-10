@@ -149,7 +149,7 @@ export const linkTargets: LinkTarget[] = [
 
   {
     slug: "what-does-the-fed-chair-actually-control",
-    phrases: ["Fed Chair", "FOMC voting members", "central bank independence"],
+    phrases: ["Fed Chair", "FOMC voting members"],
   },
 
   // ---- markets ----
@@ -163,7 +163,7 @@ export const linkTargets: LinkTarget[] = [
   },
   {
     slug: "what-moves-the-price-of-oil",
-    phrases: ["contango", "backwardation", "OPEC", "energy prices", "crude"],
+    phrases: ["OPEC", "energy prices", "crude"],
   },
   {
     slug: "what-moves-the-price-of-gold",
@@ -402,6 +402,31 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "safe-haven-currencies-explained",
     phrases: ["safe-haven currencies", "funding currency for carry", "haven status"],
+  },
+  // ---- institutions, metals and portfolio mechanics (Sept 2026) ----
+  {
+    slug: "central-bank-independence-explained",
+    phrases: ["central bank independence", "fiscal dominance", "Treasury-Fed Accord"],
+  },
+  {
+    slug: "copper-and-the-electrification-trade",
+    phrases: ["copper", "ore grades", "electrification"],
+  },
+  {
+    slug: "digital-asset-treasury-companies-explained",
+    phrases: ["digital asset treasury", "premium to net asset value", "treasury company"],
+  },
+  {
+    slug: "contango-and-backwardation-explained",
+    phrases: ["contango", "backwardation", "roll yield"],
+  },
+  {
+    slug: "currency-hedging-explained",
+    phrases: ["currency hedging", "hedged share class", "unhedged"],
+  },
+  {
+    slug: "portfolio-rebalancing-explained",
+    phrases: ["rebalancing", "portfolio drift", "target weights"],
   },
 ];
 

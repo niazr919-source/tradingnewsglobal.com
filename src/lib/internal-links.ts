@@ -353,6 +353,31 @@ export const linkTargets: LinkTarget[] = [
     slug: "forex-market-hours-and-sessions-explained",
     phrases: ["trading session", "London session", "daily rollover"],
   },
+  // ---- structure, flows and market mechanics (Sept 2026) ----
+  {
+    slug: "index-concentration-risk-explained",
+    phrases: ["concentration risk", "market breadth", "equal weight"],
+  },
+  {
+    slug: "quantitative-tightening-explained",
+    phrases: ["quantitative tightening", "balance sheet runoff", "bank reserves"],
+  },
+  {
+    slug: "dollar-cost-averaging-explained",
+    phrases: ["dollar-cost averaging", "lump sum", "regular investing"],
+  },
+  {
+    slug: "order-book-and-market-depth-explained",
+    phrases: ["order book", "market depth", "iceberg order"],
+  },
+  {
+    slug: "bitcoin-mining-economics-explained",
+    phrases: ["difficulty adjustment", "hash rate", "cost of production"],
+  },
+  {
+    slug: "emerging-market-currencies-explained",
+    phrases: ["emerging market currencies", "currency mismatch", "capital flows"],
+  },
 ];
 
 /** Split a line into segments, marking which are safe to rewrite. */

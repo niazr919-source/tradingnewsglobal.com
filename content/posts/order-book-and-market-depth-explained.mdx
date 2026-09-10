@@ -1,0 +1,124 @@
+---
+title: "The Order Book: How a Price Is Actually Made"
+description: "A quoted price is a summary of something more detailed underneath - a list of everyone waiting to buy and sell, at what price and in what size. Reading it explains slippage, spreads and why large orders move markets."
+seoTitle: "Order Book and Market Depth Explained"
+seoDescription: "How limit order books work, what bid and ask depth means, why large orders slip, and what spoofing and iceberg orders do to what you see on screen."
+category: "trading-education"
+author: "Trading News Global Editorial Team"
+date: "2026-09-10"
+tags: ["order book", "market depth", "liquidity", "slippage", "market microstructure"]
+keywords: ["what is an order book", "market depth explained", "bid ask depth", "why do large orders move the price", "limit order book explained"]
+image: "/og-default.png"
+cover: "/covers/trading-5.jpg"
+featured: false
+trending: false
+sources:
+  - label: "US SEC investor.gov - How stock markets work"
+    href: "https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work"
+  - label: "FINRA - Investment products"
+    href: "https://www.finra.org/investors/investing/investment-products"
+  - label: "Bank for International Settlements - Triennial central bank survey of FX markets (2025)"
+    href: "https://www.bis.org/statistics/rpfx25.htm"
+takeaways:
+  - "An order book is the list of outstanding buy and sell orders at each price level, with the quantity available at each."
+  - "The quoted price is only the best bid and best offer. It says nothing about how much size is available there, which is what determines the cost of trading."
+  - "A market order consumes the book from the best price outward, which is why a large order fills at progressively worse prices - the mechanism behind slippage."
+  - "What is displayed is not the whole picture: hidden and iceberg orders conceal size, and some visible orders are placed with no intention of being filled."
+faq:
+  - q: "What is an order book?"
+    a: "A continuously updated record of all outstanding buy and sell limit orders for an instrument, organised by price. Buy orders sit on the bid side, sell orders on the ask side, and each price level shows the total quantity waiting there. The highest bid and lowest ask form the quoted spread."
+  - q: "What is market depth?"
+    a: "How much quantity is available at prices near the current one. A deep market has substantial size at each level, so a large order can be absorbed without moving the price much. A thin market has little, so the same order pushes the price further. Depth, not the quoted price, determines what trading actually costs."
+  - q: "Why does a large order move the price?"
+    a: "Because a market order fills against whatever is available, starting at the best price and working outward. Once the quantity at the best price is exhausted, the remainder fills at the next level, then the next. The average fill price ends up worse than the quoted price, and the final trade leaves the quote at a new level."
+  - q: "What is an iceberg order?"
+    a: "A large order that displays only a small portion at a time. As the visible piece is filled, another slice appears. It lets a participant work a substantial position without revealing its full size, which would otherwise move the price against them. It also means visible depth can understate the real quantity available."
+---
+
+Most people see a single number: the price. It is a summary, and like most summaries it omits the part that determines what actually happens when you trade.
+
+Underneath it is a list - everyone currently waiting to buy or sell, at what price, in what quantity. That list is the order book, and nearly everything confusing about execution becomes obvious once you have looked at one.
+
+## The structure
+
+Two sides, sorted by price.
+
+**The bid side** holds buy orders, arranged highest first. These are people willing to buy at a stated price, waiting for someone to sell to them.
+
+**The ask side** holds sell orders, arranged lowest first. People willing to sell, waiting for a buyer.
+
+Each price level shows the **total quantity** resting there.
+
+The highest bid and the lowest ask are the two numbers you normally see quoted. The gap between them is the **spread**. If they ever met, the orders would execute and the book would move on.
+
+## The part the quote hides
+
+A quote gives you two prices. It does not tell you how much is available at them.
+
+Two instruments can show an identical spread and behave completely differently. One might have large quantities resting at every level near the price. The other might have a tiny amount at the best price and almost nothing behind it.
+
+Buy a meaningful size in the first and you barely disturb it. Buy the same in the second and you walk the price up through several levels.
+
+This is **market depth**, and it is the thing that actually determines the cost of trading. The advertised spread is the cost of a trade small enough to fit inside the best level. Above that size, the real cost is higher, and the quote never mentions it.
+
+## Where slippage comes from
+
+A market order says: fill me now, at whatever price is available.
+
+The book fills it from the best price outward. Suppose you want 1,000 units, and the ask side holds 200 at 10.00, 300 at 10.01, and 800 at 10.02.
+
+Your order takes all 200 at 10.00, all 300 at 10.01, and 500 at 10.02. Average price paid: about 10.013 - not the 10.00 you saw quoted.
+
+That difference is **slippage**, and it is not a fee, a failure or a broker taking advantage. It is what happens when the size you want exceeds the size available at the price you saw.
+
+It also explains why slippage is worse in thin conditions and around news. Both reduce the quantity resting in the book, so the same order travels further through it. This is one of the reasons the same currency pair costs more to trade in a quiet session than during a deep one.
+
+## Limit orders sit rather than take
+
+The other order type puts you on the opposite side of this.
+
+A **limit order** specifies a price and waits. It joins the book at that level and rests until someone trades against it or you cancel.
+
+You are no longer consuming liquidity. You are providing it - and other people's market orders fill against yours.
+
+The trade-off is certainty. A market order guarantees execution but not price. A limit order guarantees price but not execution. If the market moves away, your order sits unfilled, and being right about direction while never getting filled is its own category of frustration.
+
+## What the display does not show
+
+This matters, because people read visible depth as though it were the complete picture. It is not.
+
+**Iceberg orders** display a fraction of their true size. As the visible slice fills, another appears. A participant working a large position uses these precisely so the market cannot see what they are doing. Visible depth therefore **understates** real available quantity, sometimes substantially.
+
+**Hidden orders** do not display at all, on venues that permit them.
+
+**Orders placed without intent to trade.** Large orders can be posted to create an impression of demand or supply and then cancelled before execution. Doing this to manipulate prices - commonly called spoofing - is illegal in regulated markets and has been prosecuted, with substantial penalties. It still happens, and it means a large resting order is not proof of genuine interest.
+
+The practical conclusion: treat visible depth as partial information. It is more informative than the quote alone, and it is not the truth.
+
+## Fragmentation
+
+One further complication. For many instruments there is no single book.
+
+Equities trade across multiple exchanges and alternative venues, each with its own. Foreign exchange has no central venue at all - it is a network of banks and platforms, each showing its own liquidity, which is why the BIS conducts a periodic survey simply to establish the market's overall size.
+
+What your platform displays may be one venue's book, or an aggregated view, or a feed constructed by your broker. Worth knowing which, because the depth you are looking at may not be the depth your order actually meets.
+
+## Using it
+
+**Check depth before sizing a trade.** If your intended size is large relative to what is resting nearby, expect slippage and plan for it.
+
+**Prefer limit orders when you are not in a hurry.** You avoid crossing the spread and you avoid walking the book.
+
+**Be sceptical of a single large order.** It may be genuine, it may be an iceberg's tip, it may be withdrawn the moment price approaches.
+
+**Watch depth around news.** Liquidity providers pull orders ahead of scheduled releases. The book thins, and the same trade costs materially more for a few minutes.
+
+## The bottom line
+
+A price is the top of a list. The list is what determines whether your trade executes near that price or somewhere worse.
+
+Understanding the order book turns three things from mysteries into arithmetic: why you did not get the price you saw, why large orders cost more per unit than small ones, and why the same instrument is cheaper to trade at some hours than others.
+
+None of it is advanced. It is just the level below the one most people ever look at.
+
+*This article is educational and is not financial advice. Trading involves risk of loss.*

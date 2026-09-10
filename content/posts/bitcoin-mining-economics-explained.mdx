@@ -1,0 +1,118 @@
+---
+title: "Bitcoin Mining Economics: Why the Cost of Production Is Not a Price Floor"
+description: "Mining converts electricity into security. The revenue halves on a schedule, the difficulty adjusts to whatever hardware is running, and neither mechanism guarantees miners a profit."
+seoTitle: "Bitcoin Mining Economics Explained"
+seoDescription: "How miner revenue, difficulty adjustment and energy costs interact, why the halving squeezes margins, and why production cost does not set a floor under the price."
+category: "crypto"
+author: "Trading News Global Editorial Team"
+date: "2026-09-10"
+tags: ["bitcoin mining", "halving", "hash rate", "energy", "difficulty adjustment"]
+keywords: ["bitcoin mining economics", "how much does it cost to mine a bitcoin", "hash rate explained", "difficulty adjustment explained", "does mining cost set a price floor"]
+image: "/og-default.png"
+cover: "/covers/crypto-5.jpg"
+featured: false
+trending: false
+sources:
+  - label: "US Energy Information Administration - Electricity data"
+    href: "https://www.eia.gov/electricity/"
+  - label: "US Energy Information Administration - Today in Energy"
+    href: "https://www.eia.gov/todayinenergy/"
+  - label: "Blockchain.com - Network hash rate chart"
+    href: "https://www.blockchain.com/explorer/charts/hash-rate"
+takeaways:
+  - "Miner revenue has two parts: the block subsidy, which halves roughly every four years, and transaction fees, which vary with network demand."
+  - "Difficulty adjusts approximately every two weeks so that blocks continue to arrive around every ten minutes regardless of how much hardware is competing."
+  - "That adjustment means extra mining capacity does not produce more coins in total - it divides the same issuance among more participants."
+  - "Cost of production does not put a floor under the price. When price falls below cost, unprofitable miners switch off, difficulty falls, and mining becomes cheaper for those who remain."
+faq:
+  - q: "How do bitcoin miners make money?"
+    a: "Through two revenue streams. The block subsidy is newly issued bitcoin awarded to whoever produces a valid block, and it halves roughly every four years. Transaction fees are paid by users to have their transactions included, and they rise and fall with network demand. As the subsidy shrinks over time, fees become a larger share of total miner revenue."
+  - q: "What is the difficulty adjustment?"
+    a: "An automatic recalibration of how hard it is to produce a valid block, applied roughly every two weeks. If blocks were found faster than the ten-minute target, difficulty rises; if slower, it falls. This keeps the issuance schedule steady no matter how much computing power joins or leaves the network."
+  - q: "Does adding more mining hardware create more bitcoin?"
+    a: "No. The issuance rate is fixed by protocol and defended by the difficulty adjustment. Additional hardware increases the total computing power competing for the same fixed reward, which means each participant's expected share falls. More capacity produces more security, not more coins."
+  - q: "Does the cost of mining set a floor under the bitcoin price?"
+    a: "No, and the reasoning behind that claim is circular. If price falls below the cost of production, the least efficient miners shut down, total network hash rate falls, and at the next adjustment difficulty drops - which lowers the cost of mining for everyone still running. The cost of production follows the price rather than supporting it."
+---
+
+Mining is often explained as a way of creating new bitcoin. It is more accurate to say it is a way of buying security with electricity, and the newly issued coins are how that electricity gets paid for.
+
+Understanding it as an industrial process - with inputs, outputs and margins - explains more than the puzzle-solving metaphor does.
+
+## Where the revenue comes from
+
+Two streams, with very different characteristics.
+
+**The block subsidy.** Newly created bitcoin awarded to whoever produces a valid block. This is set by protocol and it **halves roughly every four years**. It is the dominant source of miner income today and it is scheduled to shrink toward zero over the coming decades.
+
+**Transaction fees.** Paid by users competing for space in a block. These fluctuate enormously - negligible when the network is quiet, substantial when it is congested.
+
+The long-term structural point is that the first stream is engineered to disappear and the second must eventually replace it. Whether fee revenue alone will be sufficient to fund adequate security is a genuinely open question, argued seriously on both sides.
+
+## The mechanism people miss
+
+Here is the part that makes mining economics counter-intuitive: **difficulty adjusts**.
+
+The protocol targets one block roughly every ten minutes. Roughly every two weeks, it measures how fast blocks actually arrived and recalibrates. Faster than target, difficulty rises. Slower, it falls.
+
+The consequence is that **total issuance is fixed regardless of how much hardware is running**.
+
+Add enormous mining capacity to the network and you do not get more bitcoin. You get the same amount, divided among more participants. Every miner's expected share falls in proportion.
+
+This makes mining a peculiar business. Investing in more efficient hardware improves your position **relative to other miners**, but if everyone does it, everyone ends up where they started, with more capital deployed and the same total revenue to share.
+
+It is a competitive treadmill by design, and the design is deliberate - it is what makes the issuance schedule credible.
+
+## The cost side
+
+Three inputs dominate.
+
+**Electricity** is the largest ongoing cost and the reason mining concentrates where power is cheapest - stranded hydro, flared gas, surplus renewable generation, regions with excess capacity. Rates vary by an order of magnitude across locations, which means the cost of production is not one number but a wide distribution across operators.
+
+**Hardware** is a depreciating asset with an unusually harsh curve. Specialised machines lose competitiveness as more efficient models arrive, and their value tracks mining profitability closely - falling hardest exactly when miners most need to sell.
+
+**Everything else** - facilities, cooling, staff, connectivity, financing. Smaller individually, and they determine survival at the margin.
+
+## Why the halving squeezes
+
+When the subsidy halves, roughly half of miner revenue disappears overnight. Costs do not change.
+
+Operators whose costs sat below the old revenue and above the new one become unprofitable immediately. Some shut down. Some sell hardware. Some had hedged or held reserves and can absorb it.
+
+As capacity leaves, hash rate falls. At the next adjustment, difficulty falls with it - and mining becomes cheaper for everyone still running. The industry re-equilibrates at a smaller size, or at a higher price, or through better efficiency.
+
+This has happened at every halving so far. The transition is disruptive, the adjustment mechanism absorbs it, and the network continues producing blocks throughout.
+
+## Why "cost of production is a floor" is wrong
+
+This claim appears constantly and it inverts the causation.
+
+The argument goes: it costs a certain amount to mine one bitcoin, so the price cannot stay below that, because miners would stop.
+
+But look at what actually happens when the price falls below the cost of production. Unprofitable miners **do** stop. Hash rate falls. At the next adjustment, **difficulty falls** - and the cost of mining drops for everyone remaining.
+
+The cost of production is not an independent quantity that supports the price. It is a **consequence** of how much hardware is competing, which is itself a consequence of profitability, which is a consequence of the price.
+
+Cost follows price. It does not hold it up.
+
+A related error treats a single published cost figure as meaningful. There is no single cost. An operator with hydro power at a fraction of retail rates and an operator paying commercial grid rates have production costs that differ by multiples. Averages across that distribution describe nobody.
+
+## What is worth watching
+
+**Hash rate** - total computing power on the network, published continuously. Rising hash rate indicates capacity being added; sharp falls indicate miners switching off.
+
+**Difficulty** - and the direction of the next adjustment, which is estimable from block times.
+
+**Fee share of revenue** - the long-run structural question, visible in the data now.
+
+**Miner reserves** - balances held at known mining addresses. Miners selling more than they earn suggests financial pressure; accumulating suggests confidence or adequate funding.
+
+None of these predicts price. They describe the condition of the industry that secures the network, which is a different and more tractable thing.
+
+## The bottom line
+
+Mining converts electricity into network security, and the newly issued coins are the payment mechanism. The difficulty adjustment ensures that no amount of additional hardware changes the issuance schedule - it only changes how the fixed reward is divided.
+
+That single mechanism explains why mining is relentlessly competitive, why halvings force consolidation rather than collapse, and why the cost of production cannot function as a price floor. Cost is downstream of price, not upstream of it.
+
+*This article is educational and is not financial advice. Cryptoassets are highly volatile and largely unregulated in most jurisdictions. You should be prepared to lose all the money you invest.*

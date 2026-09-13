@@ -1,0 +1,120 @@
+---
+title: "Survivorship Bias: Why Backtests Look Better Than Reality"
+description: "A strategy tested on the companies that exist today has been tested on a list assembled with hindsight. The ones that failed are missing, and their absence flatters every result."
+seoTitle: "Survivorship Bias in Backtesting Explained"
+seoDescription: "How survivorship bias inflates backtest results, where it hides in fund performance data and index history, and the related biases that make backtests unreliable."
+category: "trading-education"
+author: "Trading News Global Editorial Team"
+date: "2026-09-13"
+tags: ["survivorship bias", "backtesting", "statistics", "research", "behaviour"]
+keywords: ["what is survivorship bias", "survivorship bias investing", "why backtests fail", "look-ahead bias explained", "backtest overfitting"]
+image: "/og-default.png"
+cover: "/covers/trading-5.jpg"
+featured: false
+trending: false
+sources:
+  - label: "US SEC investor.gov - How stock markets work"
+    href: "https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work"
+  - label: "FINRA - Investment products"
+    href: "https://www.finra.org/investors/investing/investment-products"
+  - label: "US SEC - EDGAR company filings database"
+    href: "https://www.sec.gov/edgar/searchedgar/companysearch"
+takeaways:
+  - "Survivorship bias is the error of studying only the things that lasted, because the ones that failed have been removed from the data."
+  - "Testing a strategy on companies that exist today means testing it on a list that was selected, with hindsight, for not having gone bankrupt."
+  - "Fund performance tables show the same distortion - poorly performing funds are closed or merged away, which lifts the average of what remains."
+  - "It rarely appears alone. Look-ahead bias, overfitting and ignored transaction costs usually accompany it, and all push results the same direction."
+faq:
+  - q: "What is survivorship bias?"
+    a: "A distortion that arises when analysis is performed only on the members of a group that survived some selection process, while the ones that did not survive are absent from the data. Because failure is what removed them, the surviving sample looks systematically better than the original population did."
+  - q: "How does survivorship bias affect backtesting?"
+    a: "If a strategy is tested on the companies currently in an index, it is being tested on companies that did not go bankrupt, get delisted or collapse during the test period. That information was unknowable at the time. The strategy appears to avoid disasters it could never have avoided in practice, which inflates returns and understates risk."
+  - q: "Does it affect fund performance data?"
+    a: "Yes, and substantially. Funds that perform badly are routinely closed or merged into other funds, and their track records disappear from the database. The average performance of funds available today therefore overstates what investors actually experienced, because the worst performers have been quietly removed."
+  - q: "How can I avoid it in my own analysis?"
+    a: "Use point-in-time data that reflects what was actually known and listed on each date, including companies that later failed. Where that is unavailable, treat any backtested result as an upper bound rather than an estimate. Test on a period you did not use to develop the idea, and include realistic transaction costs."
+---
+
+A strategy is tested against thirty years of data. The results are excellent. It is implemented, and it does not work.
+
+The usual explanation is that markets changed. Frequently the real explanation is that the test was run on a dataset that could not have existed at the time.
+
+## The basic error
+
+Take the companies in a major index today. Test a rule against their price history going back twenty years.
+
+That list contains only companies that **are still there**. Everything that went bankrupt, got delisted, collapsed or was acquired in distress is absent - removed by exactly the outcome the strategy should have had to survive.
+
+You have tested the rule on a population pre-filtered for not having failed. That information was not available twenty years ago. No investor could have used it.
+
+The result is a backtest that avoids disasters it had no way of avoiding.
+
+## Why the distortion is large
+
+It is tempting to assume the effect is small, because failures are a minority. Two things make it larger than intuition suggests.
+
+**Failures are not random.** Companies that go bankrupt tend to do so after a period of severe decline. Those declines are precisely the losses a risk measure should capture. Removing them does not merely shave a little off returns - it removes the left tail, which is most of what risk means.
+
+**The effect compounds.** A backtest reporting a smooth return series with modest drawdowns may be describing a portfolio whose real drawdowns were far deeper, because the holdings that caused them are missing. The strategy looks not just more profitable but less risky, and the second error is the more dangerous.
+
+## Where it hides in fund data
+
+The same mechanism operates in the industry's own performance statistics, and it is well documented.
+
+Funds that perform poorly do not persist. They are closed, or merged into better-performing funds, and their records leave the database. What remains is the funds that did well enough to keep going.
+
+So a table showing the average return of funds available today is not the average return investors received. It is the average of the ones that survived. The gap between those two numbers has been studied and is not small.
+
+This is why the phrase "past performance is no guide to future results" understates the problem. Past performance as commonly presented is not even a reliable guide to past results.
+
+## The related errors
+
+Survivorship bias almost never appears alone, and its companions push the same direction.
+
+**Look-ahead bias.** Using information in a test that was not available at the time. Testing a rule on a company's full-year figures from January, when those figures were not published until March, builds in knowledge of the future. Financial data is also **revised** - economic statistics especially - so a database showing final revised values does not reflect what was known on the day.
+
+**Overfitting.** Testing enough variations and one will look excellent by chance alone. With hundreds of parameter combinations, an apparently strong result is the expected outcome of searching, not evidence of anything. This is the most common failure in amateur strategy development, and the sign of it is a rule with several suspiciously specific parameters.
+
+**Ignored costs.** Spreads, commissions, slippage and tax. A strategy trading frequently can look profitable gross and be clearly unprofitable net. High-turnover backtests are where this does the most damage, because the costs accumulate in proportion to activity.
+
+**Selection of the test period.** A strategy tested only on a rising market will look good. Any test that does not include a serious downturn has not been tested against the thing that matters.
+
+## How to test honestly
+
+**Use point-in-time data.** Datasets that reflect what was actually listed and actually reported on each date, including companies that later disappeared. These exist and cost money, which is why free backtests are usually contaminated.
+
+**Hold out a period.** Develop on one span of data, test on another you have not looked at. If the result collapses out of sample, the original finding was fitting to noise.
+
+**Include costs deliberately, and generously.** Estimate spreads and slippage on the pessimistic side. If the edge survives, it may be real.
+
+**Prefer fewer parameters.** A rule with two inputs that works reasonably across many conditions is more credible than one with seven that works brilliantly in one.
+
+**Ask what the mechanism is.** A result with no explanation for *why* it should work is a pattern, and patterns appear in random data reliably.
+
+## Where else this shows up
+
+The bias is not confined to markets, and the general version is worth carrying around.
+
+Studies of successful companies that identify shared habits usually have no comparison group of failed companies with the same habits. Advice derived from people who succeeded omits everyone who did the same things and did not. The aeroplanes that returned from missions showed damage in survivable places, which is the opposite of where armour was needed.
+
+In each case the data is real and the sample is selected by outcome.
+
+## The version that affects your own decisions
+
+The bias does not only distort formal research. It shapes what you hear about investing at all.
+
+Strategies that worked get written up. The ones that did not are abandoned quietly, and nobody publishes an account of a rule that lost money for three years. What reaches you has already passed through a filter that selects on outcome.
+
+The same applies to people. Investors with strong records give interviews and write books. Those who followed a similar approach and did poorly are not asked. Reading five accounts by successful investors tells you what successful investors did; it does not tell you what proportion of people doing those things succeeded, because the denominator is missing.
+
+It applies to individual holdings too. Someone recalling that a position worked out well is recalling a sample of one, selected by memory, which preferentially retains outcomes that confirm competence.
+
+The corrective is a single habit: whenever you are shown a result, ask **what would be missing from this picture if it were not true**. If the answer is "the failures, and they were removed by failing", the evidence is weaker than it looks.
+
+## The bottom line
+
+A backtest is a statement about a dataset, not about the past. If that dataset was assembled from things that lasted, the test has been handed the answer in advance.
+
+Treat any backtested result as an optimistic bound. Ask what is missing from the sample, whether the information used was available at the time, and whether costs were included. Most published results fail at least one of those questions - and the ones that fail quietly look the most convincing.
+
+*This article is educational and is not financial advice. Past performance does not indicate future results.*

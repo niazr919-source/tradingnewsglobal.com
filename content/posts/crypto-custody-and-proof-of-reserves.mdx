@@ -1,0 +1,128 @@
+---
+title: "Crypto Custody and Proof of Reserves: What an Attestation Does Not Tell You"
+description: "After a series of exchange failures, proof of reserves became standard practice. It answers one question well and leaves a larger one almost entirely open."
+seoTitle: "Crypto Custody and Proof of Reserves Explained"
+seoDescription: "How proof of reserves works, what a Merkle tree attestation proves, why liabilities are the harder half, and what separates real custody from an IOU."
+category: "crypto"
+author: "Trading News Global Editorial Team"
+date: "2026-09-13"
+tags: ["custody", "proof of reserves", "exchanges", "self-custody", "risk"]
+keywords: ["what is proof of reserves", "crypto custody explained", "merkle tree proof of reserves", "not your keys not your coins", "exchange solvency"]
+image: "/og-default.png"
+cover: "/covers/crypto-1.jpg"
+featured: false
+trending: false
+sources:
+  - label: "US SEC - Investor alerts on crypto asset securities"
+    href: "https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work"
+  - label: "US SEC - Order approving spot bitcoin exchange-traded products"
+    href: "https://www.sec.gov/files/rules/sro/nysearca/2024/34-99306.pdf"
+  - label: "FINRA - Investment products"
+    href: "https://www.finra.org/investors/investing/investment-products"
+takeaways:
+  - "Holding cryptoassets on an exchange means holding a claim against that exchange, not the asset itself - the exchange controls the keys."
+  - "Proof of reserves uses cryptography to demonstrate control of assets and to let individual users verify their balance was included in the total."
+  - "It proves the asset side. Proving the liability side - that the published total is all the liabilities - depends on the exchange's own disclosure."
+  - "A point-in-time attestation says nothing about the moment after it was taken, which is why frequency and independent verification matter more than the existence of a report."
+faq:
+  - q: "What does proof of reserves actually prove?"
+    a: "That an entity controlled certain assets at a specific moment, and that a given user's balance was included in the total liabilities the exercise was measured against. It is genuine cryptographic evidence about the asset side of the balance sheet, at one point in time."
+  - q: "What does it not prove?"
+    a: "That the declared liabilities are complete. If an exchange omits obligations from the total it publishes, the proof still validates - it simply validates against an understated figure. It also says nothing about borrowed assets moved in for the snapshot, about off-chain debts, or about what happened immediately afterwards."
+  - q: "How does a Merkle tree proof work?"
+    a: "User balances are hashed and combined in pairs repeatedly until a single root hash represents all of them. Each user receives the small set of hashes needed to verify their own balance contributed to that root, without revealing anyone else's. Combined with demonstrated control of on-chain assets, this lets individuals confirm their inclusion in a total they can check."
+  - q: "Is self-custody safer than using an exchange?"
+    a: "It removes counterparty risk and replaces it with operational risk. There is no institution that can fail with your assets, and equally no one to recover access if you lose your keys. Neither is universally safer - they are different risks, and which is appropriate depends on amount, technical confidence and how often the assets are used."
+---
+
+The phrase "not your keys, not your coins" is repeated often enough to have lost its force. It describes something precise.
+
+When cryptoassets sit on an exchange, the exchange holds the private keys. What you hold is a database entry recording that the exchange owes you. If the exchange fails, you are a creditor.
+
+Proof of reserves emerged as a response. It is a genuine improvement, and it answers a narrower question than most people assume.
+
+## What custody actually means
+
+Ownership of a cryptoasset is control of a private key. Whoever can sign a transaction can move the asset. There is no registry, no title office and no appeal.
+
+**Self-custody** means you hold the keys. Nobody can freeze, lend or lose your assets. Equally, nobody can restore them if you lose the keys.
+
+**Exchange custody** means the exchange holds the keys and maintains an internal ledger of who is owed what. Convenient, instantly tradable, and a claim rather than an asset.
+
+**Qualified custody** means a regulated entity holds assets under a custodial framework, typically with segregation requirements and independent examination. This is what institutional products use, and it is why spot exchange-traded products specify their custody arrangements in detail.
+
+The distinction only matters when something goes wrong. Historically, that has been often enough to matter a great deal.
+
+## How proof of reserves works
+
+Two halves, and they are not equally solid.
+
+**Demonstrating assets.** The exchange shows control of on-chain addresses holding assets - typically by signing a message with the relevant keys, which proves control without moving anything. The blockchain balances are publicly verifiable.
+
+**Demonstrating liabilities.** Every user balance is hashed and combined pairwise, repeatedly, into a tree structure that produces a single **root hash** representing all of them. Each user is given the handful of hashes needed to confirm their own balance contributed to that root - without exposing anyone else's.
+
+Put together: users can verify they were counted, and anyone can check that on-chain assets meet or exceed the published total.
+
+The cryptography is sound. That is worth saying clearly, because the criticism that follows is not about the mathematics.
+
+## The gap
+
+The proof demonstrates that assets cover **the liabilities that were declared**.
+
+It cannot demonstrate that the declared liabilities are all the liabilities.
+
+If obligations are left out of the total, the proof still passes. Everything verifies. It simply verifies against a smaller number than the truth.
+
+Closing that gap requires something the cryptography cannot supply: an independent party examining the exchange's complete books and attesting that the liability figure is complete. That is an audit, and it depends on the auditor's access, competence and independence.
+
+Several other gaps sit alongside it.
+
+**Point-in-time.** A proof describes one moment. Assets can be borrowed shortly before a snapshot and returned afterwards - a practice with a long pre-crypto history. Frequency and unpredictable timing are what make this harder.
+
+**Off-chain obligations.** Loans, derivative exposure and inter-company debts do not appear on a blockchain and will not appear in an on-chain proof.
+
+**Shared addresses.** Demonstrated control of an address does not establish that the assets in it are unencumbered or belong to that entity alone.
+
+**Attestation is not audit.** Most published exercises are attestations against agreed procedures, not full audits. The distinction is technical, material and rarely explained to users.
+
+## What actually reduces the risk
+
+**Independent verification**, by a firm with a reputation to lose, examining both sides of the balance sheet rather than confirming a calculation.
+
+**Frequency and unpredictability.** Regular proofs at unannounced times are much harder to stage than a scheduled annual snapshot.
+
+**Segregation.** Customer assets held separately from the company's own, so they are not available to creditors if the company fails. This is a legal structure, not a cryptographic one, and it is what regulated custody frameworks exist to impose.
+
+**Regulatory oversight.** A supervised custodian operates under examination, capital requirements and rules about commingling. That is a different order of assurance from a self-published report.
+
+**Your own verification.** If an exchange provides the data, check that your balance is in the tree. Most users never do, which means the mechanism's main safeguard goes unused.
+
+## The honest framing
+
+Proof of reserves is better than nothing and it is not a solvency guarantee. Presenting it as one has been a persistent marketing overstatement.
+
+It shifts the question rather than settling it. Instead of trusting an exchange's claim about assets, you trust its claim about liabilities. That is progress - the asset side used to be entirely opaque - and it is not the same as verified solvency.
+
+For anyone deciding how to hold assets, the practical approach is unglamorous: keep on an exchange only what you actively trade, hold the rest where you or a regulated custodian control the keys, and treat any attestation as one input among several rather than as an all-clear.
+
+## Choosing an approach in practice
+
+The decision is less about which method is safest in the abstract and more about matching the method to the amount and the use.
+
+**Small amounts, traded often.** Exchange custody is reasonable. The convenience is real and the loss from a failure is bounded by what you chose to leave there.
+
+**Larger holdings, rarely moved.** Self-custody or a regulated custodian. The counterparty risk of leaving a significant balance on a trading venue is the risk that has actually materialised, repeatedly, across the sector's history.
+
+**Self-custody, done properly.** A hardware device keeps keys off an internet-connected machine. The recovery phrase is the asset - written down, stored physically, never photographed, never typed into anything. The most common loss in self-custody is not theft but a recovery phrase that was stored badly or never tested.
+
+**Test the recovery before it matters.** Restore the wallet from the phrase onto a second device while nothing is at stake. A phrase that has never been tested is a plan that has never been checked.
+
+**Exposure without custody.** A regulated exchange-traded product moves the custody problem to an institution operating under examination, in exchange for a fee and the loss of direct control.
+
+## The bottom line
+
+Custody is about who can sign. On an exchange, that is the exchange, and you hold a claim.
+
+Proof of reserves proves control of assets and lets you confirm you were counted. It cannot prove the liability total is complete, cannot see off-chain debts, and describes a single moment. Those limits are not defects in the cryptography - they are the boundary of what cryptography can do about a question that is fundamentally about disclosure.
+
+*This article is educational and is not financial advice. Cryptoassets are highly volatile and largely unregulated in most jurisdictions. You should be prepared to lose all the money you invest.*

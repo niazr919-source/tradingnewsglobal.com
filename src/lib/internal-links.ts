@@ -121,7 +121,7 @@ export const linkTargets: LinkTarget[] = [
   },
   {
     slug: "us-dollar-index-dxy-explained",
-    phrases: ["dollar index", "DXY", "trade-weighted"],
+    phrases: ["dollar index", "DXY"],
   },
   {
     slug: "how-central-banks-intervene-in-currency-markets",
@@ -159,7 +159,7 @@ export const linkTargets: LinkTarget[] = [
   },
   {
     slug: "how-inflation-data-moves-markets",
-    phrases: ["core inflation", "CPI release", "base effects", "expected inflation", "headline inflation"],
+    phrases: ["CPI release", "base effects", "expected inflation", "headline inflation"],
   },
   {
     slug: "what-moves-the-price-of-oil",
@@ -180,7 +180,7 @@ export const linkTargets: LinkTarget[] = [
 
   {
     slug: "how-etfs-work-explained",
-    phrases: ["exchange-traded fund", "expense ratio", "tracking error"],
+    phrases: ["exchange-traded fund", "tracking error"],
   },
   {
     slug: "what-is-quantitative-easing-explained",
@@ -222,7 +222,7 @@ export const linkTargets: LinkTarget[] = [
   },
   {
     slug: "what-is-a-hedge-fund",
-    phrases: ["hedge fund", "survivorship bias", "two and twenty"],
+    phrases: ["hedge fund", "two and twenty"],
   },
 
   {
@@ -427,6 +427,31 @@ export const linkTargets: LinkTarget[] = [
   {
     slug: "portfolio-rebalancing-explained",
     phrases: ["rebalancing", "portfolio drift", "target weights"],
+  },
+  // ---- measurement, costs and custody (Sept 2026) ----
+  {
+    slug: "cpi-vs-pce-explained",
+    phrases: ["PCE", "core inflation", "consumer price index"],
+  },
+  {
+    slug: "share-buybacks-explained",
+    phrases: ["share buyback", "earnings per share", "capital allocation"],
+  },
+  {
+    slug: "how-investment-fees-compound",
+    phrases: ["expense ratio", "investment fees", "cost of a fund"],
+  },
+  {
+    slug: "survivorship-bias-and-backtests",
+    phrases: ["survivorship bias", "backtest", "overfitting"],
+  },
+  {
+    slug: "crypto-custody-and-proof-of-reserves",
+    phrases: ["proof of reserves", "qualified custody", "Merkle tree"],
+  },
+  {
+    slug: "real-effective-exchange-rate-explained",
+    phrases: ["real effective exchange rate", "trade-weighted", "competitiveness"],
   },
 ];
 

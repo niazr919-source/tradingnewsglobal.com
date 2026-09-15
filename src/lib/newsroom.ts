@@ -23,7 +23,7 @@ export const newsroom = {
   shortByline: "Editorial Team",
   role: "Newsroom",
   short: "Independent coverage of crypto, currencies and global markets.",
-  bio: `${siteConfig.name} is an independent publication. Our articles are researched, written and edited in-house against the standards set out in our editorial policy, and published under the newsroom byline rather than individual names. Responsibility for everything on this site sits with the publication, and every article carries a route to correct it.`,
+  bio: `${siteConfig.name} is an independent publication. Our articles are researched, written and edited in-house against the standards set out in our editorial policy, and published with the name of the person who wrote it and the person who edited it. Responsibility for everything on this site sits with the publication and with the people named on it, and every article carries a route to correct it.`,
   email: siteConfig.email.editorial,
   correctionsEmail: siteConfig.email.corrections,
 } as const;

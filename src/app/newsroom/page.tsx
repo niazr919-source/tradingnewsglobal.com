@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Mail } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { newsroom, desks } from "@/lib/newsroom";
+import { people } from "@/lib/people";
 import { categories } from "@/lib/categories";
 import { getAllPosts, getPostsByCategory } from "@/lib/posts";
 import { siteConfig, absoluteUrl } from "@/lib/site";
@@ -36,20 +37,47 @@ export default function NewsroomPage() {
   return (
     <PageShell
       title="The newsroom"
-      intro={`Articles on ${siteConfig.name} are published under the newsroom byline. This page sets out what each desk covers, the standards the work is held to, and how to reach a person about it.`}
+      intro={`Every article on ${siteConfig.name} names the person who wrote it and the person who edited it. This page sets out who they are, how an article is produced, what each desk covers and how to reach a person about any of it.`}
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <h2>How we publish</h2>
       <p>{newsroom.bio}</p>
       <p>
-        We publish under a single masthead rather than assigning individual bylines. That is a
-        deliberate choice, and a common one for small independent publications: it means
-        accountability sits with the publication rather than being diffused across names, and every
-        article is held to the same standard rather than to whoever wrote it. Responsibility for
-        everything here — including the errors — belongs to {siteConfig.name}.
+        Every article carries the name of the person who wrote it and the name of the person who
+        edited it, and both names link to a page explaining what they do and how to reach them. We
+        take the view that on a site about money, a reader is entitled to know who is telling them
+        something and who checked it. Responsibility for everything here — including the errors —
+        belongs to {siteConfig.name} and to the people named on this page.
       </p>
 
+
+
+      <h2>Who we are</h2>
+      <p>
+        Two named people are responsible for what appears on this site. Both can be reached directly,
+        and both have a page setting out what they do here.
+      </p>
+      <div className="not-prose grid gap-4 sm:grid-cols-2">
+        {people.map((person) => (
+          <div key={person.slug} className="rounded-lg border border-border bg-surface p-5">
+            <Link
+              href={`/newsroom/${person.slug}`}
+              className="font-display text-[17px] font-semibold hover:text-primary"
+            >
+              {person.name}
+            </Link>
+            <p className="mt-0.5 text-[12.5px] font-medium text-primary">{person.role}</p>
+            <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">{person.short}</p>
+            <a
+              href={`mailto:${person.email}`}
+              className="mt-3 block break-all text-[12.5px] font-medium text-primary hover:underline"
+            >
+              {person.email}
+            </a>
+          </div>
+        ))}
+      </div>
 
       <h2>How an article is made</h2>
       <p>

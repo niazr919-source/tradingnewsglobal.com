@@ -54,16 +54,16 @@ export default function EditorialPolicyPage() {
 
       <h2>Authorship and accountability</h2>
       <p>
-        Articles are published under the {siteConfig.name} masthead rather than under individual
-        bylines. Accountability therefore sits with the publication: there is one standard, applied to
-        every article, and one place to bring a complaint.
+        Every article names the person who wrote it and the person who edited it. Both have a profile
+        page on this site and a monitored address that reaches them, and both names are carried in
+        the article&rsquo;s structured data as well as on the page.
       </p>
       <p>
-        We consider this more honest than the alternative for a publication of our size. A byline is a
-        claim about who stands behind a piece of work, and it should only ever name a real, contactable
-        person. Where named contributors join, they will appear on the{" "}
-        <Link href="/newsroom">newsroom page</Link> with their own profile and a direct contact
-        address, and their articles will carry their name.
+        A byline is a claim about who stands behind a piece of work, so it names a real, contactable
+        person and nobody else. We do not publish under invented names, and we do not attach
+        qualifications to a name that the person does not hold. Where further contributors join, they
+        will appear on the <Link href="/newsroom">newsroom page</Link> with their own profile and a
+        direct contact address before their name appears on anything.
       </p>
 
       <h2>Sourcing and verification</h2>

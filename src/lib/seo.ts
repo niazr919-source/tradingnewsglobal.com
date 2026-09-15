@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { siteConfig, absoluteUrl } from "./site";
 import { categories } from "./categories";
 import { newsroom } from "./newsroom";
+import { editor, getPerson, personSchema, personUrl } from "./people";
 import type { Post } from "./posts";
 
 /** Default OpenGraph image path served from /public. */
@@ -30,7 +31,14 @@ export function buildArticleMetadata(post: Post): Metadata {
     title: { absolute: metaTitle },
     description: metaDescription,
     keywords: [...post.keywords, ...cat.keywords],
-    authors: [{ name: post.author, url: absoluteUrl("/newsroom") }],
+    authors: [
+      {
+        name: post.author,
+        url: getPerson(post.author)
+          ? personUrl(getPerson(post.author)!)
+          : absoluteUrl("/newsroom"),
+      },
+    ],
     category: cat.name,
     alternates: { canonical },
     openGraph: {
@@ -83,14 +91,22 @@ export function buildArticleJsonLd(post: Post) {
     timeRequired: `PT${post.readingTime}M`,
     inLanguage: siteConfig.language,
     isAccessibleForFree: true,
-    // Published under the masthead, so the author IS the organisation. Naming a
-    // Person here who does not exist would be structured data that lies.
-    author: {
-      "@type": "Organization",
-      name: post.author,
-      url: absoluteUrl("/newsroom"),
-      email: newsroom.email,
-    },
+    // Articles carry a named author and a named editor, both of whom have
+    // profile pages and a monitored address. Only ever name a Person here who
+    // actually exists and has agreed to be named - structured data that claims
+    // a fictional author is worse than none.
+    author: (() => {
+      const person = getPerson(post.author);
+      return person
+        ? personSchema(person)
+        : {
+            "@type": "Organization",
+            name: post.author,
+            url: absoluteUrl("/newsroom"),
+            email: newsroom.email,
+          };
+    })(),
+    editor: personSchema(editor),
     publisher: {
       "@type": "Organization",
       name: siteConfig.publisher,

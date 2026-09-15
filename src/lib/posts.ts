@@ -4,6 +4,7 @@ import path from "path";
 import matter from "gray-matter";
 import { CategorySlug, isCategorySlug } from "./categories";
 import { newsroom } from "./newsroom";
+import { defaultAuthor, getPerson } from "./people";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "posts");
 
@@ -99,7 +100,8 @@ function parseFile(fileName: string): Post | null {
     return null;
   }
 
-  const authorName = String(data.author ?? newsroom.byline).trim() || newsroom.byline;
+  const authorName = String(data.author ?? defaultAuthor.name).trim() || defaultAuthor.name;
+  const person = getPerson(authorName);
   const words = countWords(content);
 
   return {
@@ -110,8 +112,8 @@ function parseFile(fileName: string): Post | null {
     seoDescription: data.seoDescription ? String(data.seoDescription) : undefined,
     category,
     author: authorName,
-    authorRole: String(data.authorRole ?? newsroom.role),
-    authorBio: String(data.authorBio ?? newsroom.bio),
+    authorRole: String(data.authorRole ?? person?.role ?? newsroom.role),
+    authorBio: String(data.authorBio ?? person?.bio ?? newsroom.bio),
     date: new Date(data.date ?? Date.now()).toISOString(),
     updated: data.updated ? new Date(data.updated).toISOString() : undefined,
     tags: toStringArray(data.tags),

@@ -69,15 +69,21 @@ export default function AboutPage() {
 
       <h2>Who writes it</h2>
       <p>
-        {siteConfig.name} is an independent publication and articles appear under the newsroom byline
-        rather than under individual names. That is a deliberate choice rather than an omission: it
-        places accountability on the publication, and it means every article is held to the same
-        published standard rather than to the reputation of whoever wrote it.
+        {siteConfig.name} was founded by{" "}
+        <Link href="/newsroom/niaz">Niaz</Link>, who writes for the site and sets its editorial
+        position. Every article is edited by{" "}
+        <Link href="/newsroom/harry-wilson">Harry Wilson</Link> before publication, and both names
+        appear on the article along with a route to reach them.
       </p>
       <p>
-        The <Link href="/newsroom">newsroom page</Link> sets out what each desk covers and the
-        standards the work is held to. If something here is wrong, the publication is answerable for
-        it, and the route to say so is on that page.
+        We take the view that on a site about money, a reader is entitled to know who is telling them
+        something and who checked it before it went out. A byline is a claim about who stands behind
+        a piece of work, so it names real, contactable people and nobody else.
+      </p>
+      <p>
+        The <Link href="/newsroom">newsroom page</Link> sets out what each desk covers, how an
+        article is produced and the standards the work is held to. If something here is wrong, we are
+        answerable for it, and the route to say so is on that page.
       </p>
 
       <h2>How we make money</h2>

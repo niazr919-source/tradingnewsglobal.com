@@ -120,7 +120,7 @@ analytics storage defaulting to `denied` until the reader opts in.
    | Field | Notes |
    | --- | --- |
    | `category` | `crypto`, `forex`, `markets` or `trading-education` |
-   | `author` | Defaults to the newsroom byline; set only for a real named contributor |
+   | `author` | Must match a person in `src/lib/people.ts`. Never invent a name |
    | `date` | `YYYY-MM-DD` |
    | `updated` | Add when you materially revise it; shown next to the byline |
    | `cover` | A file in `public/covers/`; omit for a generated illustration |
@@ -176,19 +176,18 @@ scripts/                  Cover optimization and link checking
 
 ## Authorship
 
-Articles are published under the **`Trading News Global Editorial Team`** masthead rather than
-under individual bylines. This is a deliberate, honest position for a publication of this size:
-accountability sits with the publication, there is one standard applied to every article, and
-one place to bring a complaint. `/newsroom` sets out what each desk covers, the standards the
-work is held to, and how to report a correction.
+Every article names the person who **wrote** it and the person who **edited** it. Both are defined in
+`src/lib/people.ts`, both have a profile page under `/newsroom/<slug>` with `ProfilePage` structured
+data, and both are emitted in the article's `Article` schema as `author` and `editor`.
 
-Article structured data therefore declares an `Organization` as the author, which is valid
-schema.org and true. **Do not replace it with a `Person` who does not exist** — fabricated
-bylines are a documented way to lose search trust, and on a finance site they are the kind of
-thing an ad-network review is specifically looking for.
+**Only ever name a real, contactable person.** Fabricated bylines are a documented way to lose search
+trust, and on a finance site they are specifically what an ad-network review looks for. The same rule
+applies to credentials: do not attach a qualification, employer or number of years' experience to a
+name unless the person actually holds it and is willing to have it checked. An unverifiable
+credential is worse than none.
 
-If a real named writer joins, add them to `src/lib/newsroom.ts`, give them a profile page, and
-set `author:` in their articles' frontmatter.
+To add a contributor: add them to `src/lib/people.ts`, then set `author:` in their articles'
+frontmatter to the exact `name` value. The profile page and schema follow automatically.
 
 ## Editorial position
 

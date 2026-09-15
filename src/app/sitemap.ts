@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/posts";
 import { categoryList } from "@/lib/categories";
+import { people } from "@/lib/people";
 import { absoluteUrl } from "@/lib/site";
 
 // Required by `output: "export"` — emits a static sitemap.xml at build time.
@@ -24,6 +25,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/disclaimer"), lastModified: newest, changeFrequency: "yearly", priority: 0.3 },
   ];
 
+  // Author and editor profiles. These carry the ProfilePage data that backs
+  // every byline on the site, so they need to be discoverable.
+  const personRoutes: MetadataRoute.Sitemap = people.map((person) => ({
+    url: absoluteUrl(`/newsroom/${person.slug}`),
+    lastModified: newest,
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
+
   const categoryRoutes: MetadataRoute.Sitemap = categoryList.map((cat) => ({
     url: absoluteUrl(`/category/${cat.slug}`),
     lastModified: newest,
@@ -38,5 +48,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...postRoutes];
+  return [...staticRoutes, ...personRoutes, ...categoryRoutes, ...postRoutes];
 }

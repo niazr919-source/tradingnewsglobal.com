@@ -207,52 +207,56 @@ function FeeCompounding() {
   );
 }
 
+/** One column of share squares for the buyback diagram. */
+function ShareColumn({
+    x,
+  title,
+  shares,
+  eps,
+  accent,
+}: {
+  x: number;
+  title: string;
+  shares: number;
+  eps: string;
+  accent: string;
+}) {
+return (
+  <g>
+    <text x={x + 105} y="34" textAnchor="middle" style={strong}>
+      {title}
+    </text>
+    {Array.from({ length: shares }).map((_, i) => (
+      <rect
+        key={i}
+        x={x + (i % 10) * 22}
+        y={56 + Math.floor(i / 10) * 22}
+        width="17"
+        height="17"
+        rx="3"
+        fill={accent}
+        opacity={0.85}
+      />
+    ))}
+    <text x={x + 105} y="196" textAnchor="middle" style={label}>
+      {shares} shares
+    </text>
+    <text x={x + 105} y="228" textAnchor="middle" style={{ ...strong, fill: accent, fontSize: 22 }}>
+      EPS {eps}
+    </text>
+  </g>
+);
+}
+
 /** Buyback arithmetic: profit unchanged, share count down, EPS up. */
 function BuybackEps() {
-  const Col = ({
-    x,
-    title,
-    shares,
-    eps,
-    accent,
-  }: {
-    x: number;
-    title: string;
-    shares: number;
-    eps: string;
-    accent: string;
-  }) => (
-    <g>
-      <text x={x + 105} y="34" textAnchor="middle" style={strong}>
-        {title}
-      </text>
-      {Array.from({ length: shares }).map((_, i) => (
-        <rect
-          key={i}
-          x={x + (i % 10) * 22}
-          y={56 + Math.floor(i / 10) * 22}
-          width="17"
-          height="17"
-          rx="3"
-          fill={accent}
-          opacity={0.85}
-        />
-      ))}
-      <text x={x + 105} y="196" textAnchor="middle" style={label}>
-        {shares} shares
-      </text>
-      <text x={x + 105} y="228" textAnchor="middle" style={{ ...strong, fill: accent, fontSize: 22 }}>
-        EPS {eps}
-      </text>
-    </g>
-  );
   return (
     <Frame
       viewBox="0 0 640 260"
       label="The same profit of 100 divided by 50 shares gives earnings per share of 2. After buying back 10 shares, the same profit divided by 40 shares gives 2.5 — a 25 percent rise with no change in the business."
     >
-      <Col x={30} title="Before" shares={50} eps="2.00" accent={MUTED} />
-      <Col x={390} title="After buyback" shares={40} eps="2.50" accent={PRIMARY} />
+      <ShareColumn x={30} title="Before" shares={50} eps="2.00" accent={MUTED} />
+      <ShareColumn x={390} title="After buyback" shares={40} eps="2.50" accent={PRIMARY} />
       <text x={320} y="120" textAnchor="middle" style={{ ...strong, fontSize: 28, fill: MUTED }}>
         →
       </text>
@@ -269,9 +273,9 @@ function BuybackEps() {
   );
 }
 
-/** A long yield split into expectations and term premium. */
-function TermPremium() {
-  const Bar = ({ x, exp, prem, title }: { x: number; exp: number; prem: number; title: string }) => (
+/** One stacked bar splitting a yield into expectations and premium. */
+function YieldBar({ x, exp, prem, title }: { x: number; exp: number; prem: number; title: string }) {
+  return (
     <g>
       <rect x={x} y={230 - exp} width="90" height={exp} fill={PRIMARY} opacity={0.85} rx="3" />
       <rect x={x} y={230 - exp - prem} width="90" height={prem} fill={DOWN} opacity={0.75} rx="3" />
@@ -280,14 +284,18 @@ function TermPremium() {
       </text>
     </g>
   );
+}
+
+/** A long yield split into expectations and term premium. */
+function TermPremium() {
   return (
     <Frame
       viewBox="0 0 720 290"
       label="A long-dated yield split into two parts: the average short rate expected over the bond's life, and the term premium demanded for holding duration. The two move independently, so a yield can rise even while rate expectations fall."
     >
       <line x1="60" y1="230" x2="600" y2="230" stroke={AXIS} strokeWidth="1.5" />
-      <Bar x={110} exp={130} prem={20} title="Earlier" />
-      <Bar x={300} exp={100} prem={75} title="Later" />
+      <YieldBar x={110} exp={130} prem={20} title="Earlier" />
+      <YieldBar x={300} exp={100} prem={75} title="Later" />
       <text x={455} y="118" style={{ ...strong, fill: DOWN }}>
         Term premium
       </text>

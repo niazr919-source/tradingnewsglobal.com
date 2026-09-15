@@ -65,6 +65,8 @@ This is **market depth**, and it is the thing that actually determines the cost 
 
 A market order says: fill me now, at whatever price is available.
 
+![An order book ladder. A market order for 1,000 units consumes the book outward from the best price, filling at 10.00, 10.01 and 10.02 for an average above the quote.](diagram:order-book)
+
 The book fills it from the best price outward. Suppose you want 1,000 units, and the ask side holds 200 at 10.00, 300 at 10.01, and 800 at 10.02.
 
 Your order takes all 200 at 10.00, all 300 at 10.01, and 500 at 10.02. Average price paid: about 10.013 - not the 10.00 you saw quoted.

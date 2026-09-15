@@ -50,6 +50,62 @@ export default function NewsroomPage() {
         everything here — including the errors — belongs to {siteConfig.name}.
       </p>
 
+
+      <h2>How an article is made</h2>
+      <p>
+        Every article on this site goes through the same sequence. We set it out in full because
+        &ldquo;we research carefully&rdquo; is a claim anyone can make, and a process you can check is not.
+      </p>
+      <ol>
+        <li>
+          <strong>Topic selection.</strong> We write about mechanisms readers are actively trying to
+          understand — what a measure means, why a market behaves the way it does. We do not chase
+          brand names or trending tickers for traffic, and we decline topics where the honest answer
+          would be a recommendation rather than an explanation.
+        </li>
+        <li>
+          <strong>Primary sourcing.</strong> Claims are traced to the body that produces the data:
+          central banks, statistical agencies, regulators, standard-setters. Where a figure only
+          exists in secondary reporting, and outlets disagree about it, we leave the figure out and
+          explain the mechanism instead.
+        </li>
+        <li>
+          <strong>Source verification.</strong> Every external link is fetched and confirmed to
+          resolve before the article is published. Links that redirect are replaced with their
+          destination, and pages we cannot confirm are not cited. This is why our source lists are
+          shorter than some — we only list what we checked.
+        </li>
+        <li>
+          <strong>Drafting against a house standard.</strong> Roughly a thousand words minimum, the
+          answer stated up front rather than withheld, limitations named in the body rather than
+          buried in a footer, and no price targets or forecasts anywhere.
+        </li>
+        <li>
+          <strong>Review before publication.</strong> Each article is read against the{" "}
+          <Link href="/editorial-policy">editorial policy</Link> — in particular for claims stated
+          more confidently than the evidence supports, and for anything that reads as advice.
+        </li>
+        <li>
+          <strong>Automated checks.</strong> Before anything reaches the site, an automated pass
+          verifies that every internal link resolves, that metadata and structured data are complete,
+          and that the published page matches what was built. A failure blocks the deployment.
+        </li>
+      </ol>
+      <p>
+        Where a mechanism is easier to see than to read, we draw it ourselves. The diagrams on this
+        site are original, built specifically for the article they appear in, and captioned so they
+        make sense on their own.
+      </p>
+
+      <h2>How to check our work</h2>
+      <p>
+        Every article ends with the sources it was built from, and they are deliberately primary —
+        you can open the same page we did and see whether we represented it fairly. If we have got
+        something wrong, that is the fastest way to find it, and{" "}
+        <a href={`mailto:${newsroom.correctionsEmail}`}>{newsroom.correctionsEmail}</a> is the fastest
+        way to tell us.
+      </p>
+
       <h2>What we will not publish</h2>
       <ul>
         <li>
